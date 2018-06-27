@@ -15,18 +15,18 @@ G = {
  * {@Link https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array |2011-06-08 How can I shuffle an array?}
  */
 function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
 }
 
-function onclickPlyrBtn (event) {
+function onclickPlyrBtn(event) {
 	let id = event.target.id;
 	// playerNum1
-	let iPlyrN = parseInt(id.slice(9,10),10);
-	
+	let iPlyrN = parseInt(id.slice(9, 10), 10);
+
 	for (let jDeckN = 2; jDeckN < 9; jDeckN += 1) {
 		let deckObj = document.getElementById('deck' + jDeckN);
 		if (iPlyrN < jDeckN) {
@@ -35,26 +35,26 @@ function onclickPlyrBtn (event) {
 			deckObj.style.display = "block";
 		}
 	}
-	
+
 	// 配列に 存在するタイルの数字を入れる。
 	let array = [];
-	let k=0;
+	let k = 0;
 	for (let j = 0; j < 10; j += 1) {
 		for (let i = 0; i < 10; i += 1) {
-			if (i<=j) {
-				array[k]=10*i+j;
-				k+=1;
+			if (i <= j) {
+				array[k] = 10 * i + j;
+				k += 1;
 			} else {
 				break;
 			}
 		}
 	}
-	
+
 	// シャッフル
 	array = shuffle(array);
-	
+
 	let tileNum;
-	switch(iPlyrN){
+	switch (iPlyrN) {
 	case 2:
 		// 21枚ずつ
 		tileNum = 21;
@@ -83,7 +83,7 @@ function onclickPlyrBtn (event) {
 	case 8:
 		// 5枚ずつ
 		tileNum = 5;
-		break;				
+		break;
 	}
 
 	let lTile = 0;
@@ -92,21 +92,21 @@ function onclickPlyrBtn (event) {
 		let deckObj = document.getElementById(deckObjId);
 		for (let kTileN = 0; kTileN < tileNum; kTileN += 1) {
 			let tileObj = document.getElementById('tile' + array[lTile]);
-			tileObj.style.left = (parseInt(deckObj.style.left,10)+kTileN*32+20)+'px';
-			tileObj.style.top = (parseInt(deckObj.style.top,10)+20)+'px';
+			tileObj.style.left = (parseInt(deckObj.style.left, 10) + kTileN * 32 + 20) + 'px';
+			tileObj.style.top = (parseInt(deckObj.style.top, 10) + 20) + 'px';
 			lTile += 1;
 		}
 	}
-	
+
 	let mountainObj = document.getElementById('mountain');
 	let m = 0;
-	for(; lTile<array.length; lTile+=1){
+	for (; lTile < array.length; lTile += 1) {
 		let tileObj = document.getElementById('tile' + array[lTile]);
-		tileObj.style.left = (parseInt(mountainObj.style.left,10)+m*32+20)+'px';
-		tileObj.style.top = (parseInt(mountainObj.style.top,10)+20)+'px';
-		m+=1;
+		tileObj.style.left = (parseInt(mountainObj.style.left, 10) + m * 32 + 20) + 'px';
+		tileObj.style.top = (parseInt(mountainObj.style.top, 10) + 20) + 'px';
+		m += 1;
 	}
-	
+
 }
 
 function onLoad() {
@@ -124,13 +124,13 @@ function onLoad() {
 	let mountainObj = document.getElementById('mountain');
 	mountainObj.style.left = "400px";
 	mountainObj.style.top = "40px";
-	
+
 	// Decks.
 	for (let iPlyrN = 1; iPlyrN < 9; iPlyrN += 1) {
 		let deckId = 'deck' + iPlyrN;
 		let deckObj = document.getElementById(deckId);
 		deckObj.style.left = "10px";
-		deckObj.style.top = (300 + 100*iPlyrN) + "px";
+		deckObj.style.top = (300 + 100 * iPlyrN) + "px";
 	}
 
 	// Board. ドロップされる側
@@ -152,7 +152,7 @@ function onLoad() {
 		if (obj !== null) {
 			G.angleDeg[id] = 0;
 			obj.draggable = true;
-			
+
 			// 初期位置
 			obj.style.left = Math.floor(Math.random() * 1200) + 'px';
 			obj.style.top = Math.floor(Math.random() * 800) + 'px';
