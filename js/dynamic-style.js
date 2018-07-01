@@ -22,6 +22,16 @@ function loadDynamicStyle() {
         '#89A58C'
     ];
 
+    // Scores.
+    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+        let elmScore = document.getElementById('score' + iDeck);
+        elmScore.style.left = 0 + 'px';
+        elmScore.style.top = 40 + 'px';
+        elmScore.style.width = 300 + 'px';
+        elmScore.style.height = 54 + 'px';
+        elmScore.style.color = deckBorderColor[iDeck];
+    }
+
     // Decks.
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
         let elmDeck = document.getElementById('deck' + iDeck);

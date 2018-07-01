@@ -7,6 +7,13 @@ div.deck {
     /* left, top, width, height to java script. */
 	border: solid 5px;
 }
+
+span.score {
+	position: absolute;
+    /* left, top, width, height to java script. */
+	font-size: 48px;
+}
+
 div.mountain {
 	position: absolute;
 	width: 600px;
@@ -14,6 +21,6 @@ div.mountain {
 	border: solid 5px #020001;
 }
 
-img.center {
+img.root-pibot {
 	position: absolute;
 }

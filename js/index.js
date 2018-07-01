@@ -25,9 +25,9 @@ function shuffle(a) {
 
 function onResize() {
     "use strict";
-    let elmCenter = document.getElementById('center');
-    elmCenter.style.left = (window.innerWidth / 2 + 32) + "px";
-    elmCenter.style.top = (window.innerHeight / 2 + 32) + "px";
+    let elmRootPibot = document.getElementById('rootPibot');
+    elmRootPibot.style.left = (window.innerWidth / 2 + 32) + "px";
+    elmRootPibot.style.top = (window.innerHeight / 2 + 132) + "px";
 }
 
 function onclickPlyrBtn(event) {
@@ -38,12 +38,15 @@ function onclickPlyrBtn(event) {
 
     for (let jDeckN = 0; jDeckN < 8; jDeckN += 1) {
         let elmDeck = document.getElementById('deck' + jDeckN);
+        let elmScore = document.getElementById('score' + jDeckN);
         if (jDeckN < iPlyrN) {
             elmDeck.style.display = "block";
+            elmScore.style.display = "block";
         } else {
             elmDeck.style.display = "none";
             elmDeck.style.width = 0;
             elmDeck.style.height = 0;
+            elmScore.style.display = "none";
         }
     }
 
@@ -83,17 +86,21 @@ function onclickPlyrBtn(event) {
         break;
     }
 
-    let elmCenter = document.getElementById('center');
+    let elmRootPibot = document.getElementById('rootPibot');
     let lTile = 0;
     let radius = Math.min(window.innerWidth, window.innerHeight) / 2 * 0.7;
-    for (let jDeckN = 0; jDeckN < iPlyrN; jDeckN += 1) {
-        let elmDeck = document.getElementById('deck' + jDeckN);
+    for (let iDeck = 0; iDeck < iPlyrN; iDeck += 1) {
+        let elmDeck = document.getElementById('deck' + iDeck);
+        let elmScore = document.getElementById('score' + iDeck);
         elmDeck.style.width = ((tileNum / 2 + 1.5) * 32) + "px";
         elmDeck.style.height = (2 * 64 + 32 * 1.25) + "px";
 
-        let theta = jDeckN / iPlyrN * 2 * Math.PI;
-        elmDeck.style.left = radius * Math.cos(theta) + (parseInt(elmCenter.style.left, 10) + 64 / 2) - parseInt(elmDeck.style.width, 10) / 2 + "px";
-        elmDeck.style.top = radius * Math.sin(theta) + (parseInt(elmCenter.style.top, 10) + 64 / 2) - parseInt(elmDeck.style.height, 10) / 2 + "px";
+        let theta = iDeck / iPlyrN * 2 * Math.PI;
+        elmDeck.style.left = radius * Math.cos(theta) + (parseInt(elmRootPibot.style.left, 10) + 64 / 2) - parseInt(elmDeck.style.width, 10) / 2 + "px";
+        elmDeck.style.top = radius * Math.sin(theta) + (parseInt(elmRootPibot.style.top, 10) + 64 / 2) - parseInt(elmDeck.style.height, 10) / 2 + "px";
+
+        elmScore.style.left = elmDeck.style.left;
+        elmScore.style.top = (parseInt(elmDeck.style.top, 10) - 60) + 'px';
 
         for (let kTileN = 0; kTileN < tileNum; kTileN += 1) {
             let elmTile = document.getElementById('tile' + G.tileNumbers[lTile]);
@@ -116,6 +123,33 @@ function onclickPlyrBtn(event) {
 
 }
 
+function onInterval() {
+    "use strict";
+
+    // Decks.
+    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+        let elmDeck = document.getElementById('deck' + iDeck);
+        G.scoreByDeck[iDeck] = 0;
+        // Tiles.
+        for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
+            let tileNum = G.tileNumbers[iTile];
+            let idTile = 'tile' + tileNum;
+            let elmTile = document.getElementById(idTile);
+            if (isIntersect(elmTile, elmDeck)) {
+                if (tileNum === 0) {
+                    // ダブル ブランクの失点は 50点。
+                    G.scoreByDeck[iDeck] += 50;
+                } else {
+                    G.scoreByDeck[iDeck] += tileNum;
+                }
+            }
+        }
+
+        let elmScore = document.getElementById('score' + iDeck);
+        elmScore.innerHTML = G.scoreByDeck[iDeck] + '点';
+    }
+}
+
 function onLoad() {
     "use strict";
     G = {
@@ -128,10 +162,11 @@ function onLoad() {
                 y: 0
             }
         },
-        
-        tileNumbers: []
+
+        tileNumbers: [],
+        scoreByDeck: []
     };
-    
+
     // 配列に 存在するタイルの数字を入れる。
     let k = 0;
     for (let j = 0; j < 10; j += 1) {
@@ -169,11 +204,11 @@ function onLoad() {
     };
 
     // Tiles.
-    for (let i = 0; i < 100; i += 1) {
-        let id = 'tile' + i;
-        let elmTile = document.getElementById(id);
+    for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
+        let idTile = 'tile' + G.tileNumbers[iTile];
+        let elmTile = document.getElementById(idTile);
         if (elmTile !== null) {
-            G.angleDeg[id] = 0;
+            G.angleDeg[idTile] = 0;
             elmTile.draggable = true;
 
             // https://hakuhin.jp/js/data_transfer.html#DATA_TRANSFER_04
@@ -204,4 +239,6 @@ function onLoad() {
             };
         }
     }
+
+    setInterval(onInterval, 3000);
 }

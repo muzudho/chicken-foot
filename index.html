@@ -12,7 +12,7 @@
 	<script src="js/index.js"></script>
 </head>
 
-<body id="board" onLoad="onLoad(); onResize();" onresize="onResize();">
+<body id="board" onLoad="onResize(); onLoad();" onresize="onResize();">
 	<div class="w3-bar w3-green">
 	  <a class="w3-bar-item w3-button" href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">説明（外部サイト）</a>
 	  <div class="w3-bar-item w3-button" id="playerNum2">2人</div>
@@ -40,7 +40,15 @@
         </div>
     </div>
 
-	<img class="center" id="center" src="img/center.png" alt="center"/>
+    <span class="score" id="score0"></span>
+    <span class="score" id="score1"></span>
+    <span class="score" id="score2"></span>
+    <span class="score" id="score3"></span>
+    <span class="score" id="score4"></span>
+    <span class="score" id="score5"></span>
+    <span class="score" id="score6"></span>
+    <span class="score" id="score7"></span>
+	<img class="root-pibot" id="rootPibot" src="img/root-pibot.png" alt="root-pibot.png"/>
 	<div class="w3-round-xxlarge deck" id="deck0"></div>
 	<div class="w3-round-xxlarge deck" id="deck1"></div>
 	<div class="w3-round-xxlarge deck" id="deck2"></div>

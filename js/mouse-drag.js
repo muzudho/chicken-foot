@@ -1,7 +1,7 @@
 /**
  * Mouse drag hold on sprite.
  * @authore muzudho
- * @module js/mouse-drag.js
+ * @module js/mouse-drag
  */
 
 /**
