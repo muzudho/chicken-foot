@@ -138,9 +138,9 @@ function onInterval() {
             if (isIntersect(elmTile, elmDeck)) {
                 if (tileNum === 0) {
                     // ダブル ブランクの失点は 50点。
-                    G.scoreByDeck[iDeck] += 50;
+                    G.scoreByDeck[iDeck] -= 50;
                 } else {
-                    G.scoreByDeck[iDeck] += tileNum;
+                    G.scoreByDeck[iDeck] -= tileNum;
                 }
             }
         }
