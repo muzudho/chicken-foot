@@ -38,6 +38,7 @@
  * document.getElementById(id).ondragstart = onDragStart;
  */
 function onDragStart(event) {
+    "use strict";
     let rectBody = document.body.getBoundingClientRect();
     // parseInt remove 'px'.
     G.mouseDrag.holdPoint.x = event.clientX - parseInt(event.target.style.left, 10) - rectBody.left;
@@ -50,9 +51,27 @@ function onDragStart(event) {
  * document.getElementById(id).ondrag = onDrag;
  */
 function onDrag(event) {
+    "use strict";
     if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
         let rectBodyClient = document.body.getBoundingClientRect();
         event.target.style.left = (event.clientX - rectBodyClient.left - G.mouseDrag.holdPoint.x) + 'px';
         event.target.style.top = (event.clientY - rectBodyClient.top - G.mouseDrag.holdPoint.y) + 'px';
+
+        // Full intersect decks.
+        //
+        // +-Deck-------+
+        // |            |
+        // | +-Tile---+ |
+        // | |        | |
+        // | |        | |
+        // | +--------+ |
+        // +------------+
+        event.target.style.border = '';
+        for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+            let elmDeck = document.getElementById('deck' + iDeck);
+            if (isIntersect(event.target, elmDeck)) {
+                event.target.style.border = "solid 2px " + elmDeck.style.borderColor;
+            }
+        }
     }
 }
