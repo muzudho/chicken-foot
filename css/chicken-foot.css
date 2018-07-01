@@ -8,6 +8,12 @@ div.deck {
 	border: solid 5px;
 }
 
+i.move {
+	position: absolute;
+    /* left, top, width, height to java script. */
+    font-size: 36px;
+}
+
 span.score {
 	position: absolute;
     /* left, top, width, height to java script. */

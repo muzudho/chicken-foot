@@ -36,17 +36,20 @@ function onclickPlyrBtn(event) {
     // playerNum1
     let iPlyrN = parseInt(id.slice(9, 10), 10);
 
-    for (let jDeckN = 0; jDeckN < 8; jDeckN += 1) {
-        let elmDeck = document.getElementById('deck' + jDeckN);
-        let elmScore = document.getElementById('score' + jDeckN);
-        if (jDeckN < iPlyrN) {
+    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+        let elmDeck = document.getElementById('deck' + iDeck);
+        let elmScore = document.getElementById('score' + iDeck);
+        let elmMove = document.getElementById('move' + iDeck);
+        if (iDeck < iPlyrN) {
             elmDeck.style.display = "block";
             elmScore.style.display = "block";
+            elmMove.style.display = "block";
         } else {
             elmDeck.style.display = "none";
             elmDeck.style.width = 0;
             elmDeck.style.height = 0;
             elmScore.style.display = "none";
+            elmMove.style.display = "none";
         }
     }
 
@@ -92,6 +95,8 @@ function onclickPlyrBtn(event) {
     for (let iDeck = 0; iDeck < iPlyrN; iDeck += 1) {
         let elmDeck = document.getElementById('deck' + iDeck);
         let elmScore = document.getElementById('score' + iDeck);
+        let elmMove = document.getElementById('move' + iDeck);
+        
         elmDeck.style.width = ((tileNum / 2 + 1.5) * 32) + "px";
         elmDeck.style.height = (2 * 64 + 32 * 1.25) + "px";
 
@@ -102,6 +107,9 @@ function onclickPlyrBtn(event) {
         elmScore.style.left = elmDeck.style.left;
         elmScore.style.top = (parseInt(elmDeck.style.top, 10) - 60) + 'px';
 
+        elmMove.style.left = (parseInt(elmDeck.style.left, 10) - 36) + 'px';
+        elmMove.style.top = elmDeck.style.top;
+        
         for (let kTileN = 0; kTileN < tileNum; kTileN += 1) {
             let elmTile = document.getElementById('tile' + G.tileNumbers[lTile]);
             elmTile.style.left = (parseInt(elmDeck.style.left, 10) + kTileN % (tileNum / 2) * 32 + 20) + 'px';
@@ -157,6 +165,10 @@ function onLoad() {
         angleDeg: [],
         /** mouse-drag.js */
         mouseDrag: {
+            startClient: {
+                x: 0,
+                y: 0
+            },
             holdPoint: {
                 x: 0,
                 y: 0
@@ -203,6 +215,14 @@ function onLoad() {
         }
     };
 
+    // Moves.
+    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+        let elmMove = document.getElementById('move' + iDeck);
+        elmMove.draggable = true;
+        elmMove.ondragstart = onDragStart;
+        elmMove.ondrag = onDragMoveIcon;
+    }
+    
     // Tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
         let idTile = 'tile' + G.tileNumbers[iTile];

@@ -22,6 +22,16 @@ function loadDynamicStyle() {
         '#89A58C'
     ];
 
+    // Moves.
+    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+        let elmMove = document.getElementById('move' + iDeck);
+        elmMove.style.left = 0 + 'px';
+        elmMove.style.top = 40 + 'px';
+        elmMove.style.width = 36 + 'px';
+        elmMove.style.height = 36 + 'px';
+        elmMove.style.color = deckBorderColor[iDeck];
+    }
+
     // Scores.
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
         let elmScore = document.getElementById('score' + iDeck);
@@ -45,13 +55,13 @@ function loadDynamicStyle() {
     // Tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
         let elmTile = document.getElementById('tile' + G.tileNumbers[iTile]);
-        if (elmTile !== null) {
-            // 初期位置
-            elmTile.style.left = Math.floor(Math.random() * 600 + 40) + 'px';
-            elmTile.style.top = Math.floor(Math.random() * 400 + 40) + 'px';
-            elmTile.style.width = 32 + 'px';
-            elmTile.style.height = 64 + 'px';
-        }
+        //if (elmTile !== null) {
+        // 初期位置
+        elmTile.style.left = Math.floor(Math.random() * 600 + 40) + 'px';
+        elmTile.style.top = Math.floor(Math.random() * 400 + 40) + 'px';
+        elmTile.style.width = 32 + 'px';
+        elmTile.style.height = 64 + 'px';
+        //}
     }
 
 }
