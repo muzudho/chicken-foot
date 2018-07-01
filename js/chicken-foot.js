@@ -30,17 +30,23 @@ function shuffle(a) {
     return a;
 }
 
+function onResize(){
+    let elmCenter = document.getElementById('center');
+    elmCenter.style.left = (window.innerWidth / 2 + 32) + "px";
+    elmCenter.style.top = (window.innerHeight / 2 + 32) + "px";
+}
+
 function onclickPlyrBtn(event) {
     let id = event.target.id;
     // playerNum1
     let iPlyrN = parseInt(id.slice(9, 10), 10);
 
-    for (let jDeckN = 2; jDeckN < 9; jDeckN += 1) {
+    for (let jDeckN = 0; jDeckN < 8; jDeckN += 1) {
         let deckObj = document.getElementById('deck' + jDeckN);
-        if (iPlyrN < jDeckN) {
-            deckObj.style.display = "none";
-        } else {
+        if (jDeckN < iPlyrN) {
             deckObj.style.display = "block";
+        } else {
+            deckObj.style.display = "none";
         }
     }
 
@@ -94,24 +100,34 @@ function onclickPlyrBtn(event) {
         break;
     }
 
+    let elmCenter = document.getElementById('center');
     let lTile = 0;
-    for (let jDeckN = 1; jDeckN <= iPlyrN; jDeckN += 1) {
-        let deckObjId = 'deck' + jDeckN;
-        let deckObj = document.getElementById(deckObjId);
+    let radius = Math.min(window.innerWidth, window.innerHeight)/2 * 0.7;
+    for (let jDeckN = 0; jDeckN < iPlyrN; jDeckN += 1) {
+        let elmDeck = document.getElementById('deck' + jDeckN);
+        elmDeck.style.width = ((tileNum/2 + 1.5) * 32) + "px";
+        elmDeck.style.height = (2*64+32*1.25) + "px";
+        
+        let theta = jDeckN/iPlyrN * 2 * Math.PI;
+        console.log( "jDeck("+jDeckN+"): theta="+theta );
+        elmDeck.style.left = radius*Math.cos(theta) + (parseInt(elmCenter.style.left,10) + 64/2) - parseInt(elmDeck.style.width,10)/2 + "px";
+        elmDeck.style.top = radius*Math.sin(theta) + (parseInt(elmCenter.style.top,10) + 64/2) - parseInt(elmDeck.style.height,10)/2 + "px";
+        
         for (let kTileN = 0; kTileN < tileNum; kTileN += 1) {
-            let tileObj = document.getElementById('tile' + array[lTile]);
-            tileObj.style.left = (parseInt(deckObj.style.left, 10) + kTileN * 32 + 20) + 'px';
-            tileObj.style.top = (parseInt(deckObj.style.top, 10) + 20) + 'px';
+            let elmTile = document.getElementById('tile' + array[lTile]);
+            elmTile.style.left = (parseInt(elmDeck.style.left, 10) + kTileN%(tileNum/2) * 32 + 20) + 'px';
+            elmTile.style.top = (parseInt(elmDeck.style.top, 10) + (Math.floor(kTileN/(tileNum/2))*64) + 20) + 'px';
             lTile += 1;
         }
     }
 
-    let mountainObj = document.getElementById('mountain');
+    let elmMountain = document.getElementById('mountain');
+    elmMountain.style.width = ((55 - iPlyrN * tileNum + 1.5) * 32) + "px";
     let m = 0;
     for (; lTile < array.length; lTile += 1) {
-        let tileObj = document.getElementById('tile' + array[lTile]);
-        tileObj.style.left = (parseInt(mountainObj.style.left, 10) + m * 32 + 20) + 'px';
-        tileObj.style.top = (parseInt(mountainObj.style.top, 10) + 20) + 'px';
+        let elmTile = document.getElementById('tile' + array[lTile]);
+        elmTile.style.left = (parseInt(elmMountain.style.left, 10) + m * 32 + 20) + 'px';
+        elmTile.style.top = (parseInt(elmMountain.style.top, 10) + 20) + 'px';
         m += 1;
     }
 
@@ -134,11 +150,11 @@ function onLoad() {
     mountainObj.style.top = "40px";
 
     // Decks.
-    for (let iPlyrN = 1; iPlyrN < 9; iPlyrN += 1) {
-        let deckId = 'deck' + iPlyrN;
-        let deckObj = document.getElementById(deckId);
-        deckObj.style.left = "10px";
-        deckObj.style.top = (300 + 100 * iPlyrN) + "px";
+    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+        let deckId = 'deck' + iDeck;
+        let elmDeck = document.getElementById(deckId);
+        elmDeck.style.left = "10px";
+        elmDeck.style.top = (100 * iDeck + 400) + "px";
     }
 
     // Board. ドロップされる側
@@ -156,23 +172,23 @@ function onLoad() {
     // Tiles.
     for (let i = 0; i < 100; i += 1) {
         let id = 'tile' + i;
-        let obj = document.getElementById(id);
-        if (obj !== null) {
+        let elmTile = document.getElementById(id);
+        if (elmTile !== null) {
             G.angleDeg[id] = 0;
-            obj.draggable = true;
+            elmTile.draggable = true;
 
             // 初期位置
-            obj.style.left = Math.floor(Math.random() * 1200) + 'px';
-            obj.style.top = Math.floor(Math.random() * 800) + 'px';
+            elmTile.style.left = Math.floor(Math.random() * 1200) + 'px';
+            elmTile.style.top = Math.floor(Math.random() * 800) + 'px';
 
             // https://hakuhin.jp/js/data_transfer.html#DATA_TRANSFER_04
-            obj.ondragstart = onDragStart;
+            elmTile.ondragstart = onDragStart;
             // function (event) {
             // event.dataTransfer.effectAllowed = "move";
             // };
 
             // タイルの上にも落としたい
-            obj.ondragover = function (event) {
+            elmTile.ondragover = function (event) {
                 event.dataTransfer.dropEffect = "move";
                 // ドロップ許可
                 if (event.preventDefault) {
@@ -182,12 +198,12 @@ function onLoad() {
                 }
             };
 
-            obj.ondrag = onDrag;
-            // obj.ondrag = function (event) {
+            elmTile.ondrag = onDrag;
+            // elmTile.ondrag = function (event) {
             // let id = event.target.id;
             // if (!(event.clientX === 0 && event.clientY === 0)) {
-            // obj.style.left = event.clientX + 'px';
-            // obj.style.top = event.clientY + 'px';
+            // elmTile.style.left = event.clientX + 'px';
+            // elmTile.style.top = event.clientY + 'px';
             // }
             // };
 
@@ -195,7 +211,7 @@ function onLoad() {
              * Clicked tag such as img.
              * @param {string} id - HTML tag id.
              */
-            obj.onclick = function (event) {
+            elmTile.onclick = function (event) {
                 let id = event.target.id;
                 G.angleDeg[id] = (G.angleDeg[id] + 30) % 360;
                 document.getElementById(id).style.transform = 'rotate(' + G.angleDeg[id] + 'deg)';

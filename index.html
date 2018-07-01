@@ -10,7 +10,7 @@
 	<script src="js/chicken-foot.js"></script>
 </head>
 
-<body id="board" onLoad="onLoad();">
+<body id="board" onLoad="onLoad(); onResize();" onresize="onResize();">
 	<div class="w3-bar w3-green">
 	  <a class="w3-bar-item w3-button" href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">説明（外部サイト）</a>
 	  <div class="w3-bar-item w3-button" id="playerNum2">2人</div>
@@ -38,6 +38,8 @@
         </div>
     </div>
 
+	<img class="center" id="center" src="img/center.png" alt="center"/>
+	<div class="w3-round-xxlarge deck0" id="deck0"></div>
 	<div class="w3-round-xxlarge deck1" id="deck1"></div>
 	<div class="w3-round-xxlarge deck2" id="deck2"></div>
 	<div class="w3-round-xxlarge deck3" id="deck3"></div>
@@ -45,7 +47,6 @@
 	<div class="w3-round-xxlarge deck5" id="deck5"></div>
 	<div class="w3-round-xxlarge deck6" id="deck6"></div>
 	<div class="w3-round-xxlarge deck7" id="deck7"></div>
-	<div class="w3-round-xxlarge deck8" id="deck8"></div>
 	<div class="w3-round-xxlarge mountain" id="mountain"></div>
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/0.png" id="tile0" alt="0.png" />
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/1.png" id="tile1" alt="1.png" />

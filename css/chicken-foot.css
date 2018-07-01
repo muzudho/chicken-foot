@@ -2,49 +2,49 @@ img.tile {
 	position: absolute;
 }
 
-div.deck1 {
+div.deck0 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #3C77B9;
 }
-div.deck2 {
+div.deck1 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #20762F;
 }
-div.deck3 {
+div.deck2 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #C3273D;
 }
-div.deck4 {
+div.deck3 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #5E2D26;
 }
-div.deck5 {
+div.deck4 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #204CB9;
 }
-div.deck6 {
+div.deck5 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #F49B3F;
 }
-div.deck7 {
+div.deck6 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
 	border: solid 5px #D8768F;
 }
-div.deck8 {
+div.deck7 {
 	position: absolute;
 	width: 300px;
 	height: 100px;
@@ -55,4 +55,8 @@ div.mountain {
 	width: 600px;
 	height: 100px;
 	border: solid 5px #020001;
+}
+
+img.center {
+	position: absolute;
 }
