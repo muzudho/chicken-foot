@@ -2,55 +2,107 @@
  * Dynamic style.
  * @authore muzudho
  * @module js/dynamic-style
- */
+*/
+const DYNAMIC_STYLE_DECK_COLOR = [
+    '#3C77B9',
+    '#20762F',
+    '#C3273D',
+    '#5E2D26',
+    '#204CB9',
+    '#F49B3F',
+    '#D8768F',
+    '#89A58C',
+    '#020001', // mountain
+    '#0080FF' // root pibot
+];
+
+function loadDynamicStyleMove(suffix) {
+    let elmMove = document.getElementById('move' + suffix);
+    elmMove.style.left = 0 + 'px';
+    elmMove.style.top = 40 + 'px';
+    elmMove.style.width = 36 + 'px';
+    elmMove.style.height = 36 + 'px';
+    switch (suffix) {
+    case 'M':
+        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
+        break;
+    case 'RP':
+        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
+        break;
+    default:
+        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
+        break;
+    }
+}
+
+function loadDynamicStyleScore(suffix) {
+    "use strict";
+    let elmScore = document.getElementById('score' + suffix);
+    elmScore.style.left = 0 + 'px';
+    elmScore.style.top = 40 + 'px';
+    elmScore.style.width = 300 + 'px';
+    elmScore.style.height = 54 + 'px';
+    switch (suffix) {
+    case 'M':
+        elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
+        break;
+    case 'RP':
+        elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
+        break;
+    default:
+        elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
+        break;
+    }
+}
+
+function loadDynamicStyleDeck(suffix) {
+    let elmDeck = document.getElementById('deck' + suffix);
+    elmDeck.style.left = Math.floor(Math.random() * 600 + 40) + 'px';
+    elmDeck.style.top = Math.floor(Math.random() * 400 + 40) + 'px';
+    switch (suffix) {
+    case 'M':
+        // mountain.
+        elmDeck.style.left = 400 + 'px';
+        elmDeck.style.top = 40 + 'px';
+        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
+        break;
+    case 'RP':
+        // root pibot.
+        elmDeck.style.left = (window.innerWidth / 2 + 32) + 'px';
+        elmDeck.style.top = (window.innerHeight / 2 + 132) + 'px';
+        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
+        break;
+    default:
+        elmDeck.style.width = 300 + 'px';
+        elmDeck.style.height = 100 + 'px';
+        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[suffix];
+        break;
+    }
+}
 
 function loadDynamicStyle() {
     "use strict";
-    // Montain.
-    let elmMountain = document.getElementById('mountain');
-    elmMountain.style.left = 400 + 'px';
-    elmMountain.style.top = 40 + 'px';
-
-    let deckBorderColor = [
-        '#3C77B9',
-        '#20762F',
-        '#C3273D',
-        '#5E2D26',
-        '#204CB9',
-        '#F49B3F',
-        '#D8768F',
-        '#89A58C'
-    ];
 
     // Moves.
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        let elmMove = document.getElementById('move' + iDeck);
-        elmMove.style.left = 0 + 'px';
-        elmMove.style.top = 40 + 'px';
-        elmMove.style.width = 36 + 'px';
-        elmMove.style.height = 36 + 'px';
-        elmMove.style.color = deckBorderColor[iDeck];
+        loadDynamicStyleMove(iDeck);
     }
+    loadDynamicStyleMove('M');
+    loadDynamicStyleMove('RP');
 
     // Scores.
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        let elmScore = document.getElementById('score' + iDeck);
-        elmScore.style.left = 0 + 'px';
-        elmScore.style.top = 40 + 'px';
-        elmScore.style.width = 300 + 'px';
-        elmScore.style.height = 54 + 'px';
-        elmScore.style.color = deckBorderColor[iDeck];
+        loadDynamicStyleScore(iDeck);
     }
+    loadDynamicStyleScore('M');
+    loadDynamicStyleScore('RP');
 
     // Decks.
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        let elmDeck = document.getElementById('deck' + iDeck);
-        elmDeck.style.left = Math.floor(Math.random() * 600 + 40) + 'px';
-        elmDeck.style.top = Math.floor(Math.random() * 400 + 40) + 'px';
-        elmDeck.style.width = 300 + 'px';
-        elmDeck.style.height = 100 + 'px';
-        elmDeck.style.borderColor = deckBorderColor[iDeck];
+        loadDynamicStyleDeck(iDeck);
     }
+    loadDynamicStyleDeck('M');
+    loadDynamicStyleDeck('RP');
 
     // Tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {

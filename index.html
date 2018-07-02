@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
     <link rel="stylesheet" href="css/chicken-foot.css">
 	<script src="js/dynamic-style.js"></script>
+	<script src="js/start-up.js"></script>
+	<script src="js/game-start.js"></script>
 	<script src="js/intersect.js"></script>
 	<script src="js/mouse-drag.js"></script>
 	<script src="js/index.js"></script>
 </head>
 
-<body id="board" onLoad="onResize(); onLoad();" onresize="onResize();">
+<body id="board" onLoad="onLoad();" onresize="onResize();">
 	<div class="w3-bar w3-green">
 	  <a class="w3-bar-item w3-button" href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">説明（外部サイト）</a>
 	  <div class="w3-bar-item w3-button" id="playerNum2">2人</div>
@@ -41,14 +43,7 @@
         </div>
     </div>
 
-    <i class="move fas fa-arrows-alt" id="move0"></i>
-    <i class="move fas fa-arrows-alt" id="move1"></i>
-    <i class="move fas fa-arrows-alt" id="move2"></i>
-    <i class="move fas fa-arrows-alt" id="move3"></i>
-    <i class="move fas fa-arrows-alt" id="move4"></i>
-    <i class="move fas fa-arrows-alt" id="move5"></i>
-    <i class="move fas fa-arrows-alt" id="move6"></i>
-    <i class="move fas fa-arrows-alt" id="move7"></i>
+    <!-- 透明のオブジェクトが上に乗っからないように、マウスクリックしないものから順に書く。 -->
     <span class="score" id="score0"></span>
     <span class="score" id="score1"></span>
     <span class="score" id="score2"></span>
@@ -57,7 +52,8 @@
     <span class="score" id="score5"></span>
     <span class="score" id="score6"></span>
     <span class="score" id="score7"></span>
-	<img class="root-pibot" id="rootPibot" src="img/root-pibot.png" alt="root-pibot.png"/>
+    <span class="score" id="scoreM"></span>
+    <span class="score" id="scoreRP"></span>
 	<div class="w3-round-xxlarge deck" id="deck0"></div>
 	<div class="w3-round-xxlarge deck" id="deck1"></div>
 	<div class="w3-round-xxlarge deck" id="deck2"></div>
@@ -66,7 +62,19 @@
 	<div class="w3-round-xxlarge deck" id="deck5"></div>
 	<div class="w3-round-xxlarge deck" id="deck6"></div>
 	<div class="w3-round-xxlarge deck" id="deck7"></div>
-	<div class="w3-round-xxlarge mountain" id="mountain"></div>
+	<div class="w3-round-xxlarge mountain" id="deckM"></div>
+	<img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
+    
+    <i class="move fas fa-arrows-alt" id="move0"></i>
+    <i class="move fas fa-arrows-alt" id="move1"></i>
+    <i class="move fas fa-arrows-alt" id="move2"></i>
+    <i class="move fas fa-arrows-alt" id="move3"></i>
+    <i class="move fas fa-arrows-alt" id="move4"></i>
+    <i class="move fas fa-arrows-alt" id="move5"></i>
+    <i class="move fas fa-arrows-alt" id="move6"></i>
+    <i class="move fas fa-arrows-alt" id="move7"></i>
+    <i class="move fas fa-arrows-alt" id="moveM"></i>
+    <i class="move fas fa-arrows-alt" id="moveRP"></i>
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/0.png" id="tile0" alt="0.png" />
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/1.png" id="tile1" alt="1.png" />
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/2.png" id="tile2" alt="2.png" />

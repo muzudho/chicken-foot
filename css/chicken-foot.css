@@ -22,11 +22,11 @@ span.score {
 
 div.mountain {
 	position: absolute;
-	width: 600px;
-	height: 100px;
-	border: solid 5px #020001;
+    /* left, top, width, height to java script. */
+	border: solid 5px;
 }
 
 img.root-pibot {
 	position: absolute;
+    /* left, top, width, height to java script. */
 }
