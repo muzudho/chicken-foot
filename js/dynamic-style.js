@@ -4,7 +4,7 @@
  * @module js/dynamic-style
 */
 
-const BODY_PADDING_TOP = 80;
+const BODY_PADDING_TOP = 4*40;
 
 const DYNAMIC_STYLE_DECK_COLOR = [
     '#3C77B9',
