@@ -3,6 +3,9 @@
  * @authore muzudho
  * @module js/dynamic-style
 */
+
+const BODY_PADDING_TOP = 80;
+
 const DYNAMIC_STYLE_DECK_COLOR = [
     '#3C77B9',
     '#20762F',
@@ -19,7 +22,7 @@ const DYNAMIC_STYLE_DECK_COLOR = [
 function loadDynamicStyleMove(suffix) {
     let elmMove = document.getElementById('move' + suffix);
     elmMove.style.left = 0 + 'px';
-    elmMove.style.top = 40 + 'px';
+    elmMove.style.top = BODY_PADDING_TOP + 'px';
     elmMove.style.width = 36 + 'px';
     elmMove.style.height = 36 + 'px';
     switch (suffix) {
@@ -39,7 +42,7 @@ function loadDynamicStyleScore(suffix) {
     "use strict";
     let elmScore = document.getElementById('score' + suffix);
     elmScore.style.left = 0 + 'px';
-    elmScore.style.top = 40 + 'px';
+    elmScore.style.top = BODY_PADDING_TOP + 'px';
     elmScore.style.width = 300 + 'px';
     elmScore.style.height = 54 + 'px';
     switch (suffix) {
@@ -57,13 +60,13 @@ function loadDynamicStyleScore(suffix) {
 
 function loadDynamicStyleDeck(suffix) {
     let elmDeck = document.getElementById('deck' + suffix);
-    elmDeck.style.left = Math.floor(Math.random() * 600 + 40) + 'px';
-    elmDeck.style.top = Math.floor(Math.random() * 400 + 40) + 'px';
+    elmDeck.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
+    elmDeck.style.top = Math.floor(Math.random() * 400 + BODY_PADDING_TOP) + 'px';
     switch (suffix) {
     case 'M':
         // mountain.
         elmDeck.style.left = 400 + 'px';
-        elmDeck.style.top = 40 + 'px';
+        elmDeck.style.top = BODY_PADDING_TOP + 'px';
         elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
         break;
     case 'RP':
@@ -109,8 +112,8 @@ function loadDynamicStyle() {
         let elmTile = document.getElementById('tile' + G.tileNumbers[iTile]);
         //if (elmTile !== null) {
         // 初期位置
-        elmTile.style.left = Math.floor(Math.random() * 600 + 40) + 'px';
-        elmTile.style.top = Math.floor(Math.random() * 400 + 40) + 'px';
+        elmTile.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
+        elmTile.style.top = Math.floor(Math.random() * 400 + BODY_PADDING_TOP) + 'px';
         elmTile.style.width = 32 + 'px';
         elmTile.style.height = 64 + 'px';
         //}
