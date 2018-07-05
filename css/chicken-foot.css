@@ -13,6 +13,7 @@ div.positioningFinishButton {
 
 img.tile {
 	position: absolute;
+    display: none;
 }
 
 div.deck {
