@@ -33,6 +33,14 @@ function onLoad() {
         scoreByDeck: []
     };
 
+    // Title scene division.
+    let titleSceneDiv = document.getElementById('titleScene');
+    titleSceneDiv.style.display = "block";
+
+    // Game scene division.
+    let gameSceneDiv = document.getElementById('gameScene');
+    gameSceneDiv.style.display = "none";
+
     // 配列に 存在するタイルの数字を入れる。
     let k = 0;
     for (let j = 0; j < 10; j += 1) {

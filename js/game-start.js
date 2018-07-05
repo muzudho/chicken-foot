@@ -114,4 +114,12 @@ function onclickPlyrBtn(event) {
         m += 1;
     }
 
+    // Title scene division.
+    let titleSceneDiv = document.getElementById('titleScene');
+    titleSceneDiv.style.display = "none";
+
+    // Game scene division.
+    let gameSceneDiv = document.getElementById('gameScene');
+    gameSceneDiv.style.display = "block";
+
 }

@@ -17,102 +17,6 @@
 </head>
 
 <body id="board" onLoad="onLoad();" onresize="onResize();">
-	<div class="w3-bar w3-green">
-	  <a class="w3-bar-item w3-button" href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">せつめい（外部サイト）</a>
-	  <div class="w3-bar-item w3-button" id="playerNum2">2人</div>
-	  <div class="w3-bar-item w3-button" id="playerNum3">3人</div>
-	  <div class="w3-bar-item w3-button" id="playerNum4">4人</div>
-	  <div class="w3-bar-item w3-button" id="playerNum5">5人</div>
-	  <div class="w3-bar-item w3-button" id="playerNum6">6人</div>
-	  <div class="w3-bar-item w3-button" id="playerNum7">7人</div>
-	  <div class="w3-bar-item w3-button" id="playerNum8">8人</div>
-	  <a class="w3-bar-item w3-button" href="https://github.com/muzudho/chicken-foot">このプログラム無料配布（外部サイト）</a>
-	</div>
-	<div class="w3-bar w3-green">
-	  <span class="w3-bar-item">ラウンド</span>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round99" name="round" type="radio" checked="checked">
-      <label>9|9</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round88" name="round" type="radio">
-      <label>8|8</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round77" name="round" type="radio">
-      <label>7|7</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round66" name="round" type="radio">
-      <label>6|6</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round55" name="round" type="radio">
-      <label>5|5</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round44" name="round" type="radio">
-      <label>4|4</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round33" name="round" type="radio">
-      <label>3|3</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round22" name="round" type="radio">
-      <label>2|2</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round11" name="round" type="radio">
-      <label>1|1</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="round0" name="round" type="radio">
-      <label>0|0</label>
-    </div>
-    <div class="w3-bar-item">
-      <input class="w3-check" id="roundEnd" name="round" type="radio">
-      <label>おわり</label>
-    </div>
-	</div>
-	<div class="w3-bar w3-green w3-row">
-	  <span class="w3-bar-item w3-col m4 l4">そうごう とくてん</span>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>1</label>
-      <input class="w3-input" id="total0" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>2</label>
-      <input class="w3-input" id="total1" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>3</label>
-      <input class="w3-input" id="total2" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>4</label>
-      <input class="w3-input" id="total3" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>5</label>
-      <input class="w3-input" id="total4" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>6</label>
-      <input class="w3-input" id="total5" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>7</label>
-      <input class="w3-input" id="total6" type="text">
-    </div>
-    <div class="w3-bar-item w3-col m1 l1">
-      <label><i class="fas fa-user"></i>8</label>
-      <input class="w3-input" id="total7" type="text">
-    </div>
-	</div>
-	<div class="w3-bar w3-green">
-	  <div class="w3-bar-item w3-button" id="roundEndButton">らうんど しゅうりょう</div>
-	</div>
 
   <h1>チキンフット<br/>
     <small>- chichen-foot.</small></h1>
@@ -129,92 +33,194 @@
       </div>
   </div>
 
-  <!-- 透明のオブジェクトが上に乗っからないように、マウスクリックしないものから順に書く。 -->
-  <span class="score" id="score0"></span>
-  <span class="score" id="score1"></span>
-  <span class="score" id="score2"></span>
-  <span class="score" id="score3"></span>
-  <span class="score" id="score4"></span>
-  <span class="score" id="score5"></span>
-  <span class="score" id="score6"></span>
-  <span class="score" id="score7"></span>
-  <span class="score" id="scoreM"></span>
-  <span class="score" id="scoreRP"></span>
-	<div class="w3-round-xxlarge deck" id="deck0"></div>
-	<div class="w3-round-xxlarge deck" id="deck1"></div>
-	<div class="w3-round-xxlarge deck" id="deck2"></div>
-	<div class="w3-round-xxlarge deck" id="deck3"></div>
-	<div class="w3-round-xxlarge deck" id="deck4"></div>
-	<div class="w3-round-xxlarge deck" id="deck5"></div>
-	<div class="w3-round-xxlarge deck" id="deck6"></div>
-	<div class="w3-round-xxlarge deck" id="deck7"></div>
-	<div class="w3-round-xxlarge mountain" id="deckM"></div>
-	<img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
-    
-  <i class="move fas fa-arrows-alt" id="move0"></i>
-  <i class="move fas fa-arrows-alt" id="move1"></i>
-  <i class="move fas fa-arrows-alt" id="move2"></i>
-  <i class="move fas fa-arrows-alt" id="move3"></i>
-  <i class="move fas fa-arrows-alt" id="move4"></i>
-  <i class="move fas fa-arrows-alt" id="move5"></i>
-  <i class="move fas fa-arrows-alt" id="move6"></i>
-  <i class="move fas fa-arrows-alt" id="move7"></i>
-  <i class="move fas fa-arrows-alt" id="moveM"></i>
-  <i class="move fas fa-arrows-alt" id="moveRP"></i>
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/0.png" id="tile0" alt="0.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/1.png" id="tile1" alt="1.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/2.png" id="tile2" alt="2.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/3.png" id="tile3" alt="3.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/4.png" id="tile4" alt="4.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/5.png" id="tile5" alt="5.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/6.png" id="tile6" alt="6.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/7.png" id="tile7" alt="7.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/8.png" id="tile8" alt="8.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/9.png" id="tile9" alt="9.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/11.png" id="tile11" alt="11.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/12.png" id="tile12" alt="12.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/13.png" id="tile13" alt="13.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/14.png" id="tile14" alt="14.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/15.png" id="tile15" alt="15.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/16.png" id="tile16" alt="16.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/17.png" id="tile17" alt="17.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/18.png" id="tile18" alt="18.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/19.png" id="tile19" alt="19.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/22.png" id="tile22" alt="22.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/23.png" id="tile23" alt="23.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/24.png" id="tile24" alt="24.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/25.png" id="tile25" alt="25.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/26.png" id="tile26" alt="26.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/27.png" id="tile27" alt="27.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/28.png" id="tile28" alt="28.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/29.png" id="tile29" alt="29.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/33.png" id="tile33" alt="33.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/34.png" id="tile34" alt="34.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/35.png" id="tile35" alt="35.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/36.png" id="tile36" alt="36.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/37.png" id="tile37" alt="37.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/38.png" id="tile38" alt="38.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/39.png" id="tile39" alt="39.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/44.png" id="tile44" alt="44.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/45.png" id="tile45" alt="45.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/46.png" id="tile46" alt="46.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/47.png" id="tile47" alt="47.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/48.png" id="tile48" alt="48.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/49.png" id="tile49" alt="49.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/55.png" id="tile55" alt="55.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/56.png" id="tile56" alt="56.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/57.png" id="tile57" alt="57.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/58.png" id="tile58" alt="58.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/59.png" id="tile59" alt="59.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/66.png" id="tile66" alt="66.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/67.png" id="tile67" alt="67.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/68.png" id="tile68" alt="68.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/69.png" id="tile69" alt="69.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/77.png" id="tile77" alt="77.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/78.png" id="tile78" alt="78.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/79.png" id="tile79" alt="79.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/88.png" id="tile88" alt="88.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/89.png" id="tile89" alt="89.png" />
-	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/99.png" id="tile99" alt="99.png" />
+  <div class="w3-display-container scene-container" id="titleScene">
+    <ul class="w3-display-middle w3-ul w3-hoverable w3-xlarge">
+      <li><a href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">せつめい（外部サイト）</a></li>
+      <li id="playerNum2">ふたり で あそぶ</li>
+      <li id="playerNum3">3人 で あそぶ</li>
+      <li id="playerNum4">4人 で あそぶ</li>
+      <li id="playerNum5">5人 で あそぶ</li>
+      <li id="playerNum6">6人 で あそぶ</li>
+      <li id="playerNum7">7人 で あそぶ</li>
+      <li id="playerNum8">8人 で あそぶ</li>
+      <li><a href="https://github.com/muzudho/chicken-foot">このプログラム無料配布（外部サイト）</a></li>
+    </ul>
+  </div>
+  <div class="w3-display-container scene-container" id="gameScene">
+    <div class="w3-bar w3-green">
+      <span class="w3-bar-item">ラウンド</span>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round99" name="round" type="radio" checked="checked">
+        <label>9|9</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round88" name="round" type="radio">
+        <label>8|8</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round77" name="round" type="radio">
+        <label>7|7</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round66" name="round" type="radio">
+        <label>6|6</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round55" name="round" type="radio">
+        <label>5|5</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round44" name="round" type="radio">
+        <label>4|4</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round33" name="round" type="radio">
+        <label>3|3</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round22" name="round" type="radio">
+        <label>2|2</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round11" name="round" type="radio">
+        <label>1|1</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="round0" name="round" type="radio">
+        <label>0|0</label>
+      </div>
+      <div class="w3-bar-item">
+        <input class="w3-check" id="roundEnd" name="round" type="radio">
+        <label>おわり</label>
+      </div>
+    </div>
+    <div class="w3-bar w3-green w3-row">
+      <span class="w3-bar-item w3-col m4 l4">そうごう とくてん</span>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>1</label>
+        <input class="w3-input" id="total0" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>2</label>
+        <input class="w3-input" id="total1" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>3</label>
+        <input class="w3-input" id="total2" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>4</label>
+        <input class="w3-input" id="total3" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>5</label>
+        <input class="w3-input" id="total4" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>6</label>
+        <input class="w3-input" id="total5" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>7</label>
+        <input class="w3-input" id="total6" type="text">
+      </div>
+      <div class="w3-bar-item w3-col m1 l1">
+        <label><i class="fas fa-user"></i>8</label>
+        <input class="w3-input" id="total7" type="text">
+      </div>
+    </div>
+    <div class="w3-bar w3-green">
+      <div class="w3-bar-item w3-button" id="roundEndButton">らうんど しゅうりょう</div>
+    </div>
+
+
+    <!-- 透明のオブジェクトが上に乗っからないように、マウスクリックしないものから順に書く。 -->
+    <span class="score" id="score0"></span>
+    <span class="score" id="score1"></span>
+    <span class="score" id="score2"></span>
+    <span class="score" id="score3"></span>
+    <span class="score" id="score4"></span>
+    <span class="score" id="score5"></span>
+    <span class="score" id="score6"></span>
+    <span class="score" id="score7"></span>
+    <span class="score" id="scoreM"></span>
+    <span class="score" id="scoreRP"></span>
+    <div class="w3-round-xxlarge deck" id="deck0"></div>
+    <div class="w3-round-xxlarge deck" id="deck1"></div>
+    <div class="w3-round-xxlarge deck" id="deck2"></div>
+    <div class="w3-round-xxlarge deck" id="deck3"></div>
+    <div class="w3-round-xxlarge deck" id="deck4"></div>
+    <div class="w3-round-xxlarge deck" id="deck5"></div>
+    <div class="w3-round-xxlarge deck" id="deck6"></div>
+    <div class="w3-round-xxlarge deck" id="deck7"></div>
+    <div class="w3-round-xxlarge mountain" id="deckM"></div>
+    <img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
+      
+    <i class="move fas fa-arrows-alt" id="move0"></i>
+    <i class="move fas fa-arrows-alt" id="move1"></i>
+    <i class="move fas fa-arrows-alt" id="move2"></i>
+    <i class="move fas fa-arrows-alt" id="move3"></i>
+    <i class="move fas fa-arrows-alt" id="move4"></i>
+    <i class="move fas fa-arrows-alt" id="move5"></i>
+    <i class="move fas fa-arrows-alt" id="move6"></i>
+    <i class="move fas fa-arrows-alt" id="move7"></i>
+    <i class="move fas fa-arrows-alt" id="moveM"></i>
+    <i class="move fas fa-arrows-alt" id="moveRP"></i>
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/0.png" id="tile0" alt="0.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/1.png" id="tile1" alt="1.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/2.png" id="tile2" alt="2.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/3.png" id="tile3" alt="3.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/4.png" id="tile4" alt="4.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/5.png" id="tile5" alt="5.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/6.png" id="tile6" alt="6.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/7.png" id="tile7" alt="7.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/8.png" id="tile8" alt="8.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/9.png" id="tile9" alt="9.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/11.png" id="tile11" alt="11.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/12.png" id="tile12" alt="12.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/13.png" id="tile13" alt="13.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/14.png" id="tile14" alt="14.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/15.png" id="tile15" alt="15.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/16.png" id="tile16" alt="16.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/17.png" id="tile17" alt="17.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/18.png" id="tile18" alt="18.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/19.png" id="tile19" alt="19.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/22.png" id="tile22" alt="22.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/23.png" id="tile23" alt="23.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/24.png" id="tile24" alt="24.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/25.png" id="tile25" alt="25.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/26.png" id="tile26" alt="26.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/27.png" id="tile27" alt="27.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/28.png" id="tile28" alt="28.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/29.png" id="tile29" alt="29.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/33.png" id="tile33" alt="33.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/34.png" id="tile34" alt="34.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/35.png" id="tile35" alt="35.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/36.png" id="tile36" alt="36.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/37.png" id="tile37" alt="37.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/38.png" id="tile38" alt="38.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/39.png" id="tile39" alt="39.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/44.png" id="tile44" alt="44.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/45.png" id="tile45" alt="45.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/46.png" id="tile46" alt="46.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/47.png" id="tile47" alt="47.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/48.png" id="tile48" alt="48.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/49.png" id="tile49" alt="49.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/55.png" id="tile55" alt="55.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/56.png" id="tile56" alt="56.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/57.png" id="tile57" alt="57.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/58.png" id="tile58" alt="58.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/59.png" id="tile59" alt="59.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/66.png" id="tile66" alt="66.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/67.png" id="tile67" alt="67.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/68.png" id="tile68" alt="68.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/69.png" id="tile69" alt="69.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/77.png" id="tile77" alt="77.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/78.png" id="tile78" alt="78.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/79.png" id="tile79" alt="79.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/88.png" id="tile88" alt="88.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/89.png" id="tile89" alt="89.png" />
+    <img class="tile" src="http://game.warabenture.com/chicken-foot/img/99.png" id="tile99" alt="99.png" />
+  </div>
 </body>
 </html>
