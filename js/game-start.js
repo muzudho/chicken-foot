@@ -5,12 +5,13 @@
  */
 
 function startMove(suffix) {
+    "use strict";
     let elmDeck = document.getElementById('deck' + suffix);
     let elmMove = document.getElementById('move' + suffix);
     elmMove.style.left = (parseInt(elmDeck.style.left, 10) - 36) + 'px';
     elmMove.style.top = elmDeck.style.top;
 }
- 
+
 function onclickPlyrBtn(event) {
     "use strict";
     let id = event.target.id;
@@ -104,7 +105,7 @@ function onclickPlyrBtn(event) {
     // mountain
     let elmDeckM = document.getElementById('deckM');
     elmDeckM.style.width = ((55 - iPlyrN * tileNum + 1.5) * 32) + 'px';
-    elmDeckM.style.height = ( 64 + 32 * 1.25) + 'px';
+    elmDeckM.style.height = (64 + 32 * 1.25) + 'px';
     let m = 0;
     for (; lTile < G.tileNumbers.length; lTile += 1) {
         let elmTile = document.getElementById('tile' + G.tileNumbers[lTile]);

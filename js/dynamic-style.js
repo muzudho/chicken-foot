@@ -2,9 +2,9 @@
  * Dynamic style.
  * @authore muzudho
  * @module js/dynamic-style
-*/
+ */
 
-const BODY_PADDING_TOP = 4*40;
+const BODY_PADDING_TOP = 5 * 40;
 
 const DYNAMIC_STYLE_DECK_COLOR = [
     '#3C77B9',
@@ -20,6 +20,7 @@ const DYNAMIC_STYLE_DECK_COLOR = [
 ];
 
 function loadDynamicStyleMove(suffix) {
+    "use strict";
     let elmMove = document.getElementById('move' + suffix);
     elmMove.style.left = 0 + 'px';
     elmMove.style.top = BODY_PADDING_TOP + 'px';
@@ -34,7 +35,6 @@ function loadDynamicStyleMove(suffix) {
         break;
     default:
         elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
-        break;
     }
 }
 
@@ -54,7 +54,6 @@ function loadDynamicStyleScore(suffix) {
         break;
     default:
         elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
-        break;
     }
 }
 
@@ -79,7 +78,6 @@ function loadDynamicStyleDeck(suffix) {
         elmDeck.style.width = 300 + 'px';
         elmDeck.style.height = 100 + 'px';
         elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[suffix];
-        break;
     }
 }
 

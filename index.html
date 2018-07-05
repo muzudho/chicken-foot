@@ -12,6 +12,7 @@
 	<script src="js/game-start.js"></script>
 	<script src="js/intersect.js"></script>
 	<script src="js/mouse-drag.js"></script>
+	<script src="js/rule-helper.js"></script>
 	<script src="js/index.js"></script>
 </head>
 
@@ -109,33 +110,36 @@
       <input class="w3-input" id="total7" type="text">
     </div>
 	</div>
+	<div class="w3-bar w3-green">
+	  <div class="w3-bar-item w3-button" id="roundEndButton">らうんど しゅうりょう</div>
+	</div>
 
-    <h1>チキンフット<br/>
-        <small>- chichen-foot.</small></h1>
+  <h1>チキンフット<br/>
+    <small>- chichen-foot.</small></h1>
 
-    <div class="w3-container w3-margin-bottom">
-        <h2 class="w3-margin-top" id="introduction">はじめに<br/>
-            <small> - Introduction.</small></h2>
-        <div class="wara-talk">
-            <img class="w3-image face" src="http://warabenture.com/grayscale/img/dot_e/char_kao/1100_KITASHIRAKAWA_Chiyuri/gif_anime/KITASHIRAKAWA_Chiyuri_80x100x8_01_Futu.gif" alt="KITASHIRAKAWA_Chiyuri" />
-            <div class="w3-card-4 w3-round-xxlarge w3-padding wara-fukidasi">
-                <p id="msg">誰だぜ、帰れ☆！ ここはわたしの遊び場だぜ☆<br/>
-					- Who are you? Go to home! My playground is here!</p>
-            </div>
-        </div>
-    </div>
+  <div class="w3-container w3-margin-bottom">
+      <h2 class="w3-margin-top" id="introduction">はじめに<br/>
+          <small> - Introduction.</small></h2>
+      <div class="wara-talk">
+          <img class="w3-image face" src="http://warabenture.com/grayscale/img/dot_e/char_kao/1100_KITASHIRAKAWA_Chiyuri/gif_anime/KITASHIRAKAWA_Chiyuri_80x100x8_01_Futu.gif" alt="KITASHIRAKAWA_Chiyuri" />
+          <div class="w3-card-4 w3-round-xxlarge w3-padding wara-fukidasi">
+              <p id="msg">誰だぜ、帰れ☆！ ここはわたしの遊び場だぜ☆<br/>
+        - Who are you? Go to home! My playground is here!</p>
+          </div>
+      </div>
+  </div>
 
-    <!-- 透明のオブジェクトが上に乗っからないように、マウスクリックしないものから順に書く。 -->
-    <span class="score" id="score0"></span>
-    <span class="score" id="score1"></span>
-    <span class="score" id="score2"></span>
-    <span class="score" id="score3"></span>
-    <span class="score" id="score4"></span>
-    <span class="score" id="score5"></span>
-    <span class="score" id="score6"></span>
-    <span class="score" id="score7"></span>
-    <span class="score" id="scoreM"></span>
-    <span class="score" id="scoreRP"></span>
+  <!-- 透明のオブジェクトが上に乗っからないように、マウスクリックしないものから順に書く。 -->
+  <span class="score" id="score0"></span>
+  <span class="score" id="score1"></span>
+  <span class="score" id="score2"></span>
+  <span class="score" id="score3"></span>
+  <span class="score" id="score4"></span>
+  <span class="score" id="score5"></span>
+  <span class="score" id="score6"></span>
+  <span class="score" id="score7"></span>
+  <span class="score" id="scoreM"></span>
+  <span class="score" id="scoreRP"></span>
 	<div class="w3-round-xxlarge deck" id="deck0"></div>
 	<div class="w3-round-xxlarge deck" id="deck1"></div>
 	<div class="w3-round-xxlarge deck" id="deck2"></div>
@@ -147,16 +151,16 @@
 	<div class="w3-round-xxlarge mountain" id="deckM"></div>
 	<img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
     
-    <i class="move fas fa-arrows-alt" id="move0"></i>
-    <i class="move fas fa-arrows-alt" id="move1"></i>
-    <i class="move fas fa-arrows-alt" id="move2"></i>
-    <i class="move fas fa-arrows-alt" id="move3"></i>
-    <i class="move fas fa-arrows-alt" id="move4"></i>
-    <i class="move fas fa-arrows-alt" id="move5"></i>
-    <i class="move fas fa-arrows-alt" id="move6"></i>
-    <i class="move fas fa-arrows-alt" id="move7"></i>
-    <i class="move fas fa-arrows-alt" id="moveM"></i>
-    <i class="move fas fa-arrows-alt" id="moveRP"></i>
+  <i class="move fas fa-arrows-alt" id="move0"></i>
+  <i class="move fas fa-arrows-alt" id="move1"></i>
+  <i class="move fas fa-arrows-alt" id="move2"></i>
+  <i class="move fas fa-arrows-alt" id="move3"></i>
+  <i class="move fas fa-arrows-alt" id="move4"></i>
+  <i class="move fas fa-arrows-alt" id="move5"></i>
+  <i class="move fas fa-arrows-alt" id="move6"></i>
+  <i class="move fas fa-arrows-alt" id="move7"></i>
+  <i class="move fas fa-arrows-alt" id="moveM"></i>
+  <i class="move fas fa-arrows-alt" id="moveRP"></i>
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/0.png" id="tile0" alt="0.png" />
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/1.png" id="tile1" alt="1.png" />
 	<img class="tile" src="http://game.warabenture.com/chicken-foot/img/2.png" id="tile2" alt="2.png" />

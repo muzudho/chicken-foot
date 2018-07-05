@@ -5,6 +5,7 @@
  */
 
 function startupMove(suffix) {
+    "use strict";
     let elmMove = document.getElementById('move' + suffix);
     elmMove.draggable = true;
     elmMove.ondragstart = onDragStart;
@@ -48,13 +49,31 @@ function onLoad() {
     loadDynamicStyle();
 
     // Player number buttons.
-    for (let iPlyrN = 2; iPlyrN < 9; iPlyrN += 1) {
-        let plyrBtn = document.getElementById('playerNum' + iPlyrN);
+    for (let iPlyr = 2; iPlyr < 9; iPlyr += 1) {
+        let plyrBtn = document.getElementById('playerNum' + iPlyr);
         /**
          * @param {number} playerNum - プレイヤー人数
          */
         plyrBtn.onclick = onclickPlyrBtn;
     }
+
+    // Total score text boxes.
+    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        let totalTbx = document.getElementById('total' + iPlyr);
+        totalTbx.value = 0;
+    }
+
+    // Round end button.
+    let roundEndBtn = document.getElementById('roundEndButton');
+    roundEndBtn.onclick = function (event) {
+        refreshScoreByAllDecks();
+
+        // Total score text boxes.
+        for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+            let elmTotal = document.getElementById('total' + iPlyr);
+            elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByDeck[iPlyr];
+        }
+    };
 
     // Board. ドロップされる側
     let board = document.getElementById('board');
