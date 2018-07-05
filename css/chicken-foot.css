@@ -7,6 +7,10 @@ div.scene-container {
     display: none;
 }
 
+div.positioningFinishButton {
+    height: 160px;
+}
+
 img.tile {
 	position: absolute;
 }

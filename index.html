@@ -33,19 +33,19 @@
       </div>
   </div>
 
-  <div class="w3-display-container scene-container" id="titleScene">
-    <ul class="w3-display-middle w3-ul w3-hoverable w3-xlarge">
-      <li><a href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">せつめい（外部サイト）</a></li>
-      <li id="playerNum2">ふたり で あそぶ</li>
-      <li id="playerNum3">3人 で あそぶ</li>
-      <li id="playerNum4">4人 で あそぶ</li>
-      <li id="playerNum5">5人 で あそぶ</li>
-      <li id="playerNum6">6人 で あそぶ</li>
-      <li id="playerNum7">7人 で あそぶ</li>
-      <li id="playerNum8">8人 で あそぶ</li>
-      <li><a href="https://github.com/muzudho/chicken-foot">このプログラム無料配布（外部サイト）</a></li>
-    </ul>
-  </div>
+  <!-- Such as deck, mountain, root pibot. -->
+  <div class="w3-round-xxlarge deck" id="deck0"></div>
+  <div class="w3-round-xxlarge deck" id="deck1"></div>
+  <div class="w3-round-xxlarge deck" id="deck2"></div>
+  <div class="w3-round-xxlarge deck" id="deck3"></div>
+  <div class="w3-round-xxlarge deck" id="deck4"></div>
+  <div class="w3-round-xxlarge deck" id="deck5"></div>
+  <div class="w3-round-xxlarge deck" id="deck6"></div>
+  <div class="w3-round-xxlarge deck" id="deck7"></div>
+  <div class="w3-round-xxlarge mountain" id="deckM"></div>
+  <img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
+
+    
   <div class="w3-display-container scene-container" id="gameScene">
     <div class="w3-bar w3-green">
       <span class="w3-bar-item">ラウンド</span>
@@ -145,27 +145,7 @@
     <span class="score" id="score7"></span>
     <span class="score" id="scoreM"></span>
     <span class="score" id="scoreRP"></span>
-    <div class="w3-round-xxlarge deck" id="deck0"></div>
-    <div class="w3-round-xxlarge deck" id="deck1"></div>
-    <div class="w3-round-xxlarge deck" id="deck2"></div>
-    <div class="w3-round-xxlarge deck" id="deck3"></div>
-    <div class="w3-round-xxlarge deck" id="deck4"></div>
-    <div class="w3-round-xxlarge deck" id="deck5"></div>
-    <div class="w3-round-xxlarge deck" id="deck6"></div>
-    <div class="w3-round-xxlarge deck" id="deck7"></div>
-    <div class="w3-round-xxlarge mountain" id="deckM"></div>
-    <img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
-      
-    <i class="move fas fa-arrows-alt" id="move0"></i>
-    <i class="move fas fa-arrows-alt" id="move1"></i>
-    <i class="move fas fa-arrows-alt" id="move2"></i>
-    <i class="move fas fa-arrows-alt" id="move3"></i>
-    <i class="move fas fa-arrows-alt" id="move4"></i>
-    <i class="move fas fa-arrows-alt" id="move5"></i>
-    <i class="move fas fa-arrows-alt" id="move6"></i>
-    <i class="move fas fa-arrows-alt" id="move7"></i>
-    <i class="move fas fa-arrows-alt" id="moveM"></i>
-    <i class="move fas fa-arrows-alt" id="moveRP"></i>
+
     <img class="tile" src="http://game.warabenture.com/chicken-foot/img/0.png" id="tile0" alt="0.png" />
     <img class="tile" src="http://game.warabenture.com/chicken-foot/img/1.png" id="tile1" alt="1.png" />
     <img class="tile" src="http://game.warabenture.com/chicken-foot/img/2.png" id="tile2" alt="2.png" />
@@ -222,5 +202,36 @@
     <img class="tile" src="http://game.warabenture.com/chicken-foot/img/89.png" id="tile89" alt="89.png" />
     <img class="tile" src="http://game.warabenture.com/chicken-foot/img/99.png" id="tile99" alt="99.png" />
   </div>
+  <div class="w3-display-container scene-container" id="titleScene">
+    <ul class="w3-display-middle w3-ul w3-hoverable w3-xlarge">
+      <li><a href="http://www.tk-game-diary.net/domino_chickenfoot/domino_chickenfoot.html">せつめい（外部サイト）</a></li>
+      <li id="playerNum2">ふたり で あそぶ</li>
+      <li id="playerNum3">3人 で あそぶ</li>
+      <li id="playerNum4">4人 で あそぶ</li>
+      <li id="playerNum5">5人 で あそぶ</li>
+      <li id="playerNum6">6人 で あそぶ</li>
+      <li id="playerNum7">7人 で あそぶ</li>
+      <li id="playerNum8">8人 で あそぶ</li>
+      <li><a href="https://github.com/muzudho/chicken-foot">このプログラム無料配布（外部サイト）</a></li>
+    </ul>
+  </div>
+  <div class="w3-display-container scene-container" id="positioningScene">
+    <div class="w3-bar w3-green">
+      <div class="w3-bar-item w3-button positioningFinishButton" id="positioningFinishButton">ばしょ きまったら おせ</div>
+    </div>
+    <!-- Move icon. -->
+    <i class="move fas fa-arrows-alt" id="move0"></i>
+    <i class="move fas fa-arrows-alt" id="move1"></i>
+    <i class="move fas fa-arrows-alt" id="move2"></i>
+    <i class="move fas fa-arrows-alt" id="move3"></i>
+    <i class="move fas fa-arrows-alt" id="move4"></i>
+    <i class="move fas fa-arrows-alt" id="move5"></i>
+    <i class="move fas fa-arrows-alt" id="move6"></i>
+    <i class="move fas fa-arrows-alt" id="move7"></i>
+    <i class="move fas fa-arrows-alt" id="moveM"></i>
+    <i class="move fas fa-arrows-alt" id="moveRP"></i>
+  </div>
+
+
 </body>
 </html>

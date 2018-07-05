@@ -29,6 +29,8 @@ function onLoad() {
             }
         },
 
+        entryPlayerNum: 0,
+        tileNumByPlayer: 0,
         tileNumbers: [],
         scoreByDeck: []
     };
@@ -37,6 +39,10 @@ function onLoad() {
     let titleSceneDiv = document.getElementById('titleScene');
     titleSceneDiv.style.display = "block";
 
+    // Positioning scene division.
+    let positioningSceneDiv = document.getElementById('positioningScene');
+    positioningSceneDiv.style.display = "none";
+    
     // Game scene division.
     let gameSceneDiv = document.getElementById('gameScene');
     gameSceneDiv.style.display = "none";
@@ -56,15 +62,29 @@ function onLoad() {
 
     loadDynamicStyle();
 
-    // Player number buttons.
+    // Entry player count buttons.
     for (let iPlyr = 2; iPlyr < 9; iPlyr += 1) {
         let plyrBtn = document.getElementById('playerNum' + iPlyr);
         /**
          * @param {number} playerNum - プレイヤー人数
          */
         plyrBtn.onclick = onclickPlyrBtn;
+        plyrBtn.onmouseover = onMouseOverBtn;
     }
 
+    // Positioning finish button.
+    let positioningFinishBtn = document.getElementById('positioningFinishButton');
+    positioningFinishBtn.onclick = function(event) {
+        positioningFinishBtn.style.display = "none";
+        
+        // Game scene division.
+        let gameSceneDiv = document.getElementById('gameScene');
+        gameSceneDiv.style.display = "block";
+        
+        executeAutoTilePosition();
+    };
+    
+    
     // Total score text boxes.
     for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
         let totalTbx = document.getElementById('total' + iPlyr);
