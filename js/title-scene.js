@@ -164,20 +164,26 @@ function startMove(suffix) {
 
 function executeAutoPosition() {
     // Visibility.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        let elmDeck = document.getElementById('deck' + iDeck);
-        let elmScore = document.getElementById('score' + iDeck);
-        let elmMove = document.getElementById('move' + iDeck);
-        if (iDeck < G.entryPlayerNum) {
+    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        let elmDeck = document.getElementById('deck' + iPlyr);
+        let elmScore = document.getElementById('score' + iPlyr);
+        let elmMove = document.getElementById('move' + iPlyr);
+        let elmPlayerIcon = document.getElementById('playerIcon' + iPlyr);
+        let elmTotal = document.getElementById('total' + iPlyr);
+        if (iPlyr < G.entryPlayerNum) {
             elmDeck.style.display = "block";
             elmScore.style.display = "block";
             elmMove.style.display = "block";
+            elmPlayerIcon.style.display = "block";
+            elmTotal.style.display = "block";
         } else {
             elmDeck.style.display = "none";
             elmDeck.style.width = 0;
             elmDeck.style.height = 0;
             elmScore.style.display = "none";
             elmMove.style.display = "none";
+            elmPlayerIcon.style.display = "none";
+            elmTotal.style.display = "none";
         }
     }
     

@@ -81,6 +81,11 @@ function loadDynamicStyleDeck(suffix) {
     }
 }
 
+function loadDynamicStylePlayerIcon(suffix) {
+    let elmPlayerIcon = document.getElementById('playerIcon' + suffix);
+    elmPlayerIcon.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
+}
+
 function loadDynamicStyle() {
     "use strict";
 
@@ -105,6 +110,12 @@ function loadDynamicStyle() {
     loadDynamicStyleDeck('M');
     loadDynamicStyleDeck('RP');
 
+    // Player icons.
+    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        loadDynamicStylePlayerIcon(iPlyr);
+    }
+    
+    
     // Tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
         let elmTile = document.getElementById('tile' + G.tileNumbers[iTile]);
