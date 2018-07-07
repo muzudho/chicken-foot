@@ -45,16 +45,7 @@ function loadDynamicStyleScore(suffix) {
     elmScore.style.top = BODY_PADDING_TOP + 'px';
     elmScore.style.width = 300 + 'px';
     elmScore.style.height = 54 + 'px';
-    switch (suffix) {
-    case 'M':
-        elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
-        break;
-    case 'RP':
-        elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
-        break;
-    default:
-        elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
-    }
+    elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
 }
 
 function loadDynamicStyleDeck(suffix) {
@@ -100,8 +91,6 @@ function loadDynamicStyle() {
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
         loadDynamicStyleScore(iDeck);
     }
-    loadDynamicStyleScore('M');
-    loadDynamicStyleScore('RP');
 
     // Decks.
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {

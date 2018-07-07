@@ -14,6 +14,17 @@ function onPositioningFinishButtonClicked(event) {
         gameSceneElm.style.display = "block";
     });
 
+    // Score elements is visible.
+    iPlyr = 0;
+    document.querySelectorAll('.score').forEach(function (scoreElm) {
+        if (iPlyr < G.entryPlayerNum) {
+            scoreElm.style.display = 'block';
+        } else {
+            scoreElm.style.display = 'none';
+        }
+        iPlyr += 1;
+    });
+
     // Tile positioning.
     executeAutoTilePosition();
 }

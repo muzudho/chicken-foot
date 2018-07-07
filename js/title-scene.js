@@ -270,7 +270,7 @@ function onclickPlyrBtn(event) {
 
     executeAutoPosition();
 
-    // Title scene elements.
+    // Title scene elements is hidden.
     document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
         titleSceneElm.style.display = "none";
     });
