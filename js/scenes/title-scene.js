@@ -87,10 +87,10 @@ var gTitleScene = {
     onclickPlyrBtn: function (event) {
         "use strict";
         let id = event.target.id;
-        G.entryPlayerNum = getNumberByEntryPlayerButtonId(id);
+        G.entryPlayerNum = gStringFormat.getNumberByEntryPlayerButtonId(id);
 
         // シャッフル
-        G.tileNumbers = shuffle(G.tileNumbers);
+        G.tileNumbers = gIndex.shuffle(G.tileNumbers);
 
         switch (G.entryPlayerNum) {
         case 2:

@@ -42,8 +42,8 @@ var gPositioningScene = {
         // Tile positioning.
         this.executeAutoTilePosition();
 
-        G.currentPlayer = getFirstPlayerIndex();
-        highlightPlayer(G.currentPlayer);
+        G.currentPlayer = ruleHelper.getFirstPlayerIndex();
+        ruleHelper.highlightPlayer(G.currentPlayer);
 
         G.scene = 'game';
     },
@@ -73,7 +73,7 @@ var gPositioningScene = {
             elmTile.style.left = (parseInt(elmMatLib.style.left, 10) + m * 32 + 20) + 'px';
             elmTile.style.top = (parseInt(elmMatLib.style.top, 10) + 20) + 'px';
             elmTile.style.display = 'block';
-            elmTile.src = getTilePath('empty');
+            elmTile.src = gStringFormat.getTilePath('empty');
             m += 1;
         }
     }

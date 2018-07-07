@@ -79,7 +79,7 @@ var gMainProgram = {
             }
         }
 
-        loadDynamicStyle();
+        gDynamicStyle.loadDynamicStyleAll();
 
         // Entry player count buttons.
         for (let iPlyr = 2; iPlyr < (PLYR_MAX_LEN + 1); iPlyr += 1) {
@@ -110,7 +110,7 @@ var gMainProgram = {
         // Round end button.
         let roundEndBtn = document.getElementById('roundEndButton');
         roundEndBtn.onclick = function (event) {
-            refreshScoreByAllMats();
+            ruleHelper.refreshScoreByAllMats();
 
             // Total score text boxes.
             for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
@@ -177,7 +177,7 @@ var gMainProgram = {
 
                 /** Clicked tag such as img. */
                 elmTile.onmouseup = function (event) {
-                    let tileNumber = getNumberByTileId(event.target.id);
+                    let tileNumber = gStringFormat.getNumberByTileId(event.target.id);
                     let angle;
                     switch (event.which) {
                     case 1:
@@ -199,17 +199,17 @@ var gMainProgram = {
     },
     onFrame: function () {
         "use strict";
-        refreshScoreByAllMats();
+        ruleHelper.refreshScoreByAllMats();
 
         let elmRP = document.getElementById('matRP');
-        let rpCenter = getMatCenter('RP');
+        let rpCenter = gDynamicStyle.getMatCenter('RP');
 
         // Mats.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             if (iPlyr < G.entryPlayerNum) {
                 // Angle.
                 let elmMat = document.getElementById('mat' + iPlyr);
-                let matCenter = getMatCenter(iPlyr);
+                let matCenter = gDynamicStyle.getMatCenter(iPlyr);
                 G.matThetaArr[iPlyr] = Math.atan2(matCenter.x - rpCenter.x, matCenter.y - rpCenter.y);
 
                 // Score.
@@ -232,7 +232,7 @@ var gMainProgram = {
 
         // Current player.
         if (G.currentPlayer !== -1) {
-            highlightPlayer(G.currentPlayer);
+            ruleHelper.highlightPlayer(G.currentPlayer);
         }
     }
 };

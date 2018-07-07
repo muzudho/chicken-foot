@@ -18,7 +18,7 @@
 	<script src="js/scenes/positioning-scene.js"></script>
 </head>
 
-<body id="board" onLoad="gMainProgram.initialize(); setInterval(gMainProgram.onFrame, 1000);" onresize="onResize();">
+<body id="board" onLoad="gMainProgram.initialize(); setInterval(gMainProgram.onFrame, 1000);" onresize="gIndex.onResize();">
 
   <!-- Mats. Such as hand, library, root pibot. -->
   <div class="w3-round-xxlarge mat" id="mat0"></div>

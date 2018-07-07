@@ -73,17 +73,17 @@ var gMouseDrag = {
             elmTile.style.border = '';
 
             let elmMatLib = document.getElementById('matLib');
-            if (isIntersect(event.target, elmMatLib)) {
+            if (gIntersect.isIntersect(event.target, elmMatLib)) {
 
-                elmTile.src = getTilePath('empty');
+                elmTile.src = gStringFormat.getTilePath('empty');
 
             } else {
 
-                elmTile.src = getTilePath(getNumberByTileId(event.target.id));
+                elmTile.src = gStringFormat.getTilePath(gStringFormat.getNumberByTileId(event.target.id));
 
                 for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
                     let elmMat = document.getElementById('mat' + iPlyr);
-                    if (isIntersect(elmTile, elmMat)) {
+                    if (gIntersect.isIntersect(elmTile, elmMat)) {
                         elmTile.style.border = "solid 2px " + elmMat.style.borderColor;
                     }
                 }
@@ -112,12 +112,12 @@ var gMouseDrag = {
             case 'RP':
                 let isLocked = false;
                 let elmMatLib = document.getElementById('matLib');
-                if (isIntersect(elmTile, elmMatLib)) {
+                if (gIntersect.isIntersect(elmTile, elmMatLib)) {
                     isLocked = true;
                 } else {
                     for (let iOther = 0; iOther < PLYR_MAX_LEN; iOther += 1) {
                         let elmOthreMat = document.getElementById('mat' + iOther);
-                        if (isIntersect(elmTile, elmOthreMat)) {
+                        if (gIntersect.isIntersect(elmTile, elmOthreMat)) {
                             isLocked = true;
                             break;
                         }
@@ -129,7 +129,7 @@ var gMouseDrag = {
                 }
                 break;
             default:
-                if (isIntersect(elmTile, elmMat)) {
+                if (gIntersect.isIntersect(elmTile, elmMat)) {
                     elmTile.style.left = parseInt(elmTile.style.left, 10) + deltaX + 'px';
                     elmTile.style.top = parseInt(elmTile.style.top, 10) + deltaY + 'px';
                 }
@@ -160,7 +160,7 @@ var gMouseDrag = {
     onDragMoveIcon: function (event) {
         "use strict";
         if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
-            let suffix = getSuffixByMoveId(event.target.id);
+            let suffix = gStringFormat.getSuffixByMoveId(event.target.id);
             if (suffix !== null) {
                 this.moveDragMoveIcon(event, suffix);
             }
