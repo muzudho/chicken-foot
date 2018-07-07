@@ -1,6 +1,6 @@
 /**
  * String format.
- * @authore muzudho
+ * @authore Muzudho
  * @module js/string-format
  */
 

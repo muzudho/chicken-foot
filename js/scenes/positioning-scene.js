@@ -1,6 +1,6 @@
 /**
  * Game start.
- * @authore muzudho
+ * @authore Muzudho
  * @module js/scenes/positioning-scene
  */
 

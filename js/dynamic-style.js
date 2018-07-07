@@ -1,6 +1,6 @@
 /**
  * Dynamic style.
- * @authore muzudho
+ * @authore Muzudho
  * @module js/dynamic-style
  */
 

@@ -1,10 +1,11 @@
 /**
  * Game rule helper.
- * @authore muzudho
+ * @authore Muzudho
  * @module js/rule-helper
  */
 
 var ruleHelper = {
+    /** Score. */
     refreshScoreByAllMats: function () {
         "use strict";
         // Mats.
@@ -21,7 +22,8 @@ var ruleHelper = {
                         // ダブル ブランクの失点は 50点。
                         G.scoreByMat[iMat] -= 50;
                     } else {
-                        G.scoreByMat[iMat] -= tileNum;
+                        // 1桁目、2桁目を 1桁の数字として計算。
+                        G.scoreByMat[iMat] -= Math.floor(tileNum/10)%10 + tileNum%10;
                     }
                 }
             }

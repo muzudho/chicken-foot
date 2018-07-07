@@ -1,6 +1,6 @@
 /**
  * Start up.
- * @authore muzudho
+ * @authore Muzudho
  * @module js/scenes/title-scene
  */
 
