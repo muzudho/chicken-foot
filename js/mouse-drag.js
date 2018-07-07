@@ -52,16 +52,17 @@ function onDragStart(event) {
 }
 
 /**
- * Hold sprite and drag.
+ * Hold tile and mouse drag.
  *
- * document.getElementById(id).ondrag = onDrag;
+ * document.getElementById(id).ondrag = onTileDrag;
  */
-function onDrag(event) {
+function onTileDrag(event) {
     "use strict";
     if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
+        let elmTile = event.target;
         let rectBodyClient = document.body.getBoundingClientRect();
-        event.target.style.left = (event.clientX - rectBodyClient.left - G.mouseDrag.holdPoint.x) + 'px';
-        event.target.style.top = (event.clientY - rectBodyClient.top - G.mouseDrag.holdPoint.y) + 'px';
+        elmTile.style.left = (event.clientX - rectBodyClient.left - G.mouseDrag.holdPoint.x) + 'px';
+        elmTile.style.top = (event.clientY - rectBodyClient.top - G.mouseDrag.holdPoint.y) + 'px';
 
         // Full intersect decks.
         //
@@ -72,11 +73,22 @@ function onDrag(event) {
         // | |        | |
         // | +--------+ |
         // +------------+
-        event.target.style.border = '';
-        for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-            let elmDeck = document.getElementById('deck' + iDeck);
-            if (isIntersect(event.target, elmDeck)) {
-                event.target.style.border = "solid 2px " + elmDeck.style.borderColor;
+        elmTile.style.border = '';
+
+        let elmDeckS = document.getElementById('deckS');
+        if (isIntersect(event.target, elmDeckS)) {
+
+            elmTile.src = getTilePath('empty');
+
+        } else {
+
+            elmTile.src = getTilePath(getNumberByTileId(event.target.id));
+
+            for (let iDeck = 0; iDeck < 8; iDeck += 1) {
+                let elmDeck = document.getElementById('deck' + iDeck);
+                if (isIntersect(elmTile, elmDeck)) {
+                    elmTile.style.border = "solid 2px " + elmDeck.style.borderColor;
+                }
             }
         }
     }
@@ -147,7 +159,7 @@ function moveDragMoveIcon(event, suffix) {
 /**
  * Hold move icon and drag.
  *
- * document.getElementById(id).ondrag = onDrag;
+ * document.getElementById(id).ondrag = onDragMoveIcon;
  */
 function onDragMoveIcon(event) {
     "use strict";

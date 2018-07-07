@@ -68,7 +68,7 @@ function executeAutoTilePosition() {
         elmTile.style.left = (parseInt(elmDeckS.style.left, 10) + m * 32 + 20) + 'px';
         elmTile.style.top = (parseInt(elmDeckS.style.top, 10) + 20) + 'px';
         elmTile.style.display = 'block';
-        elmTile.style.src = getTilePath('empty');
+        elmTile.src = getTilePath('empty');
         m += 1;
     }
 }

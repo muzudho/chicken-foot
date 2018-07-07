@@ -149,7 +149,7 @@ function onLoad() {
                 }
             };
 
-            elmTile.ondrag = onDrag;
+            elmTile.ondrag = onTileDrag;
 
             /**
              * Clicked tag such as img.
@@ -221,8 +221,7 @@ function executeAutoPosition() {
 function onclickPlyrBtn(event) {
     "use strict";
     let id = event.target.id;
-    // ex) playerNum1 button
-    G.entryPlayerNum = parseInt(id.slice(9, 10), 10);
+    G.entryPlayerNum = getNumberByEntryPlayerButtonId(id);
 
     // シャッフル
     G.tileNumbers = shuffle(G.tileNumbers);

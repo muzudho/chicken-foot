@@ -21,7 +21,8 @@ const DYNAMIC_STYLE_DECK_COLOR = [
 ];
 
 function getTilePath(tileNumber) {
-    IMG_DIR + tileNumber + '.png';
+    "use strict";
+    return IMG_DIR + tileNumber + '.png';
 }
 
 function loadDynamicStyleMove(suffix) {
