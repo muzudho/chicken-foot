@@ -4,13 +4,6 @@
  */
 /*jslint es6 */
 
-const PLYR_MAX_LEN = 8;
-const LIBRARY_MAT_INDEX = 8;
-const ROUTE_PIBOT_MAT_INDEX = 9;
-
-/** Global variables. */
-G = {};
-
 /**
  * Shuffles array in place. ES6 version
  * @param {Array} a items An array containing the items.

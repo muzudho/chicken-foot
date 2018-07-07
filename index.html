@@ -9,16 +9,16 @@
   <link rel="stylesheet" href="css/chicken-foot.css">
 	<script src="js/string-format.js"></script>
 	<script src="js/dynamic-style.js"></script>
-	<script src="js/timer.js"></script>
-	<script src="js/scenes/title-scene.js"></script>
-	<script src="js/scenes/positioning-scene.js"></script>
 	<script src="js/intersect.js"></script>
 	<script src="js/mouse-drag.js"></script>
 	<script src="js/rule-helper.js"></script>
 	<script src="js/index.js"></script>
+	<script src="js/main-program.js"></script>
+	<script src="js/scenes/title-scene.js"></script>
+	<script src="js/scenes/positioning-scene.js"></script>
 </head>
 
-<body id="board" onLoad="onLoad();" onresize="onResize();">
+<body id="board" onLoad="initialize(); setInterval(onFrame, 1000);" onresize="onResize();">
 
   <!-- Mats. Such as hand, library, root pibot. -->
   <div class="w3-round-xxlarge mat" id="mat0"></div>
