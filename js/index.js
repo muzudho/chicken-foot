@@ -4,9 +4,9 @@
  */
 /*jslint es6 */
 
-const MAT_NUM = 8;
-const STACK_INDEX = 8;
-const ROUTE_PIBOT_INDEX = 9;
+const PLYR_MAX_LEN = 8;
+const LIBRARY_MAT_INDEX = 8;
+const ROUTE_PIBOT_MAT_INDEX = 9;
 
 /** Global variables. */
 G = {};

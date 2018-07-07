@@ -7,7 +7,7 @@
 function refreshScoreByAllMats() {
     "use strict";
     // Mats.
-    for (let iMat = 0; iMat < 8; iMat += 1) {
+    for (let iMat = 0; iMat < PLYR_MAX_LEN; iMat += 1) {
         let elmMat = document.getElementById('mat' + iMat);
         G.scoreByMat[iMat] = 0;
         // Tiles.

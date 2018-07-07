@@ -40,6 +40,18 @@ function onPositioningFinishButtonClicked(event) {
 
     // Tile positioning.
     executeAutoTilePosition();
+
+    /*TODO
+    // Mat is visible/hidden.
+    iPlyr = 0;
+    for (; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+    if (iPlyr < G.entryPlayerNum) {
+    setMatToOpacityMax(iPlyr, true);
+    } else {
+    setMatToOpacityMax(iPlyr, false);
+    }
+    }
+     */
 }
 
 function executeAutoTilePosition() {

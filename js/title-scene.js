@@ -29,7 +29,7 @@ function onLoad() {
         /** 0 <= x < 360. */
         angleDegByTile: [],
         /** radius */
-        currentMatAngleRadByPlayer: [],
+        matTheta: [],
 
         /** mouse-drag.js */
         mouseDrag: {
@@ -80,7 +80,7 @@ function onLoad() {
     loadDynamicStyle();
 
     // Entry player count buttons.
-    for (let iPlyr = 2; iPlyr < 9; iPlyr += 1) {
+    for (let iPlyr = 2; iPlyr < (PLYR_MAX_LEN + 1); iPlyr += 1) {
         let plyrBtn = document.getElementById('playerNum' + iPlyr);
         /**
          * @param {number} playerNum - プレイヤー人数
@@ -94,7 +94,7 @@ function onLoad() {
     positioningFinishBtn.onclick = onPositioningFinishButtonClicked;
 
     // Total score text boxes.
-    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+    for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
         let totalTbx = document.getElementById('total' + iPlyr);
         totalTbx.value = 0;
     }
@@ -105,7 +105,7 @@ function onLoad() {
         refreshScoreByAllMats();
 
         // Total score text boxes.
-        for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let elmTotal = document.getElementById('total' + iPlyr);
             elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];
         }
@@ -124,7 +124,7 @@ function onLoad() {
     };
 
     // Moves.
-    for (let iMat = 0; iMat < 8; iMat += 1) {
+    for (let iMat = 0; iMat < PLYR_MAX_LEN; iMat += 1) {
         startupMove(iMat);
     }
     startupMove('Lib');
@@ -190,7 +190,7 @@ function startMove(suffix) {
 function executeAutoPosition() {
     // Visibility.
     let iPlyr = 0;
-    for (; iPlyr < 8; iPlyr += 1) {
+    for (; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
         let elmMat = document.getElementById('mat' + iPlyr);
         let elmScore = document.getElementById('score' + iPlyr);
         if (iPlyr < G.entryPlayerNum) {
@@ -214,7 +214,6 @@ function executeAutoPosition() {
         elmMat.style.height = (2 * 64 + 32 * 1.25) + 'px';
 
         let theta = iPlyr / G.entryPlayerNum * 2 * Math.PI;
-        console.log('iPlyr=' + iPlyr + ' theta=' + theta);
         elmMat.style.left = radius * Math.cos(theta) + (parseInt(elmMatRP.style.left, 10) + 64 / 2) - parseInt(elmMat.style.width, 10) / 2 + 'px';
         elmMat.style.top = radius * Math.sin(theta) + (parseInt(elmMatRP.style.top, 10) + 64 / 2) - parseInt(elmMat.style.height, 10) / 2 + 'px';
 
@@ -272,7 +271,7 @@ function onclickPlyrBtn(event) {
         break;
     }
 
-    G.scene = 'positioning';
+    G.scene = 'positioning'; // FIXME
 
     executeAutoPosition();
 

@@ -8,13 +8,19 @@ function onInterval() {
     "use strict";
     refreshScoreByAllMats();
 
-    // Mats.
-    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
-        let elmMat = document.getElementById('mat' + iPlyr);
-        console.log('iPlyr=' + iPlyr + ' mat width=' + parseInt(elmMat.style.width, 10) + ' height=' + parseInt(elmMat.style.height, 10) + ' demoAngleDeg=' + G.demoAngleDeg[iPlyr] + ' currentAngleDeg=' + G.currentAngleDeg[iPlyr]);
+    let elmRP = document.getElementById('matRP');
+    let rpCenter = getMatCenter('RP');
 
+    // Mats.
+    for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+
+        // Angle.
+        let elmMat = document.getElementById('mat' + iPlyr);
+        let matCenter = getMatCenter(iPlyr);
+        G.matTheta[iPlyr] = Math.atan2(matCenter.x - rpCenter.x, matCenter.y - rpCenter.y);
+
+        // Score.
         let elmScore = document.getElementById('score' + iPlyr);
         elmScore.innerHTML = G.scoreByMat[iPlyr] + '点';
-
     }
 }

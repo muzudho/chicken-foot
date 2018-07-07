@@ -84,7 +84,7 @@ function onTileDrag(event) {
 
             elmTile.src = getTilePath(getNumberByTileId(event.target.id));
 
-            for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+            for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
                 let elmMat = document.getElementById('mat' + iPlyr);
                 if (isIntersect(elmTile, elmMat)) {
                     elmTile.style.border = "solid 2px " + elmMat.style.borderColor;
@@ -117,7 +117,7 @@ function moveDragMoveIcon(event, suffix) {
             if (isIntersect(elmTile, elmMatLib)) {
                 isLocked = true;
             } else {
-                for (let iOther = 0; iOther < 8; iOther += 1) {
+                for (let iOther = 0; iOther < PLYR_MAX_LEN; iOther += 1) {
                     let elmOthreMat = document.getElementById('mat' + iOther);
                     if (isIntersect(elmTile, elmOthreMat)) {
                         isLocked = true;

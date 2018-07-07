@@ -16,9 +16,9 @@
  *             |
  *             this.
  */
-function getRight(element){
+function getRight(element) {
     "use strict";
-    return parseInt(element.style.left,10) + parseInt(element.style.width,10);
+    return parseInt(element.style.left, 10) + parseInt(element.style.width, 10);
 }
 
 /**
@@ -30,9 +30,9 @@ function getRight(element){
  * |           |
  * +-----------+ &lt;--this.
  */
-function getBottom(element){
+function getBottom(element) {
     "use strict";
-    return parseInt(element.style.top,10) + parseInt(element.style.height,10);
+    return parseInt(element.style.top, 10) + parseInt(element.style.height, 10);
 }
 
 /**
@@ -47,10 +47,10 @@ function getBottom(element){
  * |  +-----------+ |
  * +----------------+
  */
-function isIntersect( elmChar, elmStage ){
+function isIntersect(elmChar, elmStage) {
     "use strict";
-    return parseInt(elmStage.style.left,10) <= parseInt(elmChar.style.left,10) &&
-        parseInt(elmStage.style.top,10) <= parseInt(elmChar.style.top,10) &&
-        getRight(elmChar) <= getRight(elmStage) &&
-        getBottom(elmChar) <= getBottom(elmStage);
+    return parseInt(elmStage.style.left, 10) <= parseInt(elmChar.style.left, 10) &&
+    parseInt(elmStage.style.top, 10) <= parseInt(elmChar.style.top, 10) &&
+    getRight(elmChar) <= getRight(elmStage) &&
+    getBottom(elmChar) <= getBottom(elmStage);
 }
