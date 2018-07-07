@@ -46,27 +46,27 @@ function executeAutoTilePosition() {
     "use strict";
     let usedTileCount = 0;
 
-    // Player decks.
-    for (let iDeck = 0; iDeck < G.entryPlayerNum; iDeck += 1) {
-        let elmDeck = document.getElementById('deck' + iDeck);
+    // Player mats.
+    for (let iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {
+        let elmMat = document.getElementById('mat' + iPlyr);
 
         for (let kTileN = 0; kTileN < G.tileNumByPlayer; kTileN += 1) {
             let elmTile = document.getElementById('tile' + G.tileNumbers[usedTileCount]);
-            elmTile.style.left = (parseInt(elmDeck.style.left, 10) + kTileN % (G.tileNumByPlayer / 2) * 32 + 20) + 'px';
-            elmTile.style.top = (parseInt(elmDeck.style.top, 10) + (Math.floor(kTileN / (G.tileNumByPlayer / 2)) * 64) + 20) + 'px';
-            elmTile.style.border = "solid 2px " + elmDeck.style.borderColor;
+            elmTile.style.left = (parseInt(elmMat.style.left, 10) + kTileN % (G.tileNumByPlayer / 2) * 32 + 20) + 'px';
+            elmTile.style.top = (parseInt(elmMat.style.top, 10) + (Math.floor(kTileN / (G.tileNumByPlayer / 2)) * 64) + 20) + 'px';
+            elmTile.style.border = "solid 2px " + elmMat.style.borderColor;
             elmTile.style.display = "block";
             usedTileCount += 1;
         }
     }
 
-    // Stack. Turn tile to back.
-    let elmDeckS = document.getElementById('deckS');
+    // Library. Turn tile to back.
+    let elmMatLib = document.getElementById('matLib');
     let m = 0;
     for (; usedTileCount < G.tileNumbers.length; usedTileCount += 1) {
         let elmTile = document.getElementById('tile' + G.tileNumbers[usedTileCount]);
-        elmTile.style.left = (parseInt(elmDeckS.style.left, 10) + m * 32 + 20) + 'px';
-        elmTile.style.top = (parseInt(elmDeckS.style.top, 10) + 20) + 'px';
+        elmTile.style.left = (parseInt(elmMatLib.style.left, 10) + m * 32 + 20) + 'px';
+        elmTile.style.top = (parseInt(elmMatLib.style.top, 10) + 20) + 'px';
         elmTile.style.display = 'block';
         elmTile.src = getTilePath('empty');
         m += 1;

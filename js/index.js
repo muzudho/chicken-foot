@@ -4,7 +4,7 @@
  */
 /*jslint es6 */
 
-const DECK_NUM = 8;
+const MAT_NUM = 8;
 const STACK_INDEX = 8;
 const ROUTE_PIBOT_INDEX = 9;
 
@@ -28,7 +28,7 @@ function shuffle(a) {
 function onResize() {
     "use strict";
     // root pibot
-    let elmDeckRP = document.getElementById('deckRP');
-    elmDeckRP.style.left = (window.innerWidth / 2 + 32) + "px";
-    elmDeckRP.style.top = (window.innerHeight / 2 + 132) + "px";
+    let elmMatRP = document.getElementById('matRP');
+    elmMatRP.style.left = (window.innerWidth / 2 + 32) + "px";
+    elmMatRP.style.top = (window.innerHeight / 2 + 132) + "px";
 }

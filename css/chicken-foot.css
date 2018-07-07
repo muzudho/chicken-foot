@@ -34,7 +34,7 @@ img.tile {
     display: none;
 }
 
-div.deck {
+div.mat {
 	position: absolute;
     /* left, top, width, height to java script. */
 	border: solid 5px;
@@ -54,8 +54,8 @@ span.score {
     display: none;
 }
 
-/* Stack. */
-div.deckS {
+/* Library. */
+div.matLib {
 	position: absolute;
     /* left, top, width, height to java script. */
 	border: solid 5px;

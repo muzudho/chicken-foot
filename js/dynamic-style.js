@@ -5,9 +5,8 @@
  */
 
 const BODY_PADDING_TOP = 5 * 40;
-const IMG_DIR = "http://game.warabenture.com/chicken-foot/img/";
 
-const DYNAMIC_STYLE_DECK_COLOR = [
+const DYNAMIC_STYLE_MAT_COLOR = [
     '#3C77B9',
     '#20762F',
     '#C3273D',
@@ -20,11 +19,6 @@ const DYNAMIC_STYLE_DECK_COLOR = [
     '#0080FF' // root pibot
 ];
 
-function getTilePath(tileNumber) {
-    "use strict";
-    return IMG_DIR + tileNumber + '.png';
-}
-
 function loadDynamicStyleMove(suffix) {
     "use strict";
     let elmMove = document.getElementById('move' + suffix);
@@ -33,14 +27,14 @@ function loadDynamicStyleMove(suffix) {
     elmMove.style.width = 36 + 'px';
     elmMove.style.height = 36 + 'px';
     switch (suffix) {
-    case 'S':
-        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[STACK_INDEX];
+    case 'Lib':
+        elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[STACK_INDEX];
         break;
     case 'RP':
-        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
+        elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[ROUTE_PIBOT_INDEX];
         break;
     default:
-        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
+        elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
     }
 }
 
@@ -51,59 +45,61 @@ function loadDynamicStyleScore(suffix) {
     elmScore.style.top = BODY_PADDING_TOP + 'px';
     elmScore.style.width = 300 + 'px';
     elmScore.style.height = 54 + 'px';
-    elmScore.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
+    elmScore.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
 }
 
-function loadDynamicStyleDeck(suffix) {
-    let elmDeck = document.getElementById('deck' + suffix);
-    elmDeck.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
-    elmDeck.style.top = Math.floor(Math.random() * 400 + BODY_PADDING_TOP) + 'px';
+function loadDynamicStyleMat(suffix) {
+    let elmMat = document.getElementById('mat' + suffix);
+    elmMat.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
+    elmMat.style.top = Math.floor(Math.random() * 400 + BODY_PADDING_TOP) + 'px';
     switch (suffix) {
-    case 'S':
+    case 'Lib':
         // stack.
-        elmDeck.style.left = 400 + 'px';
-        elmDeck.style.top = BODY_PADDING_TOP + 'px';
-        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[STACK_INDEX];
+        elmMat.style.left = 400 + 'px';
+        elmMat.style.top = BODY_PADDING_TOP + 'px';
+        elmMat.style.borderColor = DYNAMIC_STYLE_MAT_COLOR[STACK_INDEX];
         break;
     case 'RP':
         // root pibot.
-        elmDeck.style.left = (window.innerWidth / 2 + 32) + 'px';
-        elmDeck.style.top = (window.innerHeight / 2 + 132) + 'px';
-        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
+        elmMat.style.left = (window.innerWidth / 2 + 32) + 'px';
+        elmMat.style.top = (window.innerHeight / 2 + 132) + 'px';
+        elmMat.style.borderColor = DYNAMIC_STYLE_MAT_COLOR[ROUTE_PIBOT_INDEX];
         break;
     default:
-        elmDeck.style.width = 300 + 'px';
-        elmDeck.style.height = 100 + 'px';
-        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[suffix];
+        elmMat.style.width = 300 + 'px';
+        elmMat.style.height = 100 + 'px';
+        elmMat.style.borderColor = DYNAMIC_STYLE_MAT_COLOR[suffix];
     }
 }
 
+function getMatCenter(plyrNum) {}
+
 function loadDynamicStylePlayerIcon(suffix) {
     let elmPlayerIcon = document.getElementById('playerIcon' + suffix);
-    elmPlayerIcon.style.color = DYNAMIC_STYLE_DECK_COLOR[suffix];
+    elmPlayerIcon.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
 }
 
 function loadDynamicStyle() {
     "use strict";
 
     // Moves.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        loadDynamicStyleMove(iDeck);
+    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        loadDynamicStyleMove(iPlyr);
     }
-    loadDynamicStyleMove('S');
+    loadDynamicStyleMove('Lib');
     loadDynamicStyleMove('RP');
 
     // Scores.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        loadDynamicStyleScore(iDeck);
+    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        loadDynamicStyleScore(iPlyr);
     }
 
-    // Decks.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        loadDynamicStyleDeck(iDeck);
+    // Mats.
+    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+        loadDynamicStyleMat(iPlyr);
     }
-    loadDynamicStyleDeck('S');
-    loadDynamicStyleDeck('RP');
+    loadDynamicStyleMat('Lib');
+    loadDynamicStyleMat('RP');
 
     // Player icons.
     for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {

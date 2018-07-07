@@ -64,9 +64,9 @@ function onTileDrag(event) {
         elmTile.style.left = (event.clientX - rectBodyClient.left - G.mouseDrag.holdPoint.x) + 'px';
         elmTile.style.top = (event.clientY - rectBodyClient.top - G.mouseDrag.holdPoint.y) + 'px';
 
-        // Full intersect decks.
+        // Full intersect mat.
         //
-        // +-Deck-------+
+        // +-Mat--------+
         // |            |
         // | +-Tile---+ |
         // | |        | |
@@ -75,8 +75,8 @@ function onTileDrag(event) {
         // +------------+
         elmTile.style.border = '';
 
-        let elmDeckS = document.getElementById('deckS');
-        if (isIntersect(event.target, elmDeckS)) {
+        let elmMatLib = document.getElementById('matLib');
+        if (isIntersect(event.target, elmMatLib)) {
 
             elmTile.src = getTilePath('empty');
 
@@ -84,10 +84,10 @@ function onTileDrag(event) {
 
             elmTile.src = getTilePath(getNumberByTileId(event.target.id));
 
-            for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-                let elmDeck = document.getElementById('deck' + iDeck);
-                if (isIntersect(elmTile, elmDeck)) {
-                    elmTile.style.border = "solid 2px " + elmDeck.style.borderColor;
+            for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+                let elmMat = document.getElementById('mat' + iPlyr);
+                if (isIntersect(elmTile, elmMat)) {
+                    elmTile.style.border = "solid 2px " + elmMat.style.borderColor;
                 }
             }
         }
@@ -105,7 +105,7 @@ function moveDragMoveIcon(event, suffix) {
     event.target.style.left = (event.clientX - rectBodyClient.left - G.mouseDrag.holdPoint.x) + 'px';
     event.target.style.top = (event.clientY - rectBodyClient.top - G.mouseDrag.holdPoint.y) + 'px';
 
-    let elmDeck = document.getElementById('deck' + suffix);
+    let elmMat = document.getElementById('mat' + suffix);
 
     // Move member tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
@@ -113,13 +113,13 @@ function moveDragMoveIcon(event, suffix) {
         switch (suffix) {
         case 'RP':
             let isLocked = false;
-            let elmDeckS = document.getElementById('deckS');
-            if (isIntersect(elmTile, elmDeckS)) {
+            let elmMatLib = document.getElementById('matLib');
+            if (isIntersect(elmTile, elmMatLib)) {
                 isLocked = true;
             } else {
                 for (let iOther = 0; iOther < 8; iOther += 1) {
-                    let elmOthreDeck = document.getElementById('deck' + iOther);
-                    if (isIntersect(elmTile, elmOthreDeck)) {
+                    let elmOthreMat = document.getElementById('mat' + iOther);
+                    if (isIntersect(elmTile, elmOthreMat)) {
                         isLocked = true;
                         break;
                     }
@@ -131,7 +131,7 @@ function moveDragMoveIcon(event, suffix) {
             }
             break;
         default:
-            if (isIntersect(elmTile, elmDeck)) {
+            if (isIntersect(elmTile, elmMat)) {
                 elmTile.style.left = parseInt(elmTile.style.left, 10) + deltaX + 'px';
                 elmTile.style.top = parseInt(elmTile.style.top, 10) + deltaY + 'px';
             }
@@ -139,13 +139,13 @@ function moveDragMoveIcon(event, suffix) {
         }
     }
 
-    // Move deck.
-    elmDeck.style.left = parseInt(elmDeck.style.left, 10) + deltaX + 'px';
-    elmDeck.style.top = parseInt(elmDeck.style.top, 10) + deltaY + 'px';
+    // Move mat.
+    elmMat.style.left = parseInt(elmMat.style.left, 10) + deltaX + 'px';
+    elmMat.style.top = parseInt(elmMat.style.top, 10) + deltaY + 'px';
 
     // Move score.
     switch (suffix) {
-    case 'S':
+    case 'Lib':
         break;
     case 'RP':
         break;

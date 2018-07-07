@@ -46,7 +46,7 @@ function onLoad() {
         entryPlayerNum: 0,
         tileNumByPlayer: 0,
         tileNumbers: [],
-        scoreByDeck: []
+        scoreByMat: []
     };
 
     // Title scene elements.
@@ -102,12 +102,12 @@ function onLoad() {
     // Round end button.
     let roundEndBtn = document.getElementById('roundEndButton');
     roundEndBtn.onclick = function (event) {
-        refreshScoreByAllDecks();
+        refreshScoreByAllMats();
 
         // Total score text boxes.
         for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
             let elmTotal = document.getElementById('total' + iPlyr);
-            elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByDeck[iPlyr];
+            elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];
         }
     };
 
@@ -124,10 +124,10 @@ function onLoad() {
     };
 
     // Moves.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        startupMove(iDeck);
+    for (let iMat = 0; iMat < 8; iMat += 1) {
+        startupMove(iMat);
     }
-    startupMove('S');
+    startupMove('Lib');
     startupMove('RP');
 
     // Tiles.
@@ -157,7 +157,7 @@ function onLoad() {
             elmTile.ondrag = onTileDrag;
 
             /** Clicked tag such as img. */
-            elmTile.onmousedown = function (event) {
+            elmTile.onmouseup = function (event) {
                 let tileNumber = getNumberByTileId(event.target.id);
                 let angle;
                 switch (event.which) {
@@ -181,55 +181,55 @@ function onLoad() {
 
 function startMove(suffix) {
     "use strict";
-    let elmDeck = document.getElementById('deck' + suffix);
+    let elmMat = document.getElementById('mat' + suffix);
     let elmMove = document.getElementById('move' + suffix);
-    elmMove.style.left = (parseInt(elmDeck.style.left, 10) - 36) + 'px';
-    elmMove.style.top = elmDeck.style.top;
+    elmMove.style.left = (parseInt(elmMat.style.left, 10) - 36) + 'px';
+    elmMove.style.top = elmMat.style.top;
 }
 
 function executeAutoPosition() {
     // Visibility.
     let iPlyr = 0;
     for (; iPlyr < 8; iPlyr += 1) {
-        let elmDeck = document.getElementById('deck' + iPlyr);
+        let elmMat = document.getElementById('mat' + iPlyr);
         let elmScore = document.getElementById('score' + iPlyr);
         if (iPlyr < G.entryPlayerNum) {
-            elmDeck.style.display = "block";
+            elmMat.style.display = "block";
         } else {
-            elmDeck.style.display = "none";
-            elmDeck.style.width = 0;
-            elmDeck.style.height = 0;
+            elmMat.style.display = "none";
+            elmMat.style.width = 0;
+            elmMat.style.height = 0;
         }
     }
 
-    // root pibot, deck, score, move icon.
-    let elmDeckRP = document.getElementById('deckRP');
+    // root pibot, mat, score, move icon.
+    let elmMatRP = document.getElementById('matRP');
     let usedTileCount = 0;
     let radius = Math.min(window.innerWidth, window.innerHeight) / 2 * 0.7;
     for (iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {
-        let elmDeck = document.getElementById('deck' + iPlyr);
+        let elmMat = document.getElementById('mat' + iPlyr);
         let elmScore = document.getElementById('score' + iPlyr);
 
-        elmDeck.style.width = ((G.tileNumByPlayer / 2 + 1.5) * 32) + 'px';
-        elmDeck.style.height = (2 * 64 + 32 * 1.25) + 'px';
+        elmMat.style.width = ((G.tileNumByPlayer / 2 + 1.5) * 32) + 'px';
+        elmMat.style.height = (2 * 64 + 32 * 1.25) + 'px';
 
         let theta = iPlyr / G.entryPlayerNum * 2 * Math.PI;
         console.log('iPlyr=' + iPlyr + ' theta=' + theta);
-        elmDeck.style.left = radius * Math.cos(theta) + (parseInt(elmDeckRP.style.left, 10) + 64 / 2) - parseInt(elmDeck.style.width, 10) / 2 + 'px';
-        elmDeck.style.top = radius * Math.sin(theta) + (parseInt(elmDeckRP.style.top, 10) + 64 / 2) - parseInt(elmDeck.style.height, 10) / 2 + 'px';
+        elmMat.style.left = radius * Math.cos(theta) + (parseInt(elmMatRP.style.left, 10) + 64 / 2) - parseInt(elmMat.style.width, 10) / 2 + 'px';
+        elmMat.style.top = radius * Math.sin(theta) + (parseInt(elmMatRP.style.top, 10) + 64 / 2) - parseInt(elmMat.style.height, 10) / 2 + 'px';
 
-        elmScore.style.left = elmDeck.style.left;
-        elmScore.style.top = (parseInt(elmDeck.style.top, 10) - 60) + 'px';
+        elmScore.style.left = elmMat.style.left;
+        elmScore.style.top = (parseInt(elmMat.style.top, 10) - 60) + 'px';
 
         startMove(iPlyr);
     }
-    startMove('S');
+    startMove('Lib');
     startMove('RP');
 
-    // stack
-    let elmDeckS = document.getElementById('deckS');
-    elmDeckS.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
-    elmDeckS.style.height = (64 + 32 * 1.25) + 'px';
+    // Library
+    let elmMatLib = document.getElementById('matLib');
+    elmMatLib.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
+    elmMatLib.style.height = (64 + 32 * 1.25) + 'px';
 }
 
 function onclickPlyrBtn(event) {
@@ -296,10 +296,10 @@ function onclickPlyrBtn(event) {
         }
         iPlyr += 1;
     });
-    document.getElementById('moveS').style.display = 'block';
+    document.getElementById('moveLib').style.display = 'block';
     document.getElementById('moveRP').style.display = 'block';
 
     // Mats.
-    document.getElementById('deckS').style.display = 'block';
-    document.getElementById('deckRP').style.display = 'block';
+    document.getElementById('matLib').style.display = 'block';
+    document.getElementById('matRP').style.display = 'block';
 }
