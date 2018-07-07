@@ -5,6 +5,7 @@
  */
 
 function onPositioningFinishButtonClicked(event) {
+    "use strict";
     // Positioning finish button.
     let thisBtn = document.getElementById(event.target.id);
     thisBtn.style.display = "none";
@@ -14,7 +15,8 @@ function onPositioningFinishButtonClicked(event) {
         gameSceneElm.style.display = "block";
     });
 
-    // Score elements is visible.
+    let iPlyr;
+    // Score elements is visible/hidden.
     iPlyr = 0;
     document.querySelectorAll('.score').forEach(function (scoreElm) {
         if (iPlyr < G.entryPlayerNum) {
@@ -25,21 +27,26 @@ function onPositioningFinishButtonClicked(event) {
         iPlyr += 1;
     });
 
+    // Total-container elements is visible/hidden.
+    iPlyr = 0;
+    document.querySelectorAll('.total-container').forEach(function (totalCntElm) {
+        if (iPlyr < G.entryPlayerNum) {
+            totalCntElm.style.display = 'block';
+        } else {
+            totalCntElm.style.display = 'none';
+        }
+        iPlyr += 1;
+    });
+
     // Tile positioning.
     executeAutoTilePosition();
 }
 
-function onMouseOverBtn(event) {
-    "use strict";
-    let id = event.target.id;
-    // ex) playerNum1 button
-    G.entryPlayerNum = parseInt(id.slice(9, 10), 10);
-
-    executeAutoPosition();
-}
-
 function executeAutoTilePosition() {
+    "use strict";
     let usedTileCount = 0;
+
+    // Player decks.
     for (let iDeck = 0; iDeck < G.entryPlayerNum; iDeck += 1) {
         let elmDeck = document.getElementById('deck' + iDeck);
 
@@ -53,14 +60,15 @@ function executeAutoTilePosition() {
         }
     }
 
-    // mountain
-    let elmDeckM = document.getElementById('deckM');
+    // Stack. Turn tile to back.
+    let elmDeckS = document.getElementById('deckS');
     let m = 0;
     for (; usedTileCount < G.tileNumbers.length; usedTileCount += 1) {
         let elmTile = document.getElementById('tile' + G.tileNumbers[usedTileCount]);
-        elmTile.style.left = (parseInt(elmDeckM.style.left, 10) + m * 32 + 20) + 'px';
-        elmTile.style.top = (parseInt(elmDeckM.style.top, 10) + 20) + 'px';
-        elmTile.style.display = "block";
+        elmTile.style.left = (parseInt(elmDeckS.style.left, 10) + m * 32 + 20) + 'px';
+        elmTile.style.top = (parseInt(elmDeckS.style.top, 10) + 20) + 'px';
+        elmTile.style.display = 'block';
+        elmTile.style.src = getTilePath('empty');
         m += 1;
     }
 }

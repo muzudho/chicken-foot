@@ -5,6 +5,7 @@
  */
 
 const BODY_PADDING_TOP = 5 * 40;
+const IMG_DIR = "http://game.warabenture.com/chicken-foot/img/";
 
 const DYNAMIC_STYLE_DECK_COLOR = [
     '#3C77B9',
@@ -15,9 +16,13 @@ const DYNAMIC_STYLE_DECK_COLOR = [
     '#F49B3F',
     '#D8768F',
     '#89A58C',
-    '#020001', // mountain
+    '#020001', // stack
     '#0080FF' // root pibot
 ];
+
+function getTilePath(tileNumber) {
+    IMG_DIR + tileNumber + '.png';
+}
 
 function loadDynamicStyleMove(suffix) {
     "use strict";
@@ -27,8 +32,8 @@ function loadDynamicStyleMove(suffix) {
     elmMove.style.width = 36 + 'px';
     elmMove.style.height = 36 + 'px';
     switch (suffix) {
-    case 'M':
-        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
+    case 'S':
+        elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[STACK_INDEX];
         break;
     case 'RP':
         elmMove.style.color = DYNAMIC_STYLE_DECK_COLOR[ROUTE_PIBOT_INDEX];
@@ -53,11 +58,11 @@ function loadDynamicStyleDeck(suffix) {
     elmDeck.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
     elmDeck.style.top = Math.floor(Math.random() * 400 + BODY_PADDING_TOP) + 'px';
     switch (suffix) {
-    case 'M':
-        // mountain.
+    case 'S':
+        // stack.
         elmDeck.style.left = 400 + 'px';
         elmDeck.style.top = BODY_PADDING_TOP + 'px';
-        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[MOUNTEN_INDEX];
+        elmDeck.style.borderColor = DYNAMIC_STYLE_DECK_COLOR[STACK_INDEX];
         break;
     case 'RP':
         // root pibot.
@@ -84,7 +89,7 @@ function loadDynamicStyle() {
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
         loadDynamicStyleMove(iDeck);
     }
-    loadDynamicStyleMove('M');
+    loadDynamicStyleMove('S');
     loadDynamicStyleMove('RP');
 
     // Scores.
@@ -96,7 +101,7 @@ function loadDynamicStyle() {
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
         loadDynamicStyleDeck(iDeck);
     }
-    loadDynamicStyleDeck('M');
+    loadDynamicStyleDeck('S');
     loadDynamicStyleDeck('RP');
 
     // Player icons.

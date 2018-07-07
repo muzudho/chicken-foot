@@ -25,6 +25,10 @@ div.positioningFinishButton {
     height: 160px;
 }
 
+div.total-container {
+    display: none;
+}
+
 img.tile {
 	position: absolute;
     display: none;
@@ -47,15 +51,19 @@ span.score {
 	position: absolute;
     /* left, top, width, height to java script. */
 	font-size: 48px;
+    display: none;
 }
 
-div.mountain {
+/* Stack. */
+div.deckS {
 	position: absolute;
     /* left, top, width, height to java script. */
 	border: solid 5px;
+    display: none;
 }
 
 img.root-pibot {
 	position: absolute;
     /* left, top, width, height to java script. */
+    display: none;    
 }

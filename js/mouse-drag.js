@@ -101,8 +101,8 @@ function moveDragMoveIcon(event, suffix) {
         switch (suffix) {
         case 'RP':
             let isLocked = false;
-            let elmDeckM = document.getElementById('deckM');
-            if (isIntersect(elmTile, elmDeckM)) {
+            let elmDeckS = document.getElementById('deckS');
+            if (isIntersect(elmTile, elmDeckS)) {
                 isLocked = true;
             } else {
                 for (let iOther = 0; iOther < 8; iOther += 1) {
@@ -132,9 +132,16 @@ function moveDragMoveIcon(event, suffix) {
     elmDeck.style.top = parseInt(elmDeck.style.top, 10) + deltaY + 'px';
 
     // Move score.
-    let elmScore = document.getElementById('score' + suffix);
-    elmScore.style.left = parseInt(elmScore.style.left, 10) + deltaX + 'px';
-    elmScore.style.top = parseInt(elmScore.style.top, 10) + deltaY + 'px';
+    switch (suffix) {
+    case 'S':
+        break;
+    case 'RP':
+        break;
+    default:
+        let elmScore = document.getElementById('score' + suffix);
+        elmScore.style.left = parseInt(elmScore.style.left, 10) + deltaX + 'px';
+        elmScore.style.top = parseInt(elmScore.style.top, 10) + deltaY + 'px';
+    }
 }
 
 /**

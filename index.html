@@ -18,7 +18,7 @@
 
 <body id="board" onLoad="onLoad();" onresize="onResize();">
 
-  <!-- Such as deck, mountain, root pibot. -->
+  <!-- Such as deck, stack, root pibot. -->
   <div class="w3-round-xxlarge deck" id="deck0"></div>
   <div class="w3-round-xxlarge deck" id="deck1"></div>
   <div class="w3-round-xxlarge deck" id="deck2"></div>
@@ -27,7 +27,7 @@
   <div class="w3-round-xxlarge deck" id="deck5"></div>
   <div class="w3-round-xxlarge deck" id="deck6"></div>
   <div class="w3-round-xxlarge deck" id="deck7"></div>
-  <div class="w3-round-xxlarge mountain" id="deckM"></div>
+  <div class="w3-round-xxlarge deckS" id="deckS"></div>
   <img class="root-pibot" id="deckRP" src="img/root-pibot.png" alt="root-pibot.png"/>
 
     
@@ -80,35 +80,35 @@
   </div>
   <div class="w3-bar w3-green w3-row game-scene">
     <span class="w3-bar-item w3-col m4 l4">そうごう とくてん</span>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon0"></i></label>
       <input class="w3-input" id="total0" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon1"></i></label>
       <input class="w3-input" id="total1" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon2"></i></label>
       <input class="w3-input" id="total2" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon3"></i></label>
       <input class="w3-input" id="total3" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon4"></i></label>
       <input class="w3-input" id="total4" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon5"></i></label>
       <input class="w3-input" id="total5" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon6"></i></label>
       <input class="w3-input" id="total6" type="text">
     </div>
-    <div class="w3-bar-item w3-col m1 l1">
+    <div class="w3-bar-item w3-col m1 l1 total-container">
       <label><i class="fas fa-user" id="playerIcon7"></i></label>
       <input class="w3-input" id="total7" type="text">
     </div>
@@ -152,7 +152,7 @@
   <i class="move fas fa-arrows-alt" id="move5"></i>
   <i class="move fas fa-arrows-alt" id="move6"></i>
   <i class="move fas fa-arrows-alt" id="move7"></i>
-  <i class="move fas fa-arrows-alt" id="moveM"></i>
+  <i class="move fas fa-arrows-alt" id="moveS"></i>
   <i class="move fas fa-arrows-alt" id="moveRP"></i>
 
   <h1>チキンフット<br/>

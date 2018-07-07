@@ -12,9 +12,19 @@ function startupMove(suffix) {
     elmMove.ondrag = onDragMoveIcon;
 }
 
+function onEntryPlayerCountButtonMouseOver(event) {
+    "use strict";
+    let id = event.target.id;
+    // ex) playerNum1 button
+    G.entryPlayerNum = parseInt(id.slice(9, 10), 10);
+
+    executeAutoPosition();
+}
+
 function onLoad() {
     "use strict";
     G = {
+        scene: "title",
         /** 0 <= x < 360 */
         angleDeg: [],
         /** mouse-drag.js */
@@ -72,7 +82,7 @@ function onLoad() {
          * @param {number} playerNum - プレイヤー人数
          */
         plyrBtn.onclick = onclickPlyrBtn;
-        plyrBtn.onmouseover = onMouseOverBtn;
+        plyrBtn.onmouseover = onEntryPlayerCountButtonMouseOver;
     }
 
     // Positioning finish button.
@@ -113,7 +123,7 @@ function onLoad() {
     for (let iDeck = 0; iDeck < 8; iDeck += 1) {
         startupMove(iDeck);
     }
-    startupMove('M');
+    startupMove('S');
     startupMove('RP');
 
     // Tiles.
@@ -170,33 +180,14 @@ function executeAutoPosition() {
     for (; iPlyr < 8; iPlyr += 1) {
         let elmDeck = document.getElementById('deck' + iPlyr);
         let elmScore = document.getElementById('score' + iPlyr);
-        let elmPlayerIcon = document.getElementById('playerIcon' + iPlyr);
-        let elmTotal = document.getElementById('total' + iPlyr);
         if (iPlyr < G.entryPlayerNum) {
             elmDeck.style.display = "block";
-            elmScore.style.display = "block";
-            elmPlayerIcon.style.display = "block";
-            elmTotal.style.display = "block";
         } else {
             elmDeck.style.display = "none";
             elmDeck.style.width = 0;
             elmDeck.style.height = 0;
-            elmScore.style.display = "none";
-            elmPlayerIcon.style.display = "none";
-            elmTotal.style.display = "none";
         }
     }
-    iPlyr = 0;
-    document.querySelectorAll('.move').forEach(function (moveIconElm) {
-        if (iPlyr < G.entryPlayerNum) {
-            moveIconElm.style.display = 'block';
-        } else {
-            moveIconElm.style.display = 'none';
-        }
-        iPlyr += 1;
-    });
-    document.getElementById('moveM').style.display = 'block';
-    document.getElementById('moveRP').style.display = 'block';
 
     // root pibot, deck, score, move icon.
     let elmDeckRP = document.getElementById('deckRP');
@@ -218,13 +209,13 @@ function executeAutoPosition() {
 
         startMove(iDeck);
     }
-    startMove('M');
+    startMove('S');
     startMove('RP');
 
-    // mountain
-    let elmDeckM = document.getElementById('deckM');
-    elmDeckM.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
-    elmDeckM.style.height = (64 + 32 * 1.25) + 'px';
+    // stack
+    let elmDeckS = document.getElementById('deckS');
+    elmDeckS.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
+    elmDeckS.style.height = (64 + 32 * 1.25) + 'px';
 }
 
 function onclickPlyrBtn(event) {
@@ -268,6 +259,8 @@ function onclickPlyrBtn(event) {
         break;
     }
 
+    G.scene = 'positioning';
+
     executeAutoPosition();
 
     // Title scene elements is hidden.
@@ -280,4 +273,20 @@ function onclickPlyrBtn(event) {
         positioningSceneElm.style.display = "block";
     });
 
+    // Move-icon elements is visible.
+    let iPlyr = 0;
+    document.querySelectorAll('i.move').forEach(function (moveElm) {
+        if (iPlyr < G.entryPlayerNum) {
+            moveElm.style.display = "block";
+        } else {
+            moveElm.style.display = "none";
+        }
+        iPlyr += 1;
+    });
+    document.getElementById('moveS').style.display = 'block';
+    document.getElementById('moveRP').style.display = 'block';
+
+    // Mats.
+    document.getElementById('deckS').style.display = 'block';
+    document.getElementById('deckRP').style.display = 'block';
 }

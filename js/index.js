@@ -5,7 +5,7 @@
 /*jslint es6 */
 
 const DECK_NUM = 8;
-const MOUNTEN_INDEX = 8;
+const STACK_INDEX = 8;
 const ROUTE_PIBOT_INDEX = 9;
 
 /** Global variables. */
