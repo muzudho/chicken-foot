@@ -76,17 +76,9 @@ var gDynamicStyle = {
     getMatCenter: function (suffix) {
         "use strict";
         let elmMat = document.getElementById('mat' + suffix);
-        switch (suffix) {
-        case 'RP':
-            return {
-                x: parseInt(elmMat.style.width, 10) / 2,
-                y: parseInt(elmMat.style.height, 10) / 2
-            }
-        default:
-            return {
-                x: (parseInt(elmMat.style.width, 10) - parseInt(elmMat.style.left, 10)) / 2,
-                y: (parseInt(elmMat.style.height, 10) - parseInt(elmMat.style.top, 10)) / 2
-            };
+        return {
+            x: parseInt(elmMat.style.left, 10) - parseInt(elmMat.style.width, 10) / 2,
+            y: parseInt(elmMat.style.top, 10) - parseInt(elmMat.style.height, 10) / 2
         }
     },
     loadDynamicStylePlayerIcon: function (suffix) {

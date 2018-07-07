@@ -123,10 +123,10 @@ var gMainProgram = {
         let nextPlayerBtn = document.getElementById('nextPlayerButton');
         nextPlayerBtn.onclick = function (event) {
             let rank = G.matThetaRankArr[G.currentPlayer];
-            if (rank < G.entryPlayerNum - 1) {
-                rank += 1;
+            if (rank < 1) {
+                rank = G.entryPlayerNum - 1;
             } else {
-                rank = 0;
+                rank -= 1;
             }
             G.currentPlayer = G.matThetaRankArr.indexOf(rank);
         };
@@ -210,7 +210,8 @@ var gMainProgram = {
                 // Angle.
                 let elmMat = document.getElementById('mat' + iPlyr);
                 let matCenter = gDynamicStyle.getMatCenter(iPlyr);
-                G.matThetaArr[iPlyr] = Math.atan2(matCenter.x - rpCenter.x, matCenter.y - rpCenter.y);
+                // theta = atan2( y, x)
+                G.matThetaArr[iPlyr] = Math.atan2(matCenter.y - rpCenter.y, matCenter.x - rpCenter.x);
 
                 // Score.
                 let elmScore = document.getElementById('score' + iPlyr);
@@ -229,6 +230,15 @@ var gMainProgram = {
         G.matThetaRankArr = G.matThetaArr.slice().map(function (x) {
                 return sorted.indexOf(x)
             });
+
+        /*
+        // For debug.
+        console.log('root pibot x: '+rpCenter.x+' y: '+rpCenter.y);
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+        let matCenter = gDynamicStyle.getMatCenter(iPlyr);
+        console.log('['+iPlyr+'] ('+matCenter.x+', '+matCenter.y+') theta: '+G.matThetaArr[iPlyr]+' rank: '+G.matThetaRankArr[iPlyr]);
+        }
+         */
 
         // Current player.
         if (G.currentPlayer !== -1) {
