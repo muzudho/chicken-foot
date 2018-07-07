@@ -9,8 +9,12 @@ var gTitleScene = {
         "use strict";
         let elmMove = document.getElementById('move' + suffix);
         elmMove.draggable = true;
-        elmMove.ondragstart = onDragStart;
-        elmMove.ondrag = onDragMoveIcon;
+        elmMove.ondragstart = function (event) {
+            gMouseDrag.onDragStart(event);
+        };
+        elmMove.ondrag = function (event) {
+            gMouseDrag.onDragMoveIcon(event);
+        };
     },
     initialize: function () {
         "use strict";
@@ -151,4 +155,4 @@ var gTitleScene = {
         document.getElementById('matLib').style.display = 'block';
         document.getElementById('matRP').style.display = 'block';
     }
-}
+};
