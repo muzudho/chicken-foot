@@ -32,15 +32,3 @@ function onResize() {
     elmDeckRP.style.left = (window.innerWidth / 2 + 32) + "px";
     elmDeckRP.style.top = (window.innerHeight / 2 + 132) + "px";
 }
-
-function onInterval() {
-    "use strict";
-    refreshScoreByAllDecks();
-
-    // Decks.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        let elmDeck = document.getElementById('deck' + iDeck);
-        let elmScore = document.getElementById('score' + iDeck);
-        elmScore.innerHTML = G.scoreByDeck[iDeck] + '点';
-    }
-}

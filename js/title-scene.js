@@ -25,8 +25,12 @@ function onLoad() {
     "use strict";
     G = {
         scene: "title",
-        /** 0 <= x < 360 */
-        angleDeg: [],
+
+        /** 0 <= x < 360. */
+        angleDegByTile: [],
+        /** radius */
+        currentMatAngleRadByPlayer: [],
+
         /** mouse-drag.js */
         mouseDrag: {
             startClient: {
@@ -128,10 +132,11 @@ function onLoad() {
 
     // Tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
-        let idTile = 'tile' + G.tileNumbers[iTile];
+        let tileNumber = G.tileNumbers[iTile];
+        let idTile = 'tile' + tileNumber;
         let elmTile = document.getElementById(idTile);
         if (elmTile !== null) {
-            G.angleDeg[idTile] = 0;
+            G.angleDegByTile[tileNumber] = 0;
             elmTile.draggable = true;
 
             // https://hakuhin.jp/js/data_transfer.html#DATA_TRANSFER_04
@@ -151,14 +156,22 @@ function onLoad() {
 
             elmTile.ondrag = onTileDrag;
 
-            /**
-             * Clicked tag such as img.
-             * @param {string} id - HTML tag id.
-             */
-            elmTile.onclick = function (event) {
-                let id = event.target.id;
-                G.angleDeg[id] = (G.angleDeg[id] + 30) % 360;
-                document.getElementById(id).style.transform = 'rotate(' + G.angleDeg[id] + 'deg)';
+            /** Clicked tag such as img. */
+            elmTile.onmousedown = function (event) {
+                let tileNumber = getNumberByTileId(event.target.id);
+                let angle;
+                switch (event.which) {
+                case 1:
+                    // Mouse left button pressed.
+                    angle = 30;
+                    break;
+                case 3:
+                    // Mouse right button pressed.
+                    angle = -30;
+                    break;
+                }
+                G.angleDegByTile[tileNumber] = (G.angleDegByTile[tileNumber] + angle) % 360;
+                document.getElementById(event.target.id).style.transform = 'rotate(' + G.angleDegByTile[tileNumber] + 'deg)';
             };
         }
     }
@@ -193,21 +206,22 @@ function executeAutoPosition() {
     let elmDeckRP = document.getElementById('deckRP');
     let usedTileCount = 0;
     let radius = Math.min(window.innerWidth, window.innerHeight) / 2 * 0.7;
-    for (let iDeck = 0; iDeck < G.entryPlayerNum; iDeck += 1) {
-        let elmDeck = document.getElementById('deck' + iDeck);
-        let elmScore = document.getElementById('score' + iDeck);
+    for (iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {
+        let elmDeck = document.getElementById('deck' + iPlyr);
+        let elmScore = document.getElementById('score' + iPlyr);
 
         elmDeck.style.width = ((G.tileNumByPlayer / 2 + 1.5) * 32) + 'px';
         elmDeck.style.height = (2 * 64 + 32 * 1.25) + 'px';
 
-        let theta = iDeck / G.entryPlayerNum * 2 * Math.PI;
+        let theta = iPlyr / G.entryPlayerNum * 2 * Math.PI;
+        console.log('iPlyr=' + iPlyr + ' theta=' + theta);
         elmDeck.style.left = radius * Math.cos(theta) + (parseInt(elmDeckRP.style.left, 10) + 64 / 2) - parseInt(elmDeck.style.width, 10) / 2 + 'px';
         elmDeck.style.top = radius * Math.sin(theta) + (parseInt(elmDeckRP.style.top, 10) + 64 / 2) - parseInt(elmDeck.style.height, 10) / 2 + 'px';
 
         elmScore.style.left = elmDeck.style.left;
         elmScore.style.top = (parseInt(elmDeck.style.top, 10) - 60) + 'px';
 
-        startMove(iDeck);
+        startMove(iPlyr);
     }
     startMove('S');
     startMove('RP');
