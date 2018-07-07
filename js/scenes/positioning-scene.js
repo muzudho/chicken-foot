@@ -1,7 +1,7 @@
 /**
  * Game start.
  * @authore muzudho
- * @module js/game-start
+ * @module js/scenes/positioning-scene
  */
 
 function onPositioningFinishButtonClicked(event) {
@@ -41,17 +41,10 @@ function onPositioningFinishButtonClicked(event) {
     // Tile positioning.
     executeAutoTilePosition();
 
-    /*TODO
-    // Mat is visible/hidden.
-    iPlyr = 0;
-    for (; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-    if (iPlyr < G.entryPlayerNum) {
-    setMatToOpacityMax(iPlyr, true);
-    } else {
-    setMatToOpacityMax(iPlyr, false);
-    }
-    }
-     */
+    G.currentPlayer = getFirstPlayerIndex();
+    highlightPlayer(G.currentPlayer);
+
+    G.scene = 'game';
 }
 
 function executeAutoTilePosition() {

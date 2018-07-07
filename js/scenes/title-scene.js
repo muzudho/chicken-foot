@@ -1,7 +1,7 @@
 /**
  * Start up.
  * @authore muzudho
- * @module js/title-scene
+ * @module js/scenes/title-scene
  */
 
 function startupMove(suffix) {
@@ -29,7 +29,11 @@ function onLoad() {
         /** 0 <= x < 360. */
         angleDegByTile: [],
         /** radius */
-        matTheta: [],
+        matThetaArr: [],
+        /** Index is player id. */
+        matThetaRankArr: [],
+        /** -1 is nobody. This is player id. */
+        currentPlayer: -1,
 
         /** mouse-drag.js */
         mouseDrag: {
@@ -111,6 +115,20 @@ function onLoad() {
         }
     };
 
+    // Next player button.
+    let nextPlayerBtn = document.getElementById('nextPlayerButton');
+    nextPlayerBtn.onclick = function (event) {
+        let rank = G.matThetaRankArr[G.currentPlayer];
+        console.log('G.currentPlayer=' + G.currentPlayer + ' rank=' + rank);
+        if (rank < G.entryPlayerNum - 1) {
+            rank += 1;
+        } else {
+            rank = 0;
+        }
+        G.currentPlayer = G.matThetaRankArr.indexOf(rank);
+        console.log('next rank=' + rank + ' G.currentPlayer=' + G.currentPlayer);
+    };
+
     // Board. ドロップされる側
     let board = document.getElementById('board');
     board.ondragover = function (event) {
@@ -176,7 +194,8 @@ function onLoad() {
         }
     }
 
-    setInterval(onInterval, 3000);
+    G.scene = 'title';
+    setInterval(onInterval, 1000);
 }
 
 function startMove(suffix) {
@@ -188,6 +207,7 @@ function startMove(suffix) {
 }
 
 function executeAutoPosition() {
+    "use strict";
     // Visibility.
     let iPlyr = 0;
     for (; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
@@ -271,7 +291,7 @@ function onclickPlyrBtn(event) {
         break;
     }
 
-    G.scene = 'positioning'; // FIXME
+    G.scene = 'positioning';
 
     executeAutoPosition();
 

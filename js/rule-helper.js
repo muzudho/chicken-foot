@@ -26,3 +26,26 @@ function refreshScoreByAllMats() {
         }
     }
 }
+
+/**
+ * Angle が1番小さいもの
+ * 参考: https://goma.pw/article/2017-01-31-0/ |2017-01-31「JS：Array内の数値の順位を求める」
+ */
+function getFirstPlayerIndex() {
+    "use strict";
+    return G.matThetaRankArr.indexOf(0);
+}
+
+function highlightPlayer(highlightPlyr) {
+    "use strict";
+    // Mat opacity.
+    let iPlyr = 0;
+    for (; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+        if (iPlyr != G.currentPlayer && iPlyr < G.entryPlayerNum) {
+            setMatToOpacityMax(iPlyr, true);
+        } else {
+            setMatToOpacityMax(iPlyr, false);
+        }
+    }
+    setMatToOpacityMax(highlightPlyr, false);
+}
