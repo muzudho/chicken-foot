@@ -35,17 +35,20 @@ function onLoad() {
         scoreByDeck: []
     };
 
-    // Title scene division.
-    let titleSceneDiv = document.getElementById('titleScene');
-    titleSceneDiv.style.display = "block";
+    // Title scene elements.
+    document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
+        titleSceneElm.style.display = "block";
+    });
 
-    // Positioning scene division.
-    let positioningSceneDiv = document.getElementById('positioningScene');
-    positioningSceneDiv.style.display = "none";
-    
-    // Game scene division.
-    let gameSceneDiv = document.getElementById('gameScene');
-    gameSceneDiv.style.display = "none";
+    // Positioning scene elements.
+    document.querySelectorAll('.positioningScene').forEach(function (positioningSceneElm) {
+        positioningSceneElm.style.display = "none";
+    });
+
+    // Game scene elements.
+    document.querySelectorAll('.game-scene').forEach(function (gameSceneElm) {
+        gameSceneElm.style.display = "none";
+    });
 
     // 配列に 存在するタイルの数字を入れる。
     let k = 0;
@@ -75,8 +78,7 @@ function onLoad() {
     // Positioning finish button.
     let positioningFinishBtn = document.getElementById('positioningFinishButton');
     positioningFinishBtn.onclick = onPositioningFinishButtonClicked;
-    
-    
+
     // Total score text boxes.
     for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
         let totalTbx = document.getElementById('total' + iPlyr);
@@ -164,16 +166,15 @@ function startMove(suffix) {
 
 function executeAutoPosition() {
     // Visibility.
-    for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
+    let iPlyr = 0;
+    for (; iPlyr < 8; iPlyr += 1) {
         let elmDeck = document.getElementById('deck' + iPlyr);
         let elmScore = document.getElementById('score' + iPlyr);
-        let elmMove = document.getElementById('move' + iPlyr);
         let elmPlayerIcon = document.getElementById('playerIcon' + iPlyr);
         let elmTotal = document.getElementById('total' + iPlyr);
         if (iPlyr < G.entryPlayerNum) {
             elmDeck.style.display = "block";
             elmScore.style.display = "block";
-            elmMove.style.display = "block";
             elmPlayerIcon.style.display = "block";
             elmTotal.style.display = "block";
         } else {
@@ -181,12 +182,22 @@ function executeAutoPosition() {
             elmDeck.style.width = 0;
             elmDeck.style.height = 0;
             elmScore.style.display = "none";
-            elmMove.style.display = "none";
             elmPlayerIcon.style.display = "none";
             elmTotal.style.display = "none";
         }
     }
-    
+    iPlyr = 0;
+    document.querySelectorAll('.move').forEach(function (moveIconElm) {
+        if (iPlyr < G.entryPlayerNum) {
+            moveIconElm.style.display = 'block';
+        } else {
+            moveIconElm.style.display = 'none';
+        }
+        iPlyr += 1;
+    });
+    document.getElementById('moveM').style.display = 'block';
+    document.getElementById('moveRP').style.display = 'block';
+
     // root pibot, deck, score, move icon.
     let elmDeckRP = document.getElementById('deckRP');
     let usedTileCount = 0;
@@ -209,7 +220,7 @@ function executeAutoPosition() {
     }
     startMove('M');
     startMove('RP');
-    
+
     // mountain
     let elmDeckM = document.getElementById('deckM');
     elmDeckM.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
@@ -257,26 +268,16 @@ function onclickPlyrBtn(event) {
         break;
     }
 
-
     executeAutoPosition();
 
-    
-    // Visibility.
-    for (let iDeck = 0; iDeck < 8; iDeck += 1) {
-        let elmMove = document.getElementById('move' + iDeck);
-        if (iDeck < G.entryPlayerNum) {
-            elmMove.style.display = "block";
-        } else {
-            elmMove.style.display = "none";
-        }
-    }
-    
-    
-    // Title scene division.
-    let titleSceneDiv = document.getElementById('titleScene');
-    titleSceneDiv.style.display = "none";
+    // Title scene elements.
+    document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
+        titleSceneElm.style.display = "none";
+    });
 
-    // Positioning scene division.
-    let positioningSceneDiv = document.getElementById('positioningScene');
-    positioningSceneDiv.style.display = "block";
+    // Positioning scene elements is visible.
+    document.querySelectorAll('.positioning-scene').forEach(function (positioningSceneElm) {
+        positioningSceneElm.style.display = "block";
+    });
+
 }

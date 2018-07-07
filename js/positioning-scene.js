@@ -8,10 +8,11 @@ function onPositioningFinishButtonClicked(event) {
     // Positioning finish button.
     let thisBtn = document.getElementById(event.target.id);
     thisBtn.style.display = "none";
-    
-    // Game scene division.
-    let gameSceneDiv = document.getElementById('gameScene');
-    gameSceneDiv.style.display = "block";
+
+    // Game scene elements.
+    document.querySelectorAll('.game-scene').forEach(function (gameSceneElm) {
+        gameSceneElm.style.display = "block";
+    });
 
     // Tile positioning.
     executeAutoTilePosition();
@@ -22,7 +23,7 @@ function onMouseOverBtn(event) {
     let id = event.target.id;
     // ex) playerNum1 button
     G.entryPlayerNum = parseInt(id.slice(9, 10), 10);
-    
+
     executeAutoPosition();
 }
 
@@ -52,5 +53,3 @@ function executeAutoTilePosition() {
         m += 1;
     }
 }
-
-

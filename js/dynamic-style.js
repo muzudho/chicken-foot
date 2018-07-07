@@ -114,8 +114,7 @@ function loadDynamicStyle() {
     for (let iPlyr = 0; iPlyr < 8; iPlyr += 1) {
         loadDynamicStylePlayerIcon(iPlyr);
     }
-    
-    
+
     // Tiles.
     for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
         let elmTile = document.getElementById('tile' + G.tileNumbers[iTile]);
