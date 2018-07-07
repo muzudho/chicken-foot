@@ -11,14 +11,53 @@ function getTilePath(tileNumber) {
     return IMG_DIR + tileNumber + '.png';
 }
 
-/** ex) "playerNum1" button. */
+/**
+ * @returns {string} string or null.
+ * @example
+ * ### ex.
+ * 'playerNum1' ---> '1'.
+ * ### ex.
+ * 'mat1' ---> null.
+ */
 function getNumberByEntryPlayerButtonId(id) {
     "use strict";
-    return parseInt(id.slice(9, 10), 10);
+    let group = /^playerNum(.+)$/.exec(id);
+    if (group !== null) {
+        return parseInt(group[1], 10);
+    }
+    return null;
 }
 
-/** ex) "tile1" element. */
+/**
+ * @returns {string} string or null.
+ * @example
+ * ### ex.
+ * 'tile1' ---> '1'.
+ * ### ex.
+ * 'mat1' ---> null.
+ */
 function getNumberByTileId(id) {
     "use strict";
-    return parseInt(id.slice(4, 5), 10);
+    let group = /^tile(.+)$/.exec(id);
+    if (group !== null) {
+        return parseInt(group[1], 10);
+    }
+    return null;
+}
+
+/**
+ * @returns {string} string or null.
+ * @example
+ * ### ex.
+ * 'move1' ---> '1'.
+ * ### ex.
+ * 'tail1' ---> null.
+ */
+function getSuffixByMoveId(id) {
+    "use strict";
+    let group = /^move(.+)$/.exec(id);
+    if (group !== null) {
+        return group[1];
+    }
+    return null;
 }

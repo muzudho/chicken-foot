@@ -164,9 +164,8 @@ function moveDragMoveIcon(event, suffix) {
 function onDragMoveIcon(event) {
     "use strict";
     if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
-        let groupMove = /^move(.+)$/.exec(event.target.id);
-        if (groupMove !== null) {
-            let suffix = groupMove[1];
+        let suffix = getSuffixByMoveId(event.target.id);
+        if (suffix !== null) {
             moveDragMoveIcon(event, suffix);
         }
     }
