@@ -40,7 +40,7 @@ var gMouseDrag = {
      *     }
      * };
      */
-    onDragStart: function (event) {
+    ondragstartElement: function (event) {
         "use strict";
         let rectBody = document.body.getBoundingClientRect();
         G.mouseDrag.startClient.x = event.clientX;
@@ -53,7 +53,7 @@ var gMouseDrag = {
     /**
      * Hold tile and mouse drag.
      */
-    onTileDrag: function (event) {
+    ondragTile: function (event) {
         "use strict";
         if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
             let elmTile = event.target;
@@ -75,11 +75,11 @@ var gMouseDrag = {
             let elmMatLib = document.getElementById('matLib');
             if (gIntersect.isIntersect(event.target, elmMatLib)) {
 
-                elmTile.src = gStringFormat.getTilePath('empty');
+                gViewHelper.turnTileToBack(elmTile);
 
             } else {
 
-                elmTile.src = gStringFormat.getTilePath(gStringFormat.getNumberByTileId(event.target.id));
+                gViewHelper.turnTileToFront(elmTile);
 
                 for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
                     let elmMat = document.getElementById('mat' + iPlyr);
@@ -91,7 +91,7 @@ var gMouseDrag = {
         }
     },
 
-    moveDragMoveIcon: function (event, suffix) {
+    moveMatElements: function (event, suffix) {
         "use strict";
         let deltaX = event.clientX - G.mouseDrag.startClient.x;
         let deltaY = event.clientY - G.mouseDrag.startClient.y;
@@ -157,12 +157,12 @@ var gMouseDrag = {
     /**
      * Hold move icon and drag.
      */
-    onDragMoveIcon: function (event) {
+    ondragMoveIcon: function (event) {
         "use strict";
         if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
             let suffix = gStringFormat.getSuffixByMoveId(event.target.id);
             if (suffix !== null) {
-                this.moveDragMoveIcon(event, suffix);
+                this.moveMatElements(event, suffix);
             }
         }
     }

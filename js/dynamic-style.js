@@ -73,12 +73,15 @@ var gDynamicStyle = {
             elmMat.style.borderColor = DYNAMIC_STYLE_MAT_COLOR[suffix];
         }
     },
+    /**
+     * @returns {object} {x, y}.
+     */
     getMatCenter: function (suffix) {
         "use strict";
         let elmMat = document.getElementById('mat' + suffix);
         return {
-            x: parseInt(elmMat.style.left, 10) - parseInt(elmMat.style.width, 10) / 2,
-            y: parseInt(elmMat.style.top, 10) - parseInt(elmMat.style.height, 10) / 2
+            x: parseInt(elmMat.style.left, 10) + parseInt(elmMat.style.width, 10) / 2,
+            y: parseInt(elmMat.style.top, 10) + parseInt(elmMat.style.height, 10) / 2
         }
     },
     loadDynamicStylePlayerIcon: function (suffix) {

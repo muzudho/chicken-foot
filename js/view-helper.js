@@ -93,5 +93,20 @@ var gViewHelper = {
             let elmTotal = document.getElementById('total' + iPlyr);
             elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];
         }
+    },
+    moveTileToMat: function(tileNum, matSuffix){
+        "use strict";
+        let elmTile = document.getElementById('tile' + tileNum);
+        let matCenter = gDynamicStyle.getMatCenter(matSuffix);
+        elmTile.style.left = matCenter.x + 'px';
+        elmTile.style.top = matCenter.y + 'px';
+    },
+    turnTileToBack: (elmTile)=>{
+        "use strict";
+        elmTile.src = gStringFormat.getTilePath('empty');
+    },
+    turnTileToFront: (elmTile)=>{
+        "use strict";
+        elmTile.src = gStringFormat.getTilePath(gStringFormat.getNumberByTileId(elmTile.id));
     }
 };

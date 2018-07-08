@@ -65,7 +65,7 @@ var gTitleScene = {
 
                 // https://hakuhin.jp/js/data_transfer.html#DATA_TRANSFER_04
                 elmTile.ondragstart = function (event) {
-                    gMouseDrag.onDragStart(event);
+                    gMouseDrag.ondragstartElement(event);
                     // event.dataTransfer.effectAllowed = 'move';
                 };
 
@@ -81,7 +81,7 @@ var gTitleScene = {
                 };
 
                 elmTile.ondrag = function (event) {
-                    gMouseDrag.onTileDrag(event);
+                    gMouseDrag.ondragTile(event);
                 };
 
                 /** Clicked tag such as img. */
@@ -119,10 +119,10 @@ var gTitleScene = {
         let elmMove = document.getElementById('move' + suffix);
         elmMove.draggable = true;
         elmMove.ondragstart = function (event) {
-            gMouseDrag.onDragStart(event);
+            gMouseDrag.ondragstartElement(event);
         };
         elmMove.ondrag = function (event) {
-            gMouseDrag.onDragMoveIcon(event);
+            gMouseDrag.ondragMoveIcon(event);
         };
     },
     layoutMove: function (suffix) {
