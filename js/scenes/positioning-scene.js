@@ -42,8 +42,8 @@ var gPositioningScene = {
         // Tile positioning.
         this.executeAutoTilePosition();
 
-        G.currentPlayer = ruleHelper.getFirstPlayerIndex();
-        ruleHelper.highlightPlayer(G.currentPlayer);
+        G.currentPlayer = gRuleHelper.getFirstPlayerIndex();
+        gRuleHelper.highlightPlayer(G.currentPlayer);
 
         G.scene = 'game';
     },

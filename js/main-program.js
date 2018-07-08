@@ -15,73 +15,26 @@ var gMainProgram = {
     initialize: function () {
         "use strict";
 
-        /* Global */
-        G = {
-            /** 0 <= x < 360. */
-            angleDegByTile: [],
+        // Initialize model. Such as global valiables.
+        gModelHelper.initialize();
 
-            /** -1 is nobody. This is player id. */
-            currentPlayer: -1,
-
-            entryPlayerNum: 0,
-
-            /** radius */
-            matThetaArr: [],
-            /** Index is player id. */
-            matThetaRankArr: [],
-
-            /** mouse-drag.js */
-            mouseDrag: {
-                startClient: {
-                    x: 0,
-                    y: 0
-                },
-                holdPoint: {
-                    x: 0,
-                    y: 0
-                }
-            },
-
-            scene: "#main-program",
-            scoreByMat: [],
-
-            tileNumbers: [],
-            tileNumByPlayer: 0,
-
-            z: "" // nothing comma
-        };
-
-        // Title scene elements.
+        // Set up view.
+        // - Title scene elements.
+        // - Positioning scene elements.
+        // - Game scene elements.
         document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
             titleSceneElm.style.display = "block";
         });
-
-        // Positioning scene elements.
         document.querySelectorAll('.positioningScene').forEach(function (positioningSceneElm) {
             positioningSceneElm.style.display = "none";
         });
-
-        // Game scene elements.
         document.querySelectorAll('.game-scene').forEach(function (gameSceneElm) {
             gameSceneElm.style.display = "none";
         });
 
-        // 配列に 存在するタイルの数字を入れる。
-        let k = 0;
-        for (let j = 0; j < 10; j += 1) {
-            for (let i = 0; i < 10; i += 1) {
-                if (i <= j) {
-                    G.tileNumbers[k] = 10 * i + j;
-                    k += 1;
-                } else {
-                    break;
-                }
-            }
-        }
-
         gDynamicStyle.loadDynamicStyleAll();
 
-        // Entry player count buttons.
+        // Set up entry player count buttons.
         for (let iPlyr = 2; iPlyr < (PLYR_MAX_LEN + 1); iPlyr += 1) {
             let plyrBtn = document.getElementById('playerNum' + iPlyr);
             /**
@@ -95,43 +48,29 @@ var gMainProgram = {
             };
         }
 
-        // Positioning finish button.
+        // Set up positioning finish button.
         let positioningFinishBtn = document.getElementById('positioningFinishButton');
         positioningFinishBtn.onclick = function (event) {
             gPositioningScene.onPositioningFinishButtonClicked(event);
         }
 
         // Total score text boxes.
-        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            let totalTbx = document.getElementById('total' + iPlyr);
-            totalTbx.value = 0;
-        }
+        gViewHelper.clearTotal();
 
-        // Round end button.
+        // Set up round end button.
         let roundEndBtn = document.getElementById('roundEndButton');
         roundEndBtn.onclick = function (event) {
-            ruleHelper.refreshScoreByAllMats();
-
-            // Total score text boxes.
-            for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-                let elmTotal = document.getElementById('total' + iPlyr);
-                elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];
-            }
+            gRuleHelper.refreshScoreByAllMats();
+            gViewHelper.updateTotalBasedOnMat();
         };
 
-        // Next player button.
+        // Set up next player button.
         let nextPlayerBtn = document.getElementById('nextPlayerButton');
         nextPlayerBtn.onclick = function (event) {
-            let rank = G.matThetaRankArr[G.currentPlayer];
-            if (rank < 1) {
-                rank = G.entryPlayerNum - 1;
-            } else {
-                rank -= 1;
-            }
-            G.currentPlayer = G.matThetaRankArr.indexOf(rank);
+            gModelHelper.turnToNextPlayer();
         };
 
-        // Board. ドロップされる側
+        // Set up board. ドロップされる側
         let board = document.getElementById('board');
         board.ondragover = function (event) {
             event.dataTransfer.dropEffect = 'move';
@@ -145,7 +84,7 @@ var gMainProgram = {
 
         gTitleScene.initialize();
 
-        // Tiles.
+        // Set up tiles.
         for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
             let tileNumber = G.tileNumbers[iTile];
             let idTile = 'tile' + tileNumber;
@@ -199,7 +138,7 @@ var gMainProgram = {
     },
     onFrame: function () {
         "use strict";
-        ruleHelper.refreshScoreByAllMats();
+        gRuleHelper.refreshScoreByAllMats();
 
         let elmRP = document.getElementById('matRP');
         let rpCenter = gDynamicStyle.getMatCenter('RP');
@@ -242,7 +181,7 @@ var gMainProgram = {
 
         // Current player.
         if (G.currentPlayer !== -1) {
-            ruleHelper.highlightPlayer(G.currentPlayer);
+            gRuleHelper.highlightPlayer(G.currentPlayer);
         }
     }
 };
