@@ -1,5 +1,5 @@
 /**
- * Main loop. Timer pseudo thread.
+ * Controller. Main loop. Timer pseudo thread.
  * @authore muzudho
  * @module js/main-program
  */
@@ -12,38 +12,45 @@ const ROUTE_PIBOT_MAT_INDEX = 9;
 G = {};
 
 var gMainProgram = {
+    forwardScene: function (scene, phase) {
+        G.scene = scene;
+        G.scenePhase = phase;
+    },
     initialize: function () {
         "use strict";
 
         // Initialize model. Such as global valiables.
         gModelHelper.initialize();
 
-        gViewHelper.setupMainProgram();
-
         gDynamicStyle.loadDynamicStyleAll();
 
-        G.scene = 'title';
-        G.scenePhase = 'init';
+        gMainProgram.forwardScene('title', 'initOnTimer');
     },
     onFrame: function () {
         "use strict";
-
         let scene;
-        switch(G.scene){
+        switch (G.scene) {
         case 'title':
             scene = gTitleScene;
+            break;
+        case 'positioning':
+            scene = gPositioningScene;
+            break;
+        case 'game':
+            scene = gGameScene;
             break;
         default:
             scene = null;
         }
-        
-        switch(G.scenePhase){
-        case 'init':
+
+        switch (G.scenePhase) {
+        case 'initOnTimer':
             scene.initOnTimer();
             break;
+        case 'frameOnTimer':
+            scene.frameOnTimer();
         }
-        
-        
+
         gRuleHelper.refreshScoreByAllMats();
 
         let elmRP = document.getElementById('matRP');

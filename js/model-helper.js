@@ -38,7 +38,7 @@ var gModelHelper = {
 
             scene: "#main-program",
             scenePhase: "#initialize",
-            
+
             scoreByMat: [],
 
             tileNumbers: [],
@@ -64,7 +64,10 @@ var gModelHelper = {
         for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
             let tileNumber = G.tileNumbers[iTile];
             G.angleDegByTile[tileNumber] = 0;
-        }        
+        }
+    },
+    containsTileNumberByPlayer: function (tileNum, plyrNum) {
+        return G.handList[plyrNum].indexOf(tileNum) !== -1;
     },
     selectScoreByPlayer: function () {
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {

@@ -5,116 +5,49 @@
  */
 
 var gViewHelper = {
-    /**
-     * Set up view.
-     * - Title scene elements.
-     * - Positioning scene elements.
-     * - Game scene elements.
-     */
-    setupMainProgram: function() {
-        document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
-            titleSceneElm.style.display = "block";
-        });
-        document.querySelectorAll('.positioningScene').forEach(function (positioningSceneElm) {
-            positioningSceneElm.style.display = "none";
-        });
-        document.querySelectorAll('.game-scene').forEach(function (gameSceneElm) {
-            gameSceneElm.style.display = "none";
-        });
-        // Set up entry player count buttons.
-        for (let iPlyr = 2; iPlyr < (PLYR_MAX_LEN + 1); iPlyr += 1) {
-            let plyrBtn = document.getElementById('playerNum' + iPlyr);
-            /**
-             * @param {number} playerNum - プレイヤー人数
-             */
-            plyrBtn.onclick = function (event) {
-                gTitleScene.onclickPlyrBtn(event);
-            };
-            plyrBtn.onmouseover = function (event) {
-                gTitleScene.onEntryPlayerCountButtonMouseOver(event);
-            };
-        }
-        // Set up positioning finish button.
-        let positioningFinishBtn = document.getElementById('positioningFinishButton');
-        positioningFinishBtn.onclick = function (event) {
-            gPositioningScene.onPositioningFinishButtonClicked(event);
-        }
-        // Total score text boxes.
-        gViewHelper.clearTotal();
-
-        // Set up round end button.
-        let roundEndBtn = document.getElementById('roundEndButton');
-        roundEndBtn.onclick = function (event) {
-            gRuleHelper.refreshScoreByAllMats();
-            gViewHelper.updateTotalBasedOnMat();
-        };
-
-        // Set up next player button.
-        let nextPlayerBtn = document.getElementById('nextPlayerButton');
-        nextPlayerBtn.onclick = function (event) {
-            gModelHelper.turnToNextPlayer();
-        };
-
-        // Set up board. ドロップされる側
-        let board = document.getElementById('board');
-        board.ondragover = function (event) {
-            event.dataTransfer.dropEffect = 'move';
-            // ドロップ許可
-            if (event.preventDefault) {
-                event.preventDefault();
+    executeAutoPosition: function () {
+        "use strict";
+        // Visibility.
+        let iPlyr = 0;
+        for (; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+            let elmMat = document.getElementById('mat' + iPlyr);
+            let elmScore = document.getElementById('score' + iPlyr);
+            if (iPlyr < G.entryPlayerNum) {
+                elmMat.style.display = "block";
             } else {
-                return false;
-            }
-        };
-        
-        // Set up tiles.
-        for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
-            let tileNumber = G.tileNumbers[iTile];
-            let idTile = 'tile' + tileNumber;
-            let elmTile = document.getElementById(idTile);
-            if (elmTile !== null) {
-                elmTile.draggable = true;
-
-                // https://hakuhin.jp/js/data_transfer.html#DATA_TRANSFER_04
-                elmTile.ondragstart = function (event) {
-                    gMouseDrag.onDragStart(event);
-                    // event.dataTransfer.effectAllowed = 'move';
-                };
-
-                // タイルの上にも落としたい
-                elmTile.ondragover = function (event) {
-                    event.dataTransfer.dropEffect = 'move';
-                    // ドロップ許可
-                    if (event.preventDefault) {
-                        event.preventDefault();
-                    } else {
-                        return false;
-                    }
-                };
-
-                elmTile.ondrag = function (event) {
-                    gMouseDrag.onTileDrag(event);
-                };
-
-                /** Clicked tag such as img. */
-                elmTile.onmouseup = function (event) {
-                    let tileNumber = gStringFormat.getNumberByTileId(event.target.id);
-                    let angle;
-                    switch (event.which) {
-                    case 1:
-                        // Mouse left button pressed.
-                        angle = 30;
-                        break;
-                    case 3:
-                        // Mouse right button pressed.
-                        angle = -30;
-                        break;
-                    }
-                    G.angleDegByTile[tileNumber] = (G.angleDegByTile[tileNumber] + angle) % 360;
-                    document.getElementById(event.target.id).style.transform = 'rotate(' + G.angleDegByTile[tileNumber] + 'deg)';
-                };
+                elmMat.style.display = "none";
+                elmMat.style.width = 0;
+                elmMat.style.height = 0;
             }
         }
+
+        // root pibot, mat, score, move icon.
+        let elmMatRP = document.getElementById('matRP');
+        let usedTileCount = 0;
+        let radius = Math.min(window.innerWidth, window.innerHeight) / 2 * 0.7;
+        for (iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {
+            let elmMat = document.getElementById('mat' + iPlyr);
+            let elmScore = document.getElementById('score' + iPlyr);
+
+            elmMat.style.width = ((G.tileNumByPlayer / 2 + 1.5) * 32) + 'px';
+            elmMat.style.height = (2 * 64 + 32 * 1.25) + 'px';
+
+            let theta = iPlyr / G.entryPlayerNum * 2 * Math.PI;
+            elmMat.style.left = radius * Math.cos(theta) + (parseInt(elmMatRP.style.left, 10) + 64 / 2) - parseInt(elmMat.style.width, 10) / 2 + 'px';
+            elmMat.style.top = radius * Math.sin(theta) + (parseInt(elmMatRP.style.top, 10) + 64 / 2) - parseInt(elmMat.style.height, 10) / 2 + 'px';
+
+            elmScore.style.left = elmMat.style.left;
+            elmScore.style.top = (parseInt(elmMat.style.top, 10) - 60) + 'px';
+
+            gTitleScene.layoutMove(iPlyr);
+        }
+        gTitleScene.layoutMove('Lib');
+        gTitleScene.layoutMove('RP');
+
+        // Library
+        let elmMatLib = document.getElementById('matLib');
+        elmMatLib.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
+        elmMatLib.style.height = (64 + 32 * 1.25) + 'px';
     },
     selectHandTailsByPlayer: function () {
         // Clear model.

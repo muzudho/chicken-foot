@@ -5,7 +5,70 @@
  */
 
 var gPositioningScene = {
-    onPositioningFinishButtonClicked: function (event) {
+    initOnTimer: function () {
+        "use strict";
+        // シャッフル
+        G.tileNumbers = gIndex.shuffle(G.tileNumbers);
+
+        switch (G.entryPlayerNum) {
+        case 2:
+            // 21枚ずつ
+            G.tileNumByPlayer = 21;
+            break;
+        case 3:
+            // 14枚ずつ
+            G.tileNumByPlayer = 14;
+            break;
+        case 4:
+            // 11枚ずつ
+            G.tileNumByPlayer = 11;
+            break;
+        case 5:
+            // 8枚ずつ
+            G.tileNumByPlayer = 8;
+            break;
+        case 6:
+            // 7枚ずつ
+            G.tileNumByPlayer = 7;
+            break;
+        case 7:
+            // 6枚ずつ
+            G.tileNumByPlayer = 6;
+            break;
+        default:
+        case 8:
+            // 5枚ずつ
+            G.tileNumByPlayer = 5;
+            break;
+        }
+        gViewHelper.executeAutoPosition();
+
+        // Positioning scene elements is visible.
+        document.querySelectorAll('.positioning-scene').forEach(function (positioningSceneElm) {
+            positioningSceneElm.style.display = "block";
+        });
+
+        // Move-icon elements is visible.
+        let iPlyr = 0;
+        document.querySelectorAll('i.move').forEach(function (moveElm) {
+            if (iPlyr < G.entryPlayerNum) {
+                moveElm.style.display = "block";
+            } else {
+                moveElm.style.display = "none";
+            }
+            iPlyr += 1;
+        });
+        document.getElementById('moveLib').style.display = 'block';
+        document.getElementById('moveRP').style.display = 'block';
+
+        // Mats.
+        document.getElementById('matLib').style.display = 'block';
+        document.getElementById('matRP').style.display = 'block';
+
+        gMainProgram.forwardScene('positioning', 'frameOnTimer');
+    },
+    frameOnTimer: function () {},
+    onclickPositioningFinishButton: function (event) {
         "use strict";
         // Positioning finish button.
         let thisBtn = document.getElementById(event.target.id);
@@ -42,10 +105,7 @@ var gPositioningScene = {
         // Tile positioning.
         this.executeAutoTilePosition();
 
-        G.currentPlayer = gRuleHelper.getFirstPlayerIndex();
-        gRuleHelper.highlightPlayer(G.currentPlayer);
-
-        G.scene = 'game';
+        gMainProgram.forwardScene('game', 'initOnTimer');
     },
     executeAutoTilePosition: function executeAutoTilePosition() {
         "use strict";
