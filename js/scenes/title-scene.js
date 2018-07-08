@@ -16,7 +16,7 @@ var gTitleScene = {
             gMouseDrag.onDragMoveIcon(event);
         };
     },
-    initialize: function () {
+    initOnTimer: function(){
         "use strict";
         // Moves.
         for (let iMat = 0; iMat < PLYR_MAX_LEN; iMat += 1) {
@@ -24,6 +24,7 @@ var gTitleScene = {
         }
         this.startupMove('Lib');
         this.startupMove('RP');
+        G.scenePhase = "frame";
     },
     startMove: function startMove(suffix) {
         "use strict";
