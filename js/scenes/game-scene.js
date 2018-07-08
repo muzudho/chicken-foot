@@ -6,17 +6,17 @@
 
 var gGameScene = {
     phase: 'searchDoubleNumber',
-    initOnTimer: function () {
+    initOnTimer: () => {
         "use strict";
         // Set up next player button.
         let nextPlayerBtn = document.getElementById('nextPlayerButton');
-        nextPlayerBtn.onclick = function (event) {
+        nextPlayerBtn.onclick = (event) => {
             gModelHelper.turnToNextPlayer();
         };
 
         // Set up round end button.
         let roundEndBtn = document.getElementById('roundEndButton');
-        roundEndBtn.onclick = function (event) {
+        roundEndBtn.onclick = (event) => {
             gRuleHelper.refreshScoreByAllMats();
             gViewHelper.updateTotalBasedOnMat();
         };
@@ -26,20 +26,20 @@ var gGameScene = {
 
         gMainProgram.forwardScene('game', 'frameOnTimer');
     },
-    frameOnTimer: function () {
+    frameOnTimer: () => {
         "use strict";
         switch (gGameScene.phase) {
         case 'searchDoubleNumber':
             // Have current player double number? ex) 99, 88, 77...
-            console.log('99 have? ' + gModelHelper.containsTileNumberByPlayer(99, G.currentPlayer));
+            gTalkHelper.talk('誰が 99 を持ってるんだぜ☆？<br/>探すからな☆');
             if (gModelHelper.containsTileNumberByPlayer(99, G.currentPlayer)) {
-                console.log("99を持っていた。");
-                gGameScene.phase = 'onGame';
+                gTalkHelper.talk('99を持っていたか☆ じゃあ その99を<br/>青い十字マークの近くのとこまで ずらせだぜ☆');
+                gGameScene.phase = 'initOnPutTile';
             } else {
                 // ex) 4人なら、angleの小さな順 0位,3位,2位,1位 に進む。 1位 が ダブルを持っていなければ、全員持っていない。
                 if (G.matThetaRankArr[G.currentPlayer] === 1) {
                     // TODO 山札から全プレイヤーに１枚ずつ配りたい。
-                    console.log("山札から全プレイヤーに１枚ずつ配りたい。");
+                    gTalkHelper.talk('なんだ、誰も 99 を持っていないのかだぜ☆');
 
                     for (let iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {
                         // 山札から１枚取る。
@@ -47,12 +47,13 @@ var gGameScene = {
                         if (typeof tileNum !== 'undefined') {
                             // 山札の最後尾札を、プレイヤーのマットへ移動。
                             gViewHelper.moveTileToMat(tileNum, iPlyr);
-                            gViewHelper.turnTileToFront(document.getElementById('tile'+tileNum));
-                            console.log(iPlyr + "は、山札から"+tileNum+"を取った。");
+                            gModelHelper.moveTileToMat(tileNum, iPlyr);
+                            gViewHelper.turnTileToFront(document.getElementById('tile' + tileNum));
+                            gTalkHelper.talk(iPlyr + "プレイヤーは、山札から " + tileNum + " のタイルを取ったぜ☆");
                         } else {
                             // 山札が無くなっていれば終わり。
-                            console.log("山札が無くなっているので終わり☆");
-                            gGameScene.phase = 'onGame';
+                            gTalkHelper.talk("山札が無くなっているので終わり☆");
+                            gGameScene.phase = 'initOnPutTile';
                             break;
                         }
                     }
@@ -61,7 +62,13 @@ var gGameScene = {
                 gModelHelper.turnToNextPlayer();
             }
             break;
-        case 'onGame':
+        case 'initOnPutTile':
+            // Copy array.
+            G.handListAsTurnBegin = G.handList.slice();
+            gGameScene.phase = 'frameOnPutTile';
+            break;
+        case 'frameOnPutTile':
+            //if()
         }
     }
 };

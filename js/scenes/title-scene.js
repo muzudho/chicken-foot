@@ -11,15 +11,15 @@ var gTitleScene = {
      * - Positioning scene elements.
      * - Game scene elements.
      */
-    initOnTimer: function () {
+    initOnTimer: () => {
         "use strict";
-        document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
+        document.querySelectorAll('.title-scene').forEach((titleSceneElm) => {
             titleSceneElm.style.display = "block";
         });
-        document.querySelectorAll('.positioningScene').forEach(function (positioningSceneElm) {
+        document.querySelectorAll('.positioningScene').forEach((positioningSceneElm) => {
             positioningSceneElm.style.display = "none";
         });
-        document.querySelectorAll('.game-scene').forEach(function (gameSceneElm) {
+        document.querySelectorAll('.game-scene').forEach((gameSceneElm) => {
             gameSceneElm.style.display = "none";
         });
         // Set up entry player count buttons.
@@ -28,16 +28,16 @@ var gTitleScene = {
             /**
              * @param {number} playerNum - プレイヤー人数
              */
-            plyrBtn.onclick = function (event) {
+            plyrBtn.onclick = (event) => {
                 gTitleScene.onclickPlyrBtn(event);
             };
-            plyrBtn.onmouseover = function (event) {
+            plyrBtn.onmouseover = (event) => {
                 gTitleScene.onmouseoverEntryPlayerCountButton(event);
             };
         }
         // Set up positioning finish button.
         let positioningFinishBtn = document.getElementById('positioningFinishButton');
-        positioningFinishBtn.onclick = function (event) {
+        positioningFinishBtn.onclick = (event) => {
             gPositioningScene.onclickPositioningFinishButton(event);
         }
         // Total score text boxes.
@@ -45,7 +45,7 @@ var gTitleScene = {
 
         // Set up board. ドロップされる側
         let board = document.getElementById('board');
-        board.ondragover = function (event) {
+        board.ondragover = (event) => {
             event.dataTransfer.dropEffect = 'move';
             // ドロップ許可
             if (event.preventDefault) {
@@ -64,13 +64,13 @@ var gTitleScene = {
                 elmTile.draggable = true;
 
                 // https://hakuhin.jp/js/data_transfer.html#DATA_TRANSFER_04
-                elmTile.ondragstart = function (event) {
+                elmTile.ondragstart = (event) => {
                     gMouseDrag.ondragstartElement(event);
                     // event.dataTransfer.effectAllowed = 'move';
                 };
 
                 // タイルの上にも落としたい
-                elmTile.ondragover = function (event) {
+                elmTile.ondragover = (event) => {
                     event.dataTransfer.dropEffect = 'move';
                     // ドロップ許可
                     if (event.preventDefault) {
@@ -80,12 +80,12 @@ var gTitleScene = {
                     }
                 };
 
-                elmTile.ondrag = function (event) {
+                elmTile.ondrag = (event) => {
                     gMouseDrag.ondragTile(event);
                 };
 
                 /** Clicked tag such as img. */
-                elmTile.onmouseup = function (event) {
+                elmTile.onmouseup = (event) => {
                     let tileNumber = gStringFormat.getNumberByTileId(event.target.id);
                     let angle;
                     switch (event.which) {
@@ -106,45 +106,45 @@ var gTitleScene = {
 
         // Set up moves.
         for (let iMat = 0; iMat < PLYR_MAX_LEN; iMat += 1) {
-            this.setupMove(iMat);
+            gTitleScene.setupMove(iMat);
         }
-        this.setupMove('Lib');
-        this.setupMove('RP');
+        gTitleScene.setupMove('Lib');
+        gTitleScene.setupMove('RP');
 
         gMainProgram.forwardScene('title', 'frameOnTimer');
     },
-    frameOnTimer: function () {},
-    setupMove: function (suffix) {
+    frameOnTimer: () => {},
+    setupMove: (suffix) => {
         "use strict";
         let elmMove = document.getElementById('move' + suffix);
         elmMove.draggable = true;
-        elmMove.ondragstart = function (event) {
+        elmMove.ondragstart = (event) => {
             gMouseDrag.ondragstartElement(event);
         };
-        elmMove.ondrag = function (event) {
+        elmMove.ondrag = (event) => {
             gMouseDrag.ondragMoveIcon(event);
         };
     },
-    layoutMove: function (suffix) {
+    layoutMove: (suffix) => {
         "use strict";
         let elmMat = document.getElementById('mat' + suffix);
         let elmMove = document.getElementById('move' + suffix);
         elmMove.style.left = (parseInt(elmMat.style.left, 10) - 36) + 'px';
         elmMove.style.top = elmMat.style.top;
     },
-    onclickPlyrBtn: function (event) {
+    onclickPlyrBtn: (event) => {
         "use strict";
         let id = event.target.id;
         G.entryPlayerNum = gStringFormat.getNumberByEntryPlayerButtonId(id);
 
         // Title scene elements is hidden.
-        document.querySelectorAll('.title-scene').forEach(function (titleSceneElm) {
+        document.querySelectorAll('.title-scene').forEach((titleSceneElm) => {
             titleSceneElm.style.display = "none";
         });
 
         gMainProgram.forwardScene('positioning', 'initOnTimer');
     },
-    onmouseoverEntryPlayerCountButton: function (event) {
+    onmouseoverEntryPlayerCountButton: (event) => {
         "use strict";
         let id = event.target.id;
         // ex) playerNum1 button

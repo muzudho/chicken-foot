@@ -4,20 +4,23 @@
  * @module js/main-program
  */
 
+/** Player 0,1,2,3,4,5,6,7. */
 const PLYR_MAX_LEN = 8;
+/** Library is player 8. */
 const LIBRARY_MAT_INDEX = 8;
+/** Not player and library space is 9. */
 const ROUTE_PIBOT_MAT_INDEX = 9;
 
 /** Global variables. */
 G = {};
 
 var gMainProgram = {
-    forwardScene: function (scene, phase) {
+    forwardScene: (scene, phase) => {
         "use strict";
         G.scene = scene;
         G.scenePhase = phase;
     },
-    initialize: function () {
+    initialize: () => {
         "use strict";
 
         // Initialize model. Such as global valiables.
@@ -27,7 +30,7 @@ var gMainProgram = {
 
         gMainProgram.forwardScene('title', 'initOnTimer');
     },
-    onFrame: function () {
+    onFrame: () => {
         "use strict";
         let scene;
         switch (G.scene) {
@@ -76,11 +79,11 @@ var gMainProgram = {
         }
 
         // 小さい順に並べる。
-        let sorted = G.matThetaArr.slice().sort(function (a, b) {
+        let sorted = G.matThetaArr.slice().sort((a, b) => {
                 return a - b
             });
         // 一番小さいものに 0、二番目に小さいものに 1、と付く。 FIXME: 同着は被ってしまう。
-        G.matThetaRankArr = G.matThetaArr.slice().map(function (x) {
+        G.matThetaRankArr = G.matThetaArr.slice().map((x) => {
                 return sorted.indexOf(x)
             });
 

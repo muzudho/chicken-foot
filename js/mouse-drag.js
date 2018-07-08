@@ -40,7 +40,7 @@ var gMouseDrag = {
      *     }
      * };
      */
-    ondragstartElement: function (event) {
+    ondragstartElement: (event)　 => {
         "use strict";
         let rectBody = document.body.getBoundingClientRect();
         G.mouseDrag.startClient.x = event.clientX;
@@ -53,7 +53,7 @@ var gMouseDrag = {
     /**
      * Hold tile and mouse drag.
      */
-    ondragTile: function (event) {
+    ondragTile: (event) => {
         "use strict";
         if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
             let elmTile = event.target;
@@ -91,7 +91,7 @@ var gMouseDrag = {
         }
     },
 
-    moveMatElements: function (event, suffix) {
+    moveMatElements: (event, suffix) => {
         "use strict";
         let deltaX = event.clientX - G.mouseDrag.startClient.x;
         let deltaY = event.clientY - G.mouseDrag.startClient.y;
@@ -157,12 +157,12 @@ var gMouseDrag = {
     /**
      * Hold move icon and drag.
      */
-    ondragMoveIcon: function (event) {
+    ondragMoveIcon: (event) => {
         "use strict";
         if (!(event.clientX === 0 && event.clientY === 0)) { // except (0,0) of end of drag.
             let suffix = gStringFormat.getSuffixByMoveId(event.target.id);
             if (suffix !== null) {
-                this.moveMatElements(event, suffix);
+                gMouseDrag.moveMatElements(event, suffix);
             }
         }
     }

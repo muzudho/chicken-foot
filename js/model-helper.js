@@ -6,7 +6,7 @@
 
 var gModelHelper = {
     /** Initialize global variable. */
-    initialize: function () {
+    initialize: () => {
         "use strict";
         G = {
             /** 0 <= x < 360. */
@@ -19,6 +19,7 @@ var gModelHelper = {
 
             /** Tile numbers by player. */
             handList: [],
+            handListAsTurnBegin: [],
 
             /** radius */
             matThetaArr: [],
@@ -67,11 +68,11 @@ var gModelHelper = {
             G.angleDegByTile[tileNumber] = 0;
         }
     },
-    containsTileNumberByPlayer: function (tileNum, plyrNum) {
+    containsTileNumberByPlayer: (tileNum, plyrNum) => {
         "use strict";
         return G.handList[plyrNum].indexOf(tileNum) !== -1;
     },
-    selectScoreByPlayer: function () {
+    selectScoreByPlayer: () => {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             // Clear model.
@@ -89,7 +90,7 @@ var gModelHelper = {
             }
         }
     },
-    turnToNextPlayer: function () {
+    turnToNextPlayer: () => {
         "use strict";
         let rank = G.matThetaRankArr[G.currentPlayer];
         if (rank < 1) {
@@ -102,11 +103,38 @@ var gModelHelper = {
     /**
      * @returns {number} tileNum or undefined.
      */
-    popLibrary: function () {
+    popLibrary: () => {
         "use strict";
         return G.handList[LIBRARY_MAT_INDEX].pop();
     },
-    pushTileToMat: function (tileNum, matSuffix) {
-        // TODO
+    /**
+     * @returns {boolean} successful.
+     */
+    moveTileToMatImpl: (tileNum, srcPlyr, dstPlyr) => {
+        "use strict";
+        let index = G.handList[srcPlyr].indexOf(tileNum);
+        if (typeof index !== 'undefined') {
+            G.handList[srcPlyr].remove(tileNum);
+            G.handList[dstPlyr].push(tileNum);
+            return true;
+        }
+        return false;
+    },
+    /** TODO */
+    moveTileToMat: (tileNum, dstPlyr) => {
+        "use strict";
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+            if (gModelHelper.moveTileToMatImpl(tileNum, iPlyr, dstPlyr)) {
+                return;
+            }
+        }
+
+        if (gModelHelper.moveTileToMatImpl(tileNum, LIBRARY_MAT_INDEX, dstPlyr)) {
+            return;
+        }
+
+        if (gModelHelper.moveTileToMatImpl(tileNum, ROUTE_PIBOT_MAT_INDEX, dstPlyr)) {
+            return;
+        }
     }
 };

@@ -20,7 +20,7 @@ const DYNAMIC_STYLE_MAT_COLOR = [
 ];
 
 var gDynamicStyle = {
-    loadDynamicStyleMove: function (suffix) {
+    loadDynamicStyleMove: (suffix) => {
         "use strict";
         let elmMove = document.getElementById('move' + suffix);
         elmMove.style.left = 0 + 'px';
@@ -38,7 +38,7 @@ var gDynamicStyle = {
             elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
         }
     },
-    loadDynamicStyleScore: function (suffix) {
+    loadDynamicStyleScore: (suffix) => {
         "use strict";
         let elmScore = document.getElementById('score' + suffix);
         elmScore.style.left = 0 + 'px';
@@ -47,7 +47,7 @@ var gDynamicStyle = {
         elmScore.style.height = 54 + 'px';
         elmScore.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
     },
-    loadDynamicStyleMat: function (suffix) {
+    loadDynamicStyleMat: (suffix) => {
         "use strict";
         let elmMat = document.getElementById('mat' + suffix);
         elmMat.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
@@ -76,7 +76,7 @@ var gDynamicStyle = {
     /**
      * @returns {object} {x, y}.
      */
-    getMatCenter: function (suffix) {
+    getMatCenter: (suffix) => {
         "use strict";
         let elmMat = document.getElementById('mat' + suffix);
         return {
@@ -84,35 +84,35 @@ var gDynamicStyle = {
             y: parseInt(elmMat.style.top, 10) + parseInt(elmMat.style.height, 10) / 2
         }
     },
-    loadDynamicStylePlayerIcon: function (suffix) {
+    loadDynamicStylePlayerIcon: (suffix) => {
         "use strict";
         let elmPlayerIcon = document.getElementById('playerIcon' + suffix);
         elmPlayerIcon.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
     },
-    loadDynamicStyleAll: function () {
+    loadDynamicStyleAll: () => {
         "use strict";
         // Moves.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            this.loadDynamicStyleMove(iPlyr);
+            gDynamicStyle.loadDynamicStyleMove(iPlyr);
         }
-        this.loadDynamicStyleMove('Lib');
-        this.loadDynamicStyleMove('RP');
+        gDynamicStyle.loadDynamicStyleMove('Lib');
+        gDynamicStyle.loadDynamicStyleMove('RP');
 
         // Scores.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            this.loadDynamicStyleScore(iPlyr);
+            gDynamicStyle.loadDynamicStyleScore(iPlyr);
         }
 
         // Mats.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            this.loadDynamicStyleMat(iPlyr);
+            gDynamicStyle.loadDynamicStyleMat(iPlyr);
         }
-        this.loadDynamicStyleMat('Lib');
-        this.loadDynamicStyleMat('RP');
+        gDynamicStyle.loadDynamicStyleMat('Lib');
+        gDynamicStyle.loadDynamicStyleMat('RP');
 
         // Player icons.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            this.loadDynamicStylePlayerIcon(iPlyr);
+            gDynamicStyle.loadDynamicStylePlayerIcon(iPlyr);
         }
 
         // Tiles.
@@ -125,7 +125,7 @@ var gDynamicStyle = {
             elmTile.style.height = 64 + 'px';
         }
     },
-    setMatToOpacityMax: function (suffix, enabled) {
+    setMatToOpacityMax: (suffix, enabled) => {
         "use strict";
         let elmMat = document.getElementById('mat' + suffix);
         if (enabled) {

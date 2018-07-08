@@ -6,7 +6,7 @@
 
 var gRuleHelper = {
     /** Refresh all presentable scores. */
-    refreshScoreByAllMats: function () {
+    refreshScoreByAllMats: () => {
         "use strict";
         gViewHelper.selectHandTailsByPlayer();
         gModelHelper.selectScoreByPlayer();
@@ -16,12 +16,12 @@ var gRuleHelper = {
      * Angle が1番小さいもの
      * 参考: https://goma.pw/article/2017-01-31-0/ |2017-01-31「JS：Array内の数値の順位を求める」
      */
-    getFirstPlayerIndex: function () {
+    getFirstPlayerIndex: () => {
         "use strict";
         return G.matThetaRankArr.indexOf(0);
     },
 
-    highlightPlayer: function (highlightPlyr) {
+    highlightPlayer: (highlightPlyr) => {
         "use strict";
         // Mat opacity.
         let iPlyr = 0;

@@ -5,7 +5,7 @@
  */
 
 var gDebugHelper = {
-    showHandList: function () {
+    showHandList: () => {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let numberArr = [];

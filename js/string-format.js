@@ -7,7 +7,7 @@
 const IMG_DIR = 'http://game.warabenture.com/chicken-foot/img/';
 
 var gStringFormat = {
-    getTilePath: function (tileNumber) {
+    getTilePath: (tileNumber) => {
         "use strict";
         return IMG_DIR + tileNumber + '.png';
     },
@@ -20,7 +20,7 @@ var gStringFormat = {
      * ### ex.
      * 'mat1' ---> null.
      */
-    getNumberByEntryPlayerButtonId: function (id) {
+    getNumberByEntryPlayerButtonId: (id) => {
         "use strict";
         let group = /^playerNum(.+)$/.exec(id);
         if (group !== null) {
@@ -37,13 +37,35 @@ var gStringFormat = {
      * ### ex.
      * 'mat1' ---> null.
      */
-    getNumberByTileId: function (id) {
+    getNumberByTileId: (id) => {
         "use strict";
         let group = /^tile(.+)$/.exec(id);
         if (group !== null) {
             return parseInt(group[1], 10);
         }
         return null;
+    },
+
+    /**
+     * @returns {number} number or null.
+     * @example
+     * ### ex.
+     * 1 ---> 1.
+     * ### ex.
+     * 'Lib' ---> LIBRARY_MAT_INDEX.
+     * ### ex.
+     * 'RP' ---> ROUTE_PIBOT_MAT_INDEX.
+     */
+    getNumberBySuffix: (suffix) => {
+        "use strict";
+        switch (matSuffix) {
+        case 'Lib':
+            return LIBRARY_MAT_INDEX;
+        case 'RP':
+            return ROUTE_PIBOT_MAT_INDEX;
+        default:
+            return parseInt(matSuffix, 10);
+        }
     },
 
     /**
@@ -54,7 +76,7 @@ var gStringFormat = {
      * ### ex.
      * 'tail1' ---> null.
      */
-    getSuffixByMoveId: function (id) {
+    getSuffixByMoveId: (id) => {
         "use strict";
         let group = /^move(.+)$/.exec(id);
         if (group !== null) {

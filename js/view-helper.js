@@ -5,7 +5,7 @@
  */
 
 var gViewHelper = {
-    executeAutoPosition: function () {
+    executeAutoPosition: () => {
         "use strict";
         // Visibility.
         let iPlyr = 0;
@@ -49,19 +49,54 @@ var gViewHelper = {
         elmMatLib.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
         elmMatLib.style.height = (64 + 32 * 1.25) + 'px';
     },
-    selectHandTailsByPlayerImpl: function (iPlyr, elmMat) {
+    /**
+     * @params {number} iPlyr - Player 0-7, Library 8, Other space 9.
+     * @params {object} elmMat - Player or library mat is 0-8, Other space is null.
+     */
+    selectHandTailsByPlayerImpl: (iPlyr, elmMat) => {
         "use strict";
-        // Search tile views.
-        for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
-            let tileNum = G.tileNumbers[iTile];
-            let elmTile = document.getElementById('tile' + tileNum);
-            if (gIntersect.isIntersect(elmTile, elmMat)) {
-                // Set up model.
-                G.handList[iPlyr].push(tileNum);
+        switch (iPlyr) {
+        case ROUTE_PIBOT_MAT_INDEX:
+            // Search tile views.
+            for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
+                let tileNum = G.tileNumbers[iTile];
+                let elmTile = document.getElementById('tile' + tileNum);
+                let flag = true;
+
+                let elmMatLib = document.getElementById('matLib');
+                if (gIntersect.isIntersect(elmTile, elmMatLib)) {
+                    // No count.
+                    flag = false;
+                } else {
+                    for (let iOther = 0; iOther < PLYR_MAX_LEN; iOther += 1) {
+                        let elmMat = document.getElementById('mat' + iOther);
+                        if (gIntersect.isIntersect(elmTile, elmMat)) {
+                            // No count.
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (flag) {
+                    // Set up model.
+                    G.handList[iPlyr].push(tileNum);
+                }
+            }
+            break;
+        default:
+            // Search tile views.
+            for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
+                let tileNum = G.tileNumbers[iTile];
+                let elmTile = document.getElementById('tile' + tileNum);
+                if (gIntersect.isIntersect(elmTile, elmMat)) {
+                    // Set up model.
+                    G.handList[iPlyr].push(tileNum);
+                }
             }
         }
     },
-    selectHandTailsByPlayer: function () {
+    selectHandTailsByPlayer: () => {
         "use strict";
         // Clear model.
         G.handList = [];
@@ -76,10 +111,13 @@ var gViewHelper = {
         // Library
         G.handList[LIBRARY_MAT_INDEX] = [];
         gViewHelper.selectHandTailsByPlayerImpl(LIBRARY_MAT_INDEX, document.getElementById('matLib'));
+        // Not player and library space.
+        G.handList[ROUTE_PIBOT_MAT_INDEX] = [];
+        gViewHelper.selectHandTailsByPlayerImpl(ROUTE_PIBOT_MAT_INDEX, null);
 
         // gDebugHelper.showHandList();
     },
-    clearTotal: function () {
+    clearTotal: () => {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let totalTbx = document.getElementById('total' + iPlyr);
@@ -87,25 +125,25 @@ var gViewHelper = {
         }
     },
     /** Total score text boxes. */
-    updateTotalBasedOnMat: function () {
+    updateTotalBasedOnMat: () => {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let elmTotal = document.getElementById('total' + iPlyr);
             elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];
         }
     },
-    moveTileToMat: function(tileNum, matSuffix){
+    moveTileToMat: (tileNum, dstPlyr) => {
         "use strict";
         let elmTile = document.getElementById('tile' + tileNum);
-        let matCenter = gDynamicStyle.getMatCenter(matSuffix);
+        let matCenter = gDynamicStyle.getMatCenter(dstPlyr);
         elmTile.style.left = matCenter.x + 'px';
         elmTile.style.top = matCenter.y + 'px';
     },
-    turnTileToBack: (elmTile)=>{
+    turnTileToBack: (elmTile) => {
         "use strict";
         elmTile.src = gStringFormat.getTilePath('empty');
     },
-    turnTileToFront: (elmTile)=>{
+    turnTileToFront: (elmTile) => {
         "use strict";
         elmTile.src = gStringFormat.getTilePath(gStringFormat.getNumberByTileId(elmTile.id));
     }

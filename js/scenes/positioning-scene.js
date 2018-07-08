@@ -5,7 +5,7 @@
  */
 
 var gPositioningScene = {
-    initOnTimer: function () {
+    initOnTimer: () => {
         "use strict";
         // シャッフル
         G.tileNumbers = gIndex.shuffle(G.tileNumbers);
@@ -44,13 +44,13 @@ var gPositioningScene = {
         gViewHelper.executeAutoPosition();
 
         // Positioning scene elements is visible.
-        document.querySelectorAll('.positioning-scene').forEach(function (positioningSceneElm) {
+        document.querySelectorAll('.positioning-scene').forEach((positioningSceneElm) => {
             positioningSceneElm.style.display = "block";
         });
 
         // Move-icon elements is visible.
         let iPlyr = 0;
-        document.querySelectorAll('i.move').forEach(function (moveElm) {
+        document.querySelectorAll('i.move').forEach((moveElm) => {
             if (iPlyr < G.entryPlayerNum) {
                 moveElm.style.display = "block";
             } else {
@@ -65,24 +65,26 @@ var gPositioningScene = {
         document.getElementById('matLib').style.display = 'block';
         document.getElementById('matRP').style.display = 'block';
 
+        gTalkHelper.talk('マットが被らないように、<br/>矢印をドラッグして マットをずらせだぜ☆<br/>そして左上の端を見ろ☆');
+
         gMainProgram.forwardScene('positioning', 'frameOnTimer');
     },
-    frameOnTimer: function () {},
-    onclickPositioningFinishButton: function (event) {
+    frameOnTimer: () => {},
+    onclickPositioningFinishButton: (event) => {
         "use strict";
         // Positioning finish button.
         let thisBtn = document.getElementById(event.target.id);
         thisBtn.style.display = "none";
 
         // Game scene elements.
-        document.querySelectorAll('.game-scene').forEach(function (gameSceneElm) {
+        document.querySelectorAll('.game-scene').forEach((gameSceneElm) => {
             gameSceneElm.style.display = "block";
         });
 
         let iPlyr;
         // Score elements is visible/hidden.
         iPlyr = 0;
-        document.querySelectorAll('.score').forEach(function (scoreElm) {
+        document.querySelectorAll('.score').forEach((scoreElm) => {
             if (iPlyr < G.entryPlayerNum) {
                 scoreElm.style.display = 'block';
             } else {
@@ -93,7 +95,7 @@ var gPositioningScene = {
 
         // Total-container elements is visible/hidden.
         iPlyr = 0;
-        document.querySelectorAll('.total-container').forEach(function (totalCntElm) {
+        document.querySelectorAll('.total-container').forEach((totalCntElm) => {
             if (iPlyr < G.entryPlayerNum) {
                 totalCntElm.style.display = 'block';
             } else {
@@ -103,11 +105,11 @@ var gPositioningScene = {
         });
 
         // Tile positioning.
-        this.executeAutoTilePosition();
+        gPositioningScene.executeAutoTilePosition();
 
         gMainProgram.forwardScene('game', 'initOnTimer');
     },
-    executeAutoTilePosition: function executeAutoTilePosition() {
+    executeAutoTilePosition: () => {
         "use strict";
         let usedTileCount = 0;
 

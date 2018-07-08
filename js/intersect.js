@@ -17,7 +17,7 @@ var gIntersect = {
      *             |
      *             this.
      */
-    getRight: function (element) {
+    getRight: (element) => {
         "use strict";
         return parseInt(element.style.left, 10) + parseInt(element.style.width, 10);
     },
@@ -31,7 +31,7 @@ var gIntersect = {
      * |           |
      * +-----------+ &lt;--this.
      */
-    getBottom: function (element) {
+    getBottom: (element) => {
         "use strict";
         return parseInt(element.style.top, 10) + parseInt(element.style.height, 10);
     },
@@ -48,11 +48,11 @@ var gIntersect = {
      * |  +-----------+ |
      * +----------------+
      */
-    isIntersect: function (elmChar, elmStage) {
+    isIntersect: (elmChar, elmStage) => {
         "use strict";
         return parseInt(elmStage.style.left, 10) <= parseInt(elmChar.style.left, 10) &&
         parseInt(elmStage.style.top, 10) <= parseInt(elmChar.style.top, 10) &&
-        this.getRight(elmChar) <= this.getRight(elmStage) &&
-        this.getBottom(elmChar) <= this.getBottom(elmStage);
+        gIntersect.getRight(elmChar) <= gIntersect.getRight(elmStage) &&
+        gIntersect.getBottom(elmChar) <= gIntersect.getBottom(elmStage);
     }
 };
