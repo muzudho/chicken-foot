@@ -134,7 +134,6 @@ var gTitleScene = {
     },
     onclickPlyrBtn: function (event) {
         "use strict";
-
         let id = event.target.id;
         G.entryPlayerNum = gStringFormat.getNumberByEntryPlayerButtonId(id);
 

@@ -7,6 +7,7 @@
 var gModelHelper = {
     /** Initialize global variable. */
     initialize: function () {
+        "use strict";
         G = {
             /** 0 <= x < 360. */
             angleDegByTile: [],
@@ -67,9 +68,11 @@ var gModelHelper = {
         }
     },
     containsTileNumberByPlayer: function (tileNum, plyrNum) {
+        "use strict";
         return G.handList[plyrNum].indexOf(tileNum) !== -1;
     },
     selectScoreByPlayer: function () {
+        "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             // Clear model.
             G.scoreByMat[iPlyr] = 0;
@@ -87,6 +90,7 @@ var gModelHelper = {
         }
     },
     turnToNextPlayer: function () {
+        "use strict";
         let rank = G.matThetaRankArr[G.currentPlayer];
         if (rank < 1) {
             rank = G.entryPlayerNum - 1;
@@ -94,5 +98,15 @@ var gModelHelper = {
             rank -= 1;
         }
         G.currentPlayer = G.matThetaRankArr.indexOf(rank);
+    },
+    /**
+     * @returns {number} tileNum or undefined.
+     */
+    popLibrary: function () {
+        "use strict";
+        return G.handList[LIBRARY_MAT_INDEX].pop();
+    },
+    pushTileToMat: function (tileNum, matSuffix) {
+        // TODO
     }
 };

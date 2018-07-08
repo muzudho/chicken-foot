@@ -49,7 +49,20 @@ var gViewHelper = {
         elmMatLib.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
         elmMatLib.style.height = (64 + 32 * 1.25) + 'px';
     },
+    selectHandTailsByPlayerImpl: function (iPlyr, elmMat) {
+        "use strict";
+        // Search tile views.
+        for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
+            let tileNum = G.tileNumbers[iTile];
+            let elmTile = document.getElementById('tile' + tileNum);
+            if (gIntersect.isIntersect(elmTile, elmMat)) {
+                // Set up model.
+                G.handList[iPlyr].push(tileNum);
+            }
+        }
+    },
     selectHandTailsByPlayer: function () {
+        "use strict";
         // Clear model.
         G.handList = [];
 
@@ -58,20 +71,16 @@ var gViewHelper = {
             // Clear model.
             G.handList[iPlyr] = [];
             let elmMat = document.getElementById('mat' + iPlyr);
-            // Search tile views.
-            for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
-                let tileNum = G.tileNumbers[iTile];
-                let elmTile = document.getElementById('tile' + tileNum);
-                if (gIntersect.isIntersect(elmTile, elmMat)) {
-                    // Set up model.
-                    G.handList[iPlyr].push(tileNum);
-                }
-            }
+            gViewHelper.selectHandTailsByPlayerImpl(iPlyr, elmMat);
         }
+        // Library
+        G.handList[LIBRARY_MAT_INDEX] = [];
+        gViewHelper.selectHandTailsByPlayerImpl(LIBRARY_MAT_INDEX, document.getElementById('matLib'));
 
         // gDebugHelper.showHandList();
     },
     clearTotal: function () {
+        "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let totalTbx = document.getElementById('total' + iPlyr);
             totalTbx.value = 0;
@@ -79,6 +88,7 @@ var gViewHelper = {
     },
     /** Total score text boxes. */
     updateTotalBasedOnMat: function () {
+        "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let elmTotal = document.getElementById('total' + iPlyr);
             elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];

@@ -13,6 +13,7 @@ G = {};
 
 var gMainProgram = {
     forwardScene: function (scene, phase) {
+        "use strict";
         G.scene = scene;
         G.scenePhase = phase;
     },
