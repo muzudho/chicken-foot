@@ -27,16 +27,7 @@ var gDynamicStyle = {
         elmMove.style.top = BODY_PADDING_TOP + 'px';
         elmMove.style.width = 36 + 'px';
         elmMove.style.height = 36 + 'px';
-        switch (suffix) {
-        case LIBRARY_MAT_INDEX:
-            elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[LIBRARY_MAT_INDEX];
-            break;
-        case 'RP':
-            elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[ROUTE_PIBOT_MAT_INDEX];
-            break;
-        default:
-            elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
-        }
+        elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[suffix];
     },
     loadDynamicStyleScore: (suffix) => {
         "use strict";
@@ -59,7 +50,7 @@ var gDynamicStyle = {
             elmMat.style.top = BODY_PADDING_TOP + 'px';
             elmMat.style.borderColor = DYNAMIC_STYLE_MAT_COLOR[LIBRARY_MAT_INDEX];
             break;
-        case 'RP':
+        case ROUTE_PIBOT_MAT_INDEX:
             // root pibot.
             elmMat.style.left = (window.innerWidth / 2 + 32) + 'px';
             elmMat.style.top = (window.innerHeight / 2 + 132) + 'px';
@@ -96,7 +87,7 @@ var gDynamicStyle = {
             gDynamicStyle.loadDynamicStyleMove(iPlyr);
         }
         gDynamicStyle.loadDynamicStyleMove(LIBRARY_MAT_INDEX);
-        gDynamicStyle.loadDynamicStyleMove('RP');
+        gDynamicStyle.loadDynamicStyleMove(ROUTE_PIBOT_MAT_INDEX);
 
         // Scores.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
@@ -108,7 +99,7 @@ var gDynamicStyle = {
             gDynamicStyle.loadDynamicStyleMat(iPlyr);
         }
         gDynamicStyle.loadDynamicStyleMat(LIBRARY_MAT_INDEX);
-        gDynamicStyle.loadDynamicStyleMat('RP');
+        gDynamicStyle.loadDynamicStyleMat(ROUTE_PIBOT_MAT_INDEX);
 
         // Player icons.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {

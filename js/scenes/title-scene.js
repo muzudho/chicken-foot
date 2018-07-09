@@ -109,7 +109,7 @@ var gTitleScene = {
             gTitleScene.setupMove(iMat);
         }
         gTitleScene.setupMove(LIBRARY_MAT_INDEX);
-        gTitleScene.setupMove('RP');
+        gTitleScene.setupMove(ROUTE_PIBOT_MAT_INDEX);
 
         gMainProgram.forwardScene('title', 'frameOnTimer');
     },

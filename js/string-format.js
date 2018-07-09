@@ -47,24 +47,6 @@ var gStringFormat = {
     },
 
     /**
-     * @returns {number} number or null.
-     * @example
-     * ### ex.
-     * 1 ---> 1.
-     * ### ex.
-     * 'RP' ---> ROUTE_PIBOT_MAT_INDEX.
-     */
-    getNumberBySuffix: (suffix) => {
-        "use strict";
-        switch (suffix) {
-        case 'RP':
-            return ROUTE_PIBOT_MAT_INDEX;
-        default:
-            return parseInt(suffix, 10);
-        }
-    },
-
-    /**
      * @returns {string} string or null.
      * @example
      * ### ex.
@@ -76,7 +58,7 @@ var gStringFormat = {
         "use strict";
         let group = /^move(.+)$/.exec(id);
         if (group !== null) {
-            return group[1];
+            return parseInt(group[1],10);
         }
         return null;
     }

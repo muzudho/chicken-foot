@@ -22,7 +22,7 @@ var gViewHelper = {
         }
 
         // root pibot, mat, score, move icon.
-        let elmMatRP = document.getElementById('matRP');
+        let elmMatRP = document.getElementById('mat'+ROUTE_PIBOT_MAT_INDEX);
         let usedTileCount = 0;
         let radius = Math.min(window.innerWidth, window.innerHeight) / 2 * 0.7;
         for (iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {
@@ -42,10 +42,10 @@ var gViewHelper = {
             gTitleScene.layoutMove(iPlyr);
         }
         gTitleScene.layoutMove(LIBRARY_MAT_INDEX);
-        gTitleScene.layoutMove('RP');
+        gTitleScene.layoutMove(ROUTE_PIBOT_MAT_INDEX);
 
         // Library
-        let elmMatLib = document.getElementById('mat'+LIBRARY_MAT_INDEX);
+        let elmMatLib = document.getElementById('mat' + LIBRARY_MAT_INDEX);
         elmMatLib.style.width = ((55 - G.entryPlayerNum * G.tileNumByPlayer + 1.5) * 32) + 'px';
         elmMatLib.style.height = (64 + 32 * 1.25) + 'px';
     },
@@ -63,7 +63,7 @@ var gViewHelper = {
                 let elmTile = document.getElementById('tile' + tileNum);
                 let flag = true;
 
-                let elmMatLib = document.getElementById('mat'+LIBRARY_MAT_INDEX);
+                let elmMatLib = document.getElementById('mat' + LIBRARY_MAT_INDEX);
                 if (gIntersect.isIntersect(elmTile, elmMatLib)) {
                     // No count.
                     flag = false;
@@ -110,7 +110,7 @@ var gViewHelper = {
         }
         // Library
         G.handList[LIBRARY_MAT_INDEX] = [];
-        gViewHelper.selectHandTailsByPlayerImpl(LIBRARY_MAT_INDEX, document.getElementById('mat'+LIBRARY_MAT_INDEX));
+        gViewHelper.selectHandTailsByPlayerImpl(LIBRARY_MAT_INDEX, document.getElementById('mat' + LIBRARY_MAT_INDEX));
         // Not player and library space.
         G.handList[ROUTE_PIBOT_MAT_INDEX] = [];
         gViewHelper.selectHandTailsByPlayerImpl(ROUTE_PIBOT_MAT_INDEX, null);

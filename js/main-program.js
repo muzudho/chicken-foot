@@ -57,8 +57,8 @@ var gMainProgram = {
 
         gRuleHelper.refreshScoreByAllMats();
 
-        let elmRP = document.getElementById('matRP');
-        let rpCenter = gDynamicStyle.getMatCenter('RP');
+        let elmRP = document.getElementById('mat'+ROUTE_PIBOT_MAT_INDEX);
+        let rpCenter = gDynamicStyle.getMatCenter(ROUTE_PIBOT_MAT_INDEX);
 
         // Mats.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {

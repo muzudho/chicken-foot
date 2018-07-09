@@ -72,7 +72,7 @@ var gMouseDrag = {
             // +------------+
             elmTile.style.border = '';
 
-            let elmMatLib = document.getElementById('mat'+LIBRARY_MAT_INDEX);
+            let elmMatLib = document.getElementById('mat' + LIBRARY_MAT_INDEX);
             if (gIntersect.isIntersect(event.target, elmMatLib)) {
 
                 gViewHelper.turnTileToBack(elmTile);
@@ -109,9 +109,9 @@ var gMouseDrag = {
         for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
             let elmTile = document.getElementById('tile' + G.tileNumbers[iTile]);
             switch (suffix) {
-            case 'RP':
+            case ROUTE_PIBOT_MAT_INDEX:
                 let isLocked = false;
-                let elmMatLib = document.getElementById('mat'+LIBRARY_MAT_INDEX);
+                let elmMatLib = document.getElementById('mat' + LIBRARY_MAT_INDEX);
                 if (gIntersect.isIntersect(elmTile, elmMatLib)) {
                     isLocked = true;
                 } else {
@@ -143,9 +143,8 @@ var gMouseDrag = {
 
         // Move score.
         switch (suffix) {
-        case LIBRARY_MAT_INDEX:
-            break;
-        case 'RP':
+        case LIBRARY_MAT_INDEX: // thru
+        case ROUTE_PIBOT_MAT_INDEX:
             break;
         default:
             let elmScore = document.getElementById('score' + suffix);
