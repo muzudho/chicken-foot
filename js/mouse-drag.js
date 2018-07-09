@@ -72,7 +72,7 @@ var gMouseDrag = {
             // +------------+
             elmTile.style.border = '';
 
-            let elmMatLib = document.getElementById('matLib');
+            let elmMatLib = document.getElementById('mat'+LIBRARY_MAT_INDEX);
             if (gIntersect.isIntersect(event.target, elmMatLib)) {
 
                 gViewHelper.turnTileToBack(elmTile);
@@ -111,7 +111,7 @@ var gMouseDrag = {
             switch (suffix) {
             case 'RP':
                 let isLocked = false;
-                let elmMatLib = document.getElementById('matLib');
+                let elmMatLib = document.getElementById('mat'+LIBRARY_MAT_INDEX);
                 if (gIntersect.isIntersect(elmTile, elmMatLib)) {
                     isLocked = true;
                 } else {
@@ -143,7 +143,7 @@ var gMouseDrag = {
 
         // Move score.
         switch (suffix) {
-        case 'Lib':
+        case LIBRARY_MAT_INDEX:
             break;
         case 'RP':
             break;

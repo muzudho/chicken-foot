@@ -108,7 +108,7 @@ var gTitleScene = {
         for (let iMat = 0; iMat < PLYR_MAX_LEN; iMat += 1) {
             gTitleScene.setupMove(iMat);
         }
-        gTitleScene.setupMove('Lib');
+        gTitleScene.setupMove(LIBRARY_MAT_INDEX);
         gTitleScene.setupMove('RP');
 
         gMainProgram.forwardScene('title', 'frameOnTimer');

@@ -52,19 +52,15 @@ var gStringFormat = {
      * ### ex.
      * 1 ---> 1.
      * ### ex.
-     * 'Lib' ---> LIBRARY_MAT_INDEX.
-     * ### ex.
      * 'RP' ---> ROUTE_PIBOT_MAT_INDEX.
      */
     getNumberBySuffix: (suffix) => {
         "use strict";
-        switch (matSuffix) {
-        case 'Lib':
-            return LIBRARY_MAT_INDEX;
+        switch (suffix) {
         case 'RP':
             return ROUTE_PIBOT_MAT_INDEX;
         default:
-            return parseInt(matSuffix, 10);
+            return parseInt(suffix, 10);
         }
     },
 

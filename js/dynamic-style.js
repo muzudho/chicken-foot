@@ -28,7 +28,7 @@ var gDynamicStyle = {
         elmMove.style.width = 36 + 'px';
         elmMove.style.height = 36 + 'px';
         switch (suffix) {
-        case 'Lib':
+        case LIBRARY_MAT_INDEX:
             elmMove.style.color = DYNAMIC_STYLE_MAT_COLOR[LIBRARY_MAT_INDEX];
             break;
         case 'RP':
@@ -53,7 +53,7 @@ var gDynamicStyle = {
         elmMat.style.left = Math.floor(Math.random() * 600 + BODY_PADDING_TOP) + 'px';
         elmMat.style.top = Math.floor(Math.random() * 400 + BODY_PADDING_TOP) + 'px';
         switch (suffix) {
-        case 'Lib':
+        case LIBRARY_MAT_INDEX:
             // stack.
             elmMat.style.left = 400 + 'px';
             elmMat.style.top = BODY_PADDING_TOP + 'px';
@@ -95,7 +95,7 @@ var gDynamicStyle = {
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             gDynamicStyle.loadDynamicStyleMove(iPlyr);
         }
-        gDynamicStyle.loadDynamicStyleMove('Lib');
+        gDynamicStyle.loadDynamicStyleMove(LIBRARY_MAT_INDEX);
         gDynamicStyle.loadDynamicStyleMove('RP');
 
         // Scores.
@@ -107,7 +107,7 @@ var gDynamicStyle = {
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             gDynamicStyle.loadDynamicStyleMat(iPlyr);
         }
-        gDynamicStyle.loadDynamicStyleMat('Lib');
+        gDynamicStyle.loadDynamicStyleMat(LIBRARY_MAT_INDEX);
         gDynamicStyle.loadDynamicStyleMat('RP');
 
         // Player icons.
