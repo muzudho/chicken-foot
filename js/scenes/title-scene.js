@@ -98,8 +98,8 @@ var gTitleScene = {
                         angle = -30;
                         break;
                     }
-                    G.angleDegByTile[tileNumber] = (G.angleDegByTile[tileNumber] + angle) % 360;
-                    document.getElementById(event.target.id).style.transform = 'rotate(' + G.angleDegByTile[tileNumber] + 'deg)';
+                    G.tileList[tileNumber].angleDeg = (G.tileList[tileNumber].angleDeg + angle) % 360;
+                    document.getElementById(event.target.id).style.transform = 'rotate(' + G.tileList[tileNumber].angleDeg + 'deg)';
                 };
             }
         }

@@ -22,7 +22,7 @@ var gIndex = {
     onResize: () => {
         "use strict";
         // root pibot
-        let elmMatRP = document.getElementById('mat'+ROUTE_PIBOT_MAT_INDEX);
+        let elmMatRP = document.getElementById('mat' + ROUTE_PIBOT_MAT_INDEX);
         elmMatRP.style.left = (window.innerWidth / 2 + 32) + "px";
         elmMatRP.style.top = (window.innerHeight / 2 + 132) + "px";
     }

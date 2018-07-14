@@ -59,11 +59,11 @@ var gPositioningScene = {
             iPlyr += 1;
         });
         document.getElementById('move' + LIBRARY_MAT_INDEX).style.display = 'block';
-        document.getElementById('move'+ROUTE_PIBOT_MAT_INDEX).style.display = 'block';
+        document.getElementById('move' + ROUTE_PIBOT_MAT_INDEX).style.display = 'block';
 
         // Mats.
         document.getElementById('mat' + LIBRARY_MAT_INDEX).style.display = 'block';
-        document.getElementById('mat'+ROUTE_PIBOT_MAT_INDEX).style.display = 'block';
+        document.getElementById('mat' + ROUTE_PIBOT_MAT_INDEX).style.display = 'block';
 
         gTalkHelper.talk('マットが被らないように、<br/>矢印をドラッグして マットをずらせだぜ☆<br/>そして左上の端を見ろ☆');
 

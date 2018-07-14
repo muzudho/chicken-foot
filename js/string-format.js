@@ -58,7 +58,7 @@ var gStringFormat = {
         "use strict";
         let group = /^move(.+)$/.exec(id);
         if (group !== null) {
-            return parseInt(group[1],10);
+            return parseInt(group[1], 10);
         }
         return null;
     }

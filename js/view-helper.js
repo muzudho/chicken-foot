@@ -22,7 +22,7 @@ var gViewHelper = {
         }
 
         // root pibot, mat, score, move icon.
-        let elmMatRP = document.getElementById('mat'+ROUTE_PIBOT_MAT_INDEX);
+        let elmMatRP = document.getElementById('mat' + ROUTE_PIBOT_MAT_INDEX);
         let usedTileCount = 0;
         let radius = Math.min(window.innerWidth, window.innerHeight) / 2 * 0.7;
         for (iPlyr = 0; iPlyr < G.entryPlayerNum; iPlyr += 1) {

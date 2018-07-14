@@ -10,6 +10,7 @@ const PLYR_MAX_LEN = 8;
 const LIBRARY_MAT_INDEX = 8;
 /** Not player and library space is 9. */
 const ROUTE_PIBOT_MAT_INDEX = 9;
+const TILE_SIZE = 100;
 
 /** Global variables. */
 G = {};
@@ -57,7 +58,7 @@ var gMainProgram = {
 
         gRuleHelper.refreshScoreByAllMats();
 
-        let elmRP = document.getElementById('mat'+ROUTE_PIBOT_MAT_INDEX);
+        let elmRP = document.getElementById('mat' + ROUTE_PIBOT_MAT_INDEX);
         let rpCenter = gDynamicStyle.getMatCenter(ROUTE_PIBOT_MAT_INDEX);
 
         // Mats.

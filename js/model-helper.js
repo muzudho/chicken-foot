@@ -9,9 +9,6 @@ var gModelHelper = {
     initialize: () => {
         "use strict";
         G = {
-            /** 0 <= x < 360. */
-            angleDegByTile: [],
-
             /** -1 is nobody. This is player id. */
             currentPlayer: -1,
 
@@ -43,6 +40,12 @@ var gModelHelper = {
 
             scoreByMat: [],
 
+            /**
+             * tileList[tileNumber]
+             * { mat:n, preMat:n angleDeg:n }
+             */
+            tileList: [],
+
             tileNumbers: [],
             tileNumByPlayer: 0,
 
@@ -62,10 +65,21 @@ var gModelHelper = {
             }
         }
 
-        // Clear angle of all tiles.
-        for (let iTile = 0; iTile < G.tileNumbers.length; iTile += 1) {
-            let tileNumber = G.tileNumbers[iTile];
-            G.angleDegByTile[tileNumber] = 0;
+        // タイル リスト作成。存在しない番号も入れて、[0]～[99]連番の配列として作成。
+        for (let iTileNumber = 0; iTileNumber < TILE_SIZE; iTileNumber += 1) {
+            if (-1 === G.tileNumbers.indexOf(iTileNumber)) {
+                // 存在しないタイル番号
+                G.tileList[iTileNumber] = {};
+            } else {
+                // 存在するタイル番号
+                G.tileList[iTileNumber] = {
+                    mat: 0,
+                    preMat: 0,
+
+                    /** 0 <= x < 360. */
+                    angleDeg: 0
+                };
+            }
         }
     },
     containsTileNumberByPlayer: (tileNum, plyrNum) => {
