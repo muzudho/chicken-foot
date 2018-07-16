@@ -64,7 +64,10 @@ var gGameScene = {
             break;
         case 'initOnPutTile':
             // Copy array.
-            G.handListAsTurnBegin = G.handList.slice();
+            for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+                G.playerList[iPlyr].handListAsTurnBegin = G.playerList[iPlyr].handList.slice();
+            }
+
             gGameScene.phase = 'frameOnPutTile';
             break;
         case 'frameOnPutTile':

@@ -14,10 +14,6 @@ var gModelHelper = {
 
             entryPlayerNum: 0,
 
-            /** Tile numbers by player. */
-            handList: [],
-            handListAsTurnBegin: [],
-
             /** mouse-drag.js */
             mouseDrag: {
                 startClient: {
@@ -29,17 +25,19 @@ var gModelHelper = {
                     y: 0
                 }
             },
-            
+
             /**
              * By player, library, root pibot.
              * {
              *    score: n,
              *    matTheta: radius,
              *    matThetaRank: Index is player id
+             *    handList: [], //Tile numbers by player.
+             *    handListAsTurnBegin: [],
              * }
              */
             playerList: [],
-            
+
             scene: "#main-program",
             scenePhase: "#initialize",
 
@@ -84,9 +82,9 @@ var gModelHelper = {
                 };
             }
         }
-        
+
         // プレイヤー リストの作成。
-        for (let iPlyr = 0; iPlyr < ROUTE_PIBOT_MAT_INDEX+1; iPlyr += 1) {
+        for (let iPlyr = 0; iPlyr < ROUTE_PIBOT_MAT_INDEX + 1; iPlyr += 1) {
             G.playerList[iPlyr] = {
                 score: 0
             };
@@ -94,15 +92,15 @@ var gModelHelper = {
     },
     containsTileNumberByPlayer: (tileNum, plyrNum) => {
         "use strict";
-        return G.handList[plyrNum].indexOf(tileNum) !== -1;
+        return G.playerList[plyrNum].handList.indexOf(tileNum) !== -1;
     },
     selectScoreByPlayer: () => {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             // Clear model.
             G.playerList[iPlyr].score = 0;
-            for (let iTile = 0; iTile < G.handList[iPlyr].length; iTile += 1) {
-                let tileNum = G.handList[iPlyr][iTile];
+            for (let iTile = 0; iTile < G.playerList[iPlyr].handList.length; iTile += 1) {
+                let tileNum = G.playerList[iPlyr].handList[iTile];
                 // Setup model.
                 if (tileNum === 0) {
                     // ダブル ブランクの失点は 50点。
@@ -122,10 +120,10 @@ var gModelHelper = {
         } else {
             rank -= 1;
         }
-        
+
         G.currentPlayer = -1; // エラー
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            if(G.playerList[iPlyr].matThetaRank===rank){
+            if (G.playerList[iPlyr].matThetaRank === rank) {
                 G.currentPlayer = iPlyr;
             }
         }
@@ -135,17 +133,17 @@ var gModelHelper = {
      */
     popLibrary: () => {
         "use strict";
-        return G.handList[LIBRARY_MAT_INDEX].pop();
+        return G.playerList[LIBRARY_MAT_INDEX].handList.pop();
     },
     /**
      * @returns {boolean} successful.
      */
     moveTileToMatImpl: (tileNum, srcPlyr, dstPlyr) => {
         "use strict";
-        let index = G.handList[srcPlyr].indexOf(tileNum);
+        let index = G.playerList[srcPlyr].handList.indexOf(tileNum);
         if (typeof index !== 'undefined') {
-            G.handList[srcPlyr].remove(tileNum);
-            G.handList[dstPlyr].push(tileNum);
+            G.playerList[srcPlyr].handList.remove(tileNum);
+            G.playerList[dstPlyr].handList.push(tileNum);
             return true;
         }
         return false;

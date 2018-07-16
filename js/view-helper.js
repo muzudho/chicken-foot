@@ -80,7 +80,7 @@ var gViewHelper = {
 
                 if (flag) {
                     // Set up model.
-                    G.handList[iPlyr].push(tileNum);
+                    G.playerList[iPlyr].handList.push(tileNum);
                 }
             }
             break;
@@ -91,28 +91,26 @@ var gViewHelper = {
                 let elmTile = document.getElementById('tile' + tileNum);
                 if (gIntersect.isIntersect(elmTile, elmMat)) {
                     // Set up model.
-                    G.handList[iPlyr].push(tileNum);
+                    G.playerList[iPlyr].handList.push(tileNum);
                 }
             }
         }
     },
     selectHandTailsByPlayer: () => {
         "use strict";
-        // Clear model.
-        G.handList = [];
 
         // Search mat views.
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             // Clear model.
-            G.handList[iPlyr] = [];
+            G.playerList[iPlyr].handList = [];
             let elmMat = document.getElementById('mat' + iPlyr);
             gViewHelper.selectHandTailsByPlayerImpl(iPlyr, elmMat);
         }
         // Library
-        G.handList[LIBRARY_MAT_INDEX] = [];
+        G.playerList[LIBRARY_MAT_INDEX].handList = [];
         gViewHelper.selectHandTailsByPlayerImpl(LIBRARY_MAT_INDEX, document.getElementById('mat' + LIBRARY_MAT_INDEX));
         // Not player and library space.
-        G.handList[ROUTE_PIBOT_MAT_INDEX] = [];
+        G.playerList[ROUTE_PIBOT_MAT_INDEX].handList = [];
         gViewHelper.selectHandTailsByPlayerImpl(ROUTE_PIBOT_MAT_INDEX, null);
 
         // gDebugHelper.showHandList();

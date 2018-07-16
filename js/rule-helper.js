@@ -19,7 +19,7 @@ var gRuleHelper = {
     getFirstPlayerIndex: () => {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
-            if(G.playerList[iPlyr].matThetaRank===0){
+            if (G.playerList[iPlyr].matThetaRank === 0) {
                 return iPlyr;
             }
         }
