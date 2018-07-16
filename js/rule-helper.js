@@ -18,7 +18,12 @@ var gRuleHelper = {
      */
     getFirstPlayerIndex: () => {
         "use strict";
-        return G.matThetaRankArr.indexOf(0);
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+            if(G.playerList[iPlyr].matThetaRank===0){
+                return iPlyr;
+            }
+        }
+        return -1; // エラー
     },
 
     highlightPlayer: (highlightPlyr) => {

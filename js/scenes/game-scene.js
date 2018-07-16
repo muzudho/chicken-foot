@@ -37,7 +37,7 @@ var gGameScene = {
                 gGameScene.phase = 'initOnPutTile';
             } else {
                 // ex) 4人なら、angleの小さな順 0位,3位,2位,1位 に進む。 1位 が ダブルを持っていなければ、全員持っていない。
-                if (G.matThetaRankArr[G.currentPlayer] === 1) {
+                if (G.playerList[G.currentPlayer].matThetaRank === 1) {
                     // TODO 山札から全プレイヤーに１枚ずつ配りたい。
                     gTalkHelper.talk('なんだ、誰も 99 を持っていないのかだぜ☆');
 

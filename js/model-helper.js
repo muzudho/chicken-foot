@@ -18,11 +18,6 @@ var gModelHelper = {
             handList: [],
             handListAsTurnBegin: [],
 
-            /** radius */
-            matThetaArr: [],
-            /** Index is player id. */
-            matThetaRankArr: [],
-
             /** mouse-drag.js */
             mouseDrag: {
                 startClient: {
@@ -34,10 +29,14 @@ var gModelHelper = {
                     y: 0
                 }
             },
-
+            
             /**
              * By player, library, root pibot.
-             * { score:n }
+             * {
+             *    score: n,
+             *    matTheta: radius,
+             *    matThetaRank: Index is player id
+             * }
              */
             playerList: [],
             
@@ -117,13 +116,19 @@ var gModelHelper = {
     },
     turnToNextPlayer: () => {
         "use strict";
-        let rank = G.matThetaRankArr[G.currentPlayer];
+        let rank = G.playerList[G.currentPlayer].matThetaRank;
         if (rank < 1) {
             rank = G.entryPlayerNum - 1;
         } else {
             rank -= 1;
         }
-        G.currentPlayer = G.matThetaRankArr.indexOf(rank);
+        
+        G.currentPlayer = -1; // エラー
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+            if(G.playerList[iPlyr].matThetaRank===rank){
+                G.currentPlayer = iPlyr;
+            }
+        }
     },
     /**
      * @returns {number} tileNum or undefined.

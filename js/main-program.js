@@ -68,32 +68,40 @@ var gMainProgram = {
                 let elmMat = document.getElementById('mat' + iPlyr);
                 let matCenter = gDynamicStyle.getMatCenter(iPlyr);
                 // theta = atan2( y, x)
-                G.matThetaArr[iPlyr] = Math.atan2(matCenter.y - rpCenter.y, matCenter.x - rpCenter.x);
+                G.playerList[iPlyr].matTheta = Math.atan2(matCenter.y - rpCenter.y, matCenter.x - rpCenter.x);
 
                 // Score.
                 let elmScore = document.getElementById('score' + iPlyr);
                 elmScore.innerHTML = G.playerList[iPlyr].score + '点';
             } else {
                 // 小さいもの順ソートの邪魔にならないようにする。
-                G.matThetaArr[iPlyr] = Number.MAX_VALUE;
+                G.playerList[iPlyr].matTheta = Number.MAX_VALUE;
             }
         }
 
+        // ソートをするために、配列に入れ替える。
+        let matThetaArr = [];
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+            matThetaArr[iPlyr] = G.playerList[iPlyr].matTheta;
+        }
         // 小さい順に並べる。
-        let sorted = G.matThetaArr.slice().sort((a, b) => {
+        let sorted = matThetaArr.slice().sort((a, b) => {
                 return a - b
             });
         // 一番小さいものに 0、二番目に小さいものに 1、と付く。 FIXME: 同着は被ってしまう。
-        G.matThetaRankArr = G.matThetaArr.slice().map((x) => {
+        let matThetaRankArr = matThetaArr.slice().map((x) => {
                 return sorted.indexOf(x)
             });
+        for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
+            G.playerList[iPlyr].matThetaRank = matThetaRankArr[iPlyr];
+        }
 
         /*
         // For debug.
         console.log('root pibot x: '+rpCenter.x+' y: '+rpCenter.y);
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
         let matCenter = gDynamicStyle.getMatCenter(iPlyr);
-        console.log('['+iPlyr+'] ('+matCenter.x+', '+matCenter.y+') theta: '+G.matThetaArr[iPlyr]+' rank: '+G.matThetaRankArr[iPlyr]);
+        console.log('['+iPlyr+'] ('+matCenter.x+', '+matCenter.y+') theta: '+G.matThetaArr[iPlyr]+' rank: '+G.playerList[iPlyr].matThetaRank);
         }
          */
 
