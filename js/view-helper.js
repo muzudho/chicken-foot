@@ -129,7 +129,7 @@ var gViewHelper = {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             let elmTotal = document.getElementById('total' + iPlyr);
-            elmTotal.value = parseInt(elmTotal.value, 10) + G.scoreByMat[iPlyr];
+            elmTotal.value = parseInt(elmTotal.value, 10) + G.playerList[iPlyr].score;
         }
     },
     moveTileToMat: (tileNum, dstPlyr) => {

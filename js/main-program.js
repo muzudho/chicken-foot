@@ -72,7 +72,7 @@ var gMainProgram = {
 
                 // Score.
                 let elmScore = document.getElementById('score' + iPlyr);
-                elmScore.innerHTML = G.scoreByMat[iPlyr] + '点';
+                elmScore.innerHTML = G.playerList[iPlyr].score + '点';
             } else {
                 // 小さいもの順ソートの邪魔にならないようにする。
                 G.matThetaArr[iPlyr] = Number.MAX_VALUE;

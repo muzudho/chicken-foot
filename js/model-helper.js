@@ -35,10 +35,14 @@ var gModelHelper = {
                 }
             },
 
+            /**
+             * By player, library, root pibot.
+             * { score:n }
+             */
+            playerList: [],
+            
             scene: "#main-program",
             scenePhase: "#initialize",
-
-            scoreByMat: [],
 
             /**
              * tileList[tileNumber]
@@ -81,6 +85,13 @@ var gModelHelper = {
                 };
             }
         }
+        
+        // プレイヤー リストの作成。
+        for (let iPlyr = 0; iPlyr < ROUTE_PIBOT_MAT_INDEX+1; iPlyr += 1) {
+            G.playerList[iPlyr] = {
+                score: 0
+            };
+        }
     },
     containsTileNumberByPlayer: (tileNum, plyrNum) => {
         "use strict";
@@ -90,16 +101,16 @@ var gModelHelper = {
         "use strict";
         for (let iPlyr = 0; iPlyr < PLYR_MAX_LEN; iPlyr += 1) {
             // Clear model.
-            G.scoreByMat[iPlyr] = 0;
+            G.playerList[iPlyr].score = 0;
             for (let iTile = 0; iTile < G.handList[iPlyr].length; iTile += 1) {
                 let tileNum = G.handList[iPlyr][iTile];
                 // Setup model.
                 if (tileNum === 0) {
                     // ダブル ブランクの失点は 50点。
-                    G.scoreByMat[iPlyr] -= 50;
+                    G.playerList[iPlyr].score -= 50;
                 } else {
                     // 1桁目、2桁目を 1桁の数字として計算。
-                    G.scoreByMat[iPlyr] -= Math.floor(tileNum / 10) % 10 + tileNum % 10;
+                    G.playerList[iPlyr].score -= Math.floor(tileNum / 10) % 10 + tileNum % 10;
                 }
             }
         }
